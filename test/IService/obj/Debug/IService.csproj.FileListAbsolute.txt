@@ -1,0 +1,16 @@
+C:\w_h\projects\test\IService\bin\Debug\IService.dll
+C:\w_h\projects\test\IService\bin\Debug\IService.pdb
+C:\w_h\projects\test\IService\obj\Debug\IService.csprojResolveAssemblyReference.cache
+C:\w_h\projects\test\IService\obj\Debug\IService.csproj.CoreCompileInputs.cache
+C:\w_h\projects\test\IService\obj\Debug\IService.dll
+C:\w_h\projects\test\IService\obj\Debug\IService.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\bin\Debug\IService.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\bin\Debug\IService.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.csproj.CoreCompileInputs.cache
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\bin\Debug\IService.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\bin\Debug\IService.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.csprojResolveAssemblyReference.cache
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.pdb

@@ -1,0 +1,447 @@
+C:\w_h\projects\test\test\bin\ApplicationInsights.config
+C:\w_h\projects\test\test\bin\roslyn\csc.exe
+C:\w_h\projects\test\test\bin\roslyn\csc.exe.config
+C:\w_h\projects\test\test\bin\roslyn\csc.rsp
+C:\w_h\projects\test\test\bin\roslyn\csi.exe
+C:\w_h\projects\test\test\bin\roslyn\csi.exe.config
+C:\w_h\projects\test\test\bin\roslyn\csi.rsp
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\w_h\projects\test\test\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\w_h\projects\test\test\bin\roslyn\System.AppContext.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Collections.Immutable.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Console.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Diagnostics.Process.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\w_h\projects\test\test\bin\roslyn\System.IO.Compression.dll
+C:\w_h\projects\test\test\bin\roslyn\System.IO.FileSystem.dll
+C:\w_h\projects\test\test\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\w_h\projects\test\test\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\w_h\projects\test\test\bin\roslyn\System.IO.Pipes.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Reflection.Metadata.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Security.AccessControl.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Security.Claims.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Security.Principal.Windows.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Threading.Thread.dll
+C:\w_h\projects\test\test\bin\roslyn\System.ValueTuple.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Xml.XmlDocument.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Xml.XPath.dll
+C:\w_h\projects\test\test\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\w_h\projects\test\test\bin\roslyn\vbc.exe
+C:\w_h\projects\test\test\bin\roslyn\vbc.exe.config
+C:\w_h\projects\test\test\bin\roslyn\vbc.rsp
+C:\w_h\projects\test\test\bin\roslyn\VBCSCompiler.exe
+C:\w_h\projects\test\test\bin\roslyn\VBCSCompiler.exe.config
+C:\w_h\projects\test\test\bin\test.dll.config
+C:\w_h\projects\test\test\bin\test.dll
+C:\w_h\projects\test\test\bin\test.pdb
+C:\w_h\projects\test\test\bin\Antlr3.Runtime.dll
+C:\w_h\projects\test\test\bin\Autofac.dll
+C:\w_h\projects\test\test\bin\Autofac.Integration.Mvc.dll
+C:\w_h\projects\test\test\bin\Microsoft.AI.Agent.Intercept.dll
+C:\w_h\projects\test\test\bin\Microsoft.AI.DependencyCollector.dll
+C:\w_h\projects\test\test\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\w_h\projects\test\test\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\w_h\projects\test\test\bin\Microsoft.AI.Web.dll
+C:\w_h\projects\test\test\bin\Microsoft.AI.WindowsServer.dll
+C:\w_h\projects\test\test\bin\Microsoft.ApplicationInsights.dll
+C:\w_h\projects\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\w_h\projects\test\test\bin\Microsoft.Web.Infrastructure.dll
+C:\w_h\projects\test\test\bin\Newtonsoft.Json.dll
+C:\w_h\projects\test\test\bin\System.Web.Helpers.dll
+C:\w_h\projects\test\test\bin\System.Web.Mvc.dll
+C:\w_h\projects\test\test\bin\System.Web.Optimization.dll
+C:\w_h\projects\test\test\bin\System.Web.Razor.dll
+C:\w_h\projects\test\test\bin\System.Web.WebPages.Deployment.dll
+C:\w_h\projects\test\test\bin\System.Web.WebPages.dll
+C:\w_h\projects\test\test\bin\System.Web.WebPages.Razor.dll
+C:\w_h\projects\test\test\bin\WebGrease.dll
+C:\w_h\projects\test\test\bin\Autofac.xml
+C:\w_h\projects\test\test\bin\Autofac.Integration.Mvc.xml
+C:\w_h\projects\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\w_h\projects\test\test\bin\System.Web.Helpers.xml
+C:\w_h\projects\test\test\bin\System.Web.Mvc.xml
+C:\w_h\projects\test\test\bin\System.Web.Optimization.xml
+C:\w_h\projects\test\test\bin\System.Web.Razor.xml
+C:\w_h\projects\test\test\bin\System.Web.WebPages.xml
+C:\w_h\projects\test\test\bin\System.Web.WebPages.Deployment.xml
+C:\w_h\projects\test\test\bin\System.Web.WebPages.Razor.xml
+C:\w_h\projects\test\test\bin\Antlr3.Runtime.pdb
+C:\w_h\projects\test\test\bin\Newtonsoft.Json.xml
+C:\w_h\projects\test\test\bin\Microsoft.ApplicationInsights.xml
+C:\w_h\projects\test\test\bin\Microsoft.AI.DependencyCollector.xml
+C:\w_h\projects\test\test\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\w_h\projects\test\test\bin\Microsoft.AI.WindowsServer.xml
+C:\w_h\projects\test\test\bin\Microsoft.AI.Web.xml
+C:\w_h\projects\test\test\bin\ru\System.Web.Helpers.resources.dll
+C:\w_h\projects\test\test\bin\ru\System.Web.Mvc.resources.dll
+C:\w_h\projects\test\test\bin\ru\System.Web.Optimization.resources.dll
+C:\w_h\projects\test\test\bin\ru\System.Web.Razor.resources.dll
+C:\w_h\projects\test\test\bin\ru\System.Web.WebPages.resources.dll
+C:\w_h\projects\test\test\bin\ru\System.Web.WebPages.Deployment.resources.dll
+C:\w_h\projects\test\test\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\w_h\projects\test\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+C:\w_h\projects\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\w_h\projects\test\test\obj\Debug\test.dll
+C:\w_h\projects\test\test\obj\Debug\test.pdb
+C:\w_h\projects\test\test\bin\Microsoft.AspNet.Identity.Core.dll
+C:\w_h\projects\test\test\bin\Microsoft.AspNet.Identity.Core.xml
+C:\w_h\projects\test\test\bin\EntityFramework.dll
+C:\w_h\projects\test\test\bin\EntityFramework.SqlServer.dll
+C:\w_h\projects\test\test\bin\EntityFramework.xml
+C:\w_h\projects\test\test\bin\EntityFramework.SqlServer.xml
+C:\w_h\projects\test\test\bin\Data.dll
+C:\w_h\projects\test\test\bin\IService.dll
+C:\w_h\projects\test\test\bin\Data.pdb
+C:\w_h\projects\test\test\bin\Data.dll.config
+C:\w_h\projects\test\test\bin\IService.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ApplicationInsights.config
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csc.exe
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csc.exe.config
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csc.rsp
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csi.exe
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csi.exe.config
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csi.rsp
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.AppContext.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Console.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.Compression.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.Pipes.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Claims.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Threading.Thread.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.ValueTuple.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\vbc.exe
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\vbc.exe.config
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\vbc.rsp
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\VBCSCompiler.exe
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\test.dll.config
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\test.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\test.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Antlr3.Runtime.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Autofac.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Autofac.Integration.Mvc.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Data.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\EntityFramework.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\EntityFramework.SqlServer.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\IService.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.Web.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Newtonsoft.Json.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Helpers.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Mvc.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Optimization.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Razor.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.Razor.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\WebGrease.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Data.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Data.dll.config
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\IService.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Autofac.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Autofac.Integration.Mvc.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\EntityFramework.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\EntityFramework.SqlServer.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Helpers.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Mvc.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Optimization.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Razor.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.Razor.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Antlr3.Runtime.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Newtonsoft.Json.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.Web.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.Helpers.resources.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.Mvc.resources.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.Optimization.resources.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.Razor.resources.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.WebPages.resources.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\obj\Debug\test.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\test\obj\Debug\test.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ApplicationInsights.config
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csc.exe
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csc.exe.config
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csc.rsp
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csi.exe
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csi.exe.config
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\csi.rsp
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.AppContext.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Console.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.Compression.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.IO.Pipes.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Claims.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Threading.Thread.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.ValueTuple.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Xml.XPath.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\vbc.exe
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\vbc.exe.config
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\vbc.rsp
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\VBCSCompiler.exe
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\test.dll.config
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\test.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\test.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Antlr3.Runtime.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Autofac.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Autofac.Integration.Mvc.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Data.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\EntityFramework.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\EntityFramework.SqlServer.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\IService.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.Web.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.ApplicationInsights.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Newtonsoft.Json.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Helpers.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Mvc.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Optimization.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Razor.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.Deployment.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.Razor.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\WebGrease.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Data.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Data.dll.config
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\IService.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Autofac.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Autofac.Integration.Mvc.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\EntityFramework.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\EntityFramework.SqlServer.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Helpers.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Mvc.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Optimization.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.Razor.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.Deployment.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\System.Web.WebPages.Razor.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Antlr3.Runtime.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Newtonsoft.Json.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.ApplicationInsights.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\Microsoft.AI.Web.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.Helpers.resources.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.Mvc.resources.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.Optimization.resources.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.Razor.resources.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.WebPages.resources.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.WebPages.Deployment.resources.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\obj\Debug\test.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\test\obj\Debug\test.pdb
+C:\w_h\projects\AdminPanel\test\test\bin\ApplicationInsights.config
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\csc.exe
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\csc.exe.config
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\csc.rsp
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\csi.exe
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\csi.exe.config
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\csi.rsp
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.AppContext.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Collections.Immutable.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Console.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Diagnostics.Process.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.IO.Compression.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.IO.FileSystem.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.IO.Pipes.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Reflection.Metadata.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Security.AccessControl.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Security.Claims.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Security.Principal.Windows.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Threading.Thread.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.ValueTuple.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Xml.XmlDocument.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Xml.XPath.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\vbc.exe
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\vbc.exe.config
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\vbc.rsp
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\VBCSCompiler.exe
+C:\w_h\projects\AdminPanel\test\test\bin\roslyn\VBCSCompiler.exe.config
+C:\w_h\projects\AdminPanel\test\test\bin\test.dll.config
+C:\w_h\projects\AdminPanel\test\test\bin\test.dll
+C:\w_h\projects\AdminPanel\test\test\bin\test.pdb
+C:\w_h\projects\AdminPanel\test\test\bin\Antlr3.Runtime.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Autofac.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Autofac.Integration.Mvc.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Data.dll
+C:\w_h\projects\AdminPanel\test\test\bin\EntityFramework.dll
+C:\w_h\projects\AdminPanel\test\test\bin\EntityFramework.SqlServer.dll
+C:\w_h\projects\AdminPanel\test\test\bin\IService.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.Agent.Intercept.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.DependencyCollector.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.Web.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.WindowsServer.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.ApplicationInsights.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AspNet.Identity.Core.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.Web.Infrastructure.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Newtonsoft.Json.dll
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.Helpers.dll
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.Mvc.dll
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.Optimization.dll
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.Razor.dll
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.WebPages.Deployment.dll
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.WebPages.dll
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.WebPages.Razor.dll
+C:\w_h\projects\AdminPanel\test\test\bin\WebGrease.dll
+C:\w_h\projects\AdminPanel\test\test\bin\Data.pdb
+C:\w_h\projects\AdminPanel\test\test\bin\Data.dll.config
+C:\w_h\projects\AdminPanel\test\test\bin\IService.pdb
+C:\w_h\projects\AdminPanel\test\test\bin\Autofac.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Autofac.Integration.Mvc.xml
+C:\w_h\projects\AdminPanel\test\test\bin\EntityFramework.xml
+C:\w_h\projects\AdminPanel\test\test\bin\EntityFramework.SqlServer.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AspNet.Identity.Core.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.Helpers.xml
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.Mvc.xml
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.Optimization.xml
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.Razor.xml
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.WebPages.xml
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.WebPages.Deployment.xml
+C:\w_h\projects\AdminPanel\test\test\bin\System.Web.WebPages.Razor.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Antlr3.Runtime.pdb
+C:\w_h\projects\AdminPanel\test\test\bin\Newtonsoft.Json.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.ApplicationInsights.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.DependencyCollector.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.WindowsServer.xml
+C:\w_h\projects\AdminPanel\test\test\bin\Microsoft.AI.Web.xml
+C:\w_h\projects\AdminPanel\test\test\bin\ru\System.Web.Helpers.resources.dll
+C:\w_h\projects\AdminPanel\test\test\bin\ru\System.Web.Mvc.resources.dll
+C:\w_h\projects\AdminPanel\test\test\bin\ru\System.Web.Optimization.resources.dll
+C:\w_h\projects\AdminPanel\test\test\bin\ru\System.Web.Razor.resources.dll
+C:\w_h\projects\AdminPanel\test\test\bin\ru\System.Web.WebPages.resources.dll
+C:\w_h\projects\AdminPanel\test\test\bin\ru\System.Web.WebPages.Deployment.resources.dll
+C:\w_h\projects\AdminPanel\test\test\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\w_h\projects\AdminPanel\test\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+C:\w_h\projects\AdminPanel\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\w_h\projects\AdminPanel\test\test\obj\Debug\test.dll
+C:\w_h\projects\AdminPanel\test\test\obj\Debug\test.pdb

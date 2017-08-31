@@ -1,0 +1,48 @@
+C:\w_h\projects\test\Data\bin\Debug\Data.dll
+C:\w_h\projects\test\Data\bin\Debug\Data.pdb
+C:\w_h\projects\test\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+C:\w_h\projects\test\Data\obj\Debug\Data.dll
+C:\w_h\projects\test\Data\obj\Debug\Data.pdb
+C:\w_h\projects\test\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\w_h\projects\test\Data\bin\Debug\IService.dll
+C:\w_h\projects\test\Data\bin\Debug\EntityFramework.dll
+C:\w_h\projects\test\Data\bin\Debug\IService.pdb
+C:\w_h\projects\test\Data\bin\Debug\EntityFramework.xml
+C:\w_h\projects\test\Data\bin\Debug\Data.dll.config
+C:\w_h\projects\test\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\w_h\projects\test\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\w_h\projects\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\Data.dll.config
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\Data.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\Data.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\EntityFramework.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\IService.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\IService.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\EntityFramework.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.dll
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\Data.dll.config
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\Data.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\Data.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\EntityFramework.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\IService.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\IService.pdb
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\EntityFramework.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.Migrations.MigrateDB.resources
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.Migrations.newStruct.resources
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.Migrations.newStruct1.resources
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.dll
+C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.pdb
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.Migrations.migration1.resources
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache
+C:\Users\Hecmatyar.TIRSCRIPT\OneDrive\Documents\Visual Studio 2017\Projects\test\Data\obj\Debug\Data.Migrations.migration12.resources
+C:\w_h\projects\test\Data\obj\Debug\Data.Migrations.migration1.resources
+C:\w_h\projects\test\Data\obj\Debug\Data.Migrations.migration12.resources

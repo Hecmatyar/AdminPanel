@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!-- BEGIN PAGE HEADER-->
+<h3 class="page-title">
+    Редактирование <small>пользователей ресурса</small>
+</h3>
+<!-- END PAGE HEADER-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-edit"></i>Таблица пользователей
+                </div>            
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="btn-group">
+                                <button class="btn green" onclick="location.href='@Url.Action("Create", "Users")'">
+                                    Добавить нового <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+                @* частичное представление с таблицей пользователей *@
+                @{Html.RenderPartial("ListUserPartial");}
+
+               @* @{Html.RenderAction("CategoryList", "Home");}*@
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<div class="back-popup">
+    <div class="popup" id="#popup">
+
+    </div>
+</div>
+<!-- END PAGE CONTENT -->
+<!-- BEGIN PAGE CONTENT-->

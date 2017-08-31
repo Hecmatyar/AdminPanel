@@ -1,0 +1,18 @@
+namespace test.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class MigrateDbase : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn("dbo.UserDatas", "userroles", c => c.Int(nullable: false));
+        }
+        
+        public override void Down()
+        {
+            DropColumn("dbo.UserDatas", "userroles");
+        }
+    }
+}

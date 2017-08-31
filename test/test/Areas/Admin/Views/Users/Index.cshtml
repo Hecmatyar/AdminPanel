@@ -15,7 +15,11 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-edit"></i>Таблица пользователей
-                </div>            
+                </div>     
+                <div class="tools">                    
+                    <a href="/Admin/Users/UserTable" class="reload">                        
+                    </a>                   
+                </div>
             </div>
             <div class="portlet-body">
                 <div class="table-toolbar">
@@ -29,15 +33,16 @@
                         </div>                       
                     </div>
                 </div>
-                @* частичное представление с таблицей пользователей *@
-                @{Html.RenderPartial("ListUserPartial");}
-
-               @* @{Html.RenderAction("CategoryList", "Home");}*@
+                <div id="usereTable">                    
+                    @* частичное представление с таблицей пользователей *@
+                   @* @{Html.RenderPartial("ListUserPartial");}*@
+                </div>              
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->
     </div>
 </div>
+@* всплывающее окошко *@
 <div class="back-popup">
     <div class="popup" id="#popup">
 

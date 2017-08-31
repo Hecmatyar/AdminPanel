@@ -14,3 +14,8 @@ C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\bin\
 C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.csprojResolveAssemblyReference.cache
 C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.dll
 C:\Users\hibin\OneDrive\Documents\Visual Studio 2017\Projects\test\IService\obj\Debug\IService.pdb
+C:\working\tir-script\AdminPanel\test\IService\bin\Debug\IService.dll
+C:\working\tir-script\AdminPanel\test\IService\bin\Debug\IService.pdb
+C:\working\tir-script\AdminPanel\test\IService\obj\Debug\IService.csprojResolveAssemblyReference.cache
+C:\working\tir-script\AdminPanel\test\IService\obj\Debug\IService.dll
+C:\working\tir-script\AdminPanel\test\IService\obj\Debug\IService.pdb

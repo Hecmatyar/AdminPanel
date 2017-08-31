@@ -17,8 +17,18 @@ namespace IService
         /// <summary>
         /// список пользователей
         /// </summary>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество элементов на странице</param>
+        /// <param name="pageIndex">номер страницы</param>
         /// <returns></returns>
-        List<UserModel> GetUserList();
+        List<UserModel> GetUserList(string search, int pageSize, int pageIndex);
+        /// <summary>
+        /// количество страниц в таблице
+        /// </summary>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество элементов на станицу</param>
+        /// <returns></returns>
+        int GetPageCount(string search, int pageSize);
 
         /// <summary>
         /// редактирование личных данных пользователя
@@ -59,6 +69,6 @@ namespace IService
         /// <param name="photo">аватар пользователя</param>
         void RegisterUser(string userName, string password, string email, RolesEnum[] roles, byte[] photo);
 
-       
+
     }
 }

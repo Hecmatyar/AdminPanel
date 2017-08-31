@@ -9,6 +9,7 @@ using test.Controllers;
 using test.Areas.Admin.Models;
 using System.IO;
 using IService.Models;
+using System.Web.Routing;
 
 namespace test.Areas.Admin.Controllers
 {
@@ -20,38 +21,27 @@ namespace test.Areas.Admin.Controllers
 
         }
         // GET: Admin/Users
-
-        public ActionResult Index(int? page, string currentFilter, string searchString)
-        {
-            //int pageSize = 3;
-            //int pageNumber = (page ?? 1);
-
-            //if (searchString != null) { page = 1; }
-            //else { searchString = currentFilter; }
-            //ViewBag.CurrentFilter = searchString;
-
-            /*
-             * if (!String.IsNullOrEmpty(searchString))
-            {
-                posts = db.Posts
-                    .Where(a => a.Author.Contains(searchString) || a.Title.Contains(searchString))
-                    .OrderByDescending(d => d.Published)
-                    .ToList();                
-                ViewBag.searchTheme = "Найденные посты";
-            }
-            */
-            var userlist = _AdminService.GetUserList();
-            return View(userlist);
-            //return View();
+        public ActionResult Index()
+        {            
+            return View();
         }
-
+        [HttpPost]
+        public PartialViewResult UserTable(int? page, string searchString)
+        {
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            ViewBag.page = pageNumber;
+            ViewBag.countPage = _AdminService.GetPageCount(searchString, pageSize);
+            List<UserModel> userlist = _AdminService.GetUserList(searchString, pageSize, pageNumber);
+            return PartialView("ListUserPartial", userlist);
+        }
         /// <summary>
         /// создание нового пользователя в панели администратора
         /// </summary>
         /// <returns></returns>
         public ActionResult Create()
         {
-            List<RolesEnum> ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
+            var ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
             ViewBag.UnRoles = ur;
             return View();
         }
@@ -89,66 +79,6 @@ namespace test.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// редактирование личных данных пользователя, который вошел в систему
-        /// </summary>
-        /// <param name="Token"></param>
-        /// <returns></returns>
-        //public ActionResult Edit(string Token)
-        //{
-        //    UserModel user = _AuthenticationRequest.GetUserByToken(Token);
-        //    EditUserViewModel edit = new EditUserViewModel
-        //    {
-        //        UserName = user.UserName,
-        //        UserPassword = user.UserPassword,
-        //        UserEmail = user.UserEmail,
-        //        UserRoles = user.UserRoles,
-        //        UserPhoto = user.UserPhoto,
-        //        UserToken = Token,
-        //        NewUserPassword = ""
-        //    };
-        //    ViewBag.Token = Token;
-        //    List<RolesModel> roles = _AuthenticationRequest.GetUserByToken(Token).UserRoles;
-        //    ViewBag.Roles = roles;
-        //    List<RolesEnum> ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
-        //    ViewBag.UnRoles = ur.Where(a => !roles.Any(r => r.Name == a));
-
-        //    return View(edit);
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Exclude = "NewUserPhoto")]EditUserViewModel model, string Token, byte[] UserPhoto, int[] selectedRole)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        byte[] imageData = null;
-        //        if (Request.Files.Count > 0)
-        //        {
-        //            HttpPostedFileBase poImgFile = Request.Files["NewUserPhoto"];
-        //            using (var binary = new BinaryReader(poImgFile.InputStream))
-        //            {
-        //                imageData = binary.ReadBytes(poImgFile.ContentLength);
-        //                if (imageData.Length > 0)
-        //                    model.UserPhoto = imageData;
-        //            }
-        //        }
-        //        RolesEnum[] roles = new RolesEnum[selectedRole.Length];
-        //        for (int i = 0; i < selectedRole.Length; i++)
-        //        {
-        //            roles[i] = (RolesEnum)Enum.ToObject(typeof(RolesEnum), selectedRole[i] - 1);
-        //        }
-        //        if (model.NewUserPassword != null && model.NewUserPassword.Length > 0)
-        //            model.UserPassword = model.NewUserPassword;
-        //        //_AdminService.ChangeUserInfo(
-        //        //    model.UserName,
-        //        //    model.UserPassword,
-        //        //    model.UserEmail, roles,
-        //        //    model.UserPhoto, Token);
-        //        return RedirectToAction("/Index");
-        //    }
-        //    return View(model);
-        //}
-
-        /// <summary>
         /// удаление выбранного пользователя 
         /// </summary>
         /// <param name="Token"></param>
@@ -163,8 +93,6 @@ namespace test.Areas.Admin.Controllers
             manager.Logoff();
             return Redirect(Url.Content("~/Home/Index"));
         }
-
-
 
         [HttpPost]
         public PartialViewResult EditUserPartial(int id)
@@ -193,6 +121,8 @@ namespace test.Areas.Admin.Controllers
             }
             _AdminService.ChangeUserInfo(edit.UserId, edit.UserEmail, DateTime.Now, imageData);
             return RedirectToAction("/Index");
+            //return RedirectToAction("/Index", new RouteValueDictionary(
+            //    new { controller = "Users", action = "Index", page = page }));
         }
 
         [HttpPost]
@@ -224,16 +154,14 @@ namespace test.Areas.Admin.Controllers
                 UserName = user.UserName,
                 UserRoles = user.UserRoles,
             };
-            //List<RolesModel> roles = _AuthenticationRequest.GetUserById(id).UserRoles;
-            //ViewBag.Roles = roles;
-            List<RolesEnum> ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
+            var ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
             ViewBag.UnRoles = ur.Where(a => !user.UserRoles.Any(r => r.Name == a));
             return PartialView("EditRolePartial", edit);
         }
         [HttpPost]
         public ActionResult EditUserRoles(EditUserViewModel edit, int[] selectedRole)
         {
-            RolesEnum[] roles = new RolesEnum[selectedRole.Length];
+            var roles = new RolesEnum[selectedRole.Length];
             for (int i = 0; i < selectedRole.Length; i++)
             {
                 roles[i] = (RolesEnum)Enum.ToObject(typeof(RolesEnum), selectedRole[i] - 1);

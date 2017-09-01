@@ -12,6 +12,12 @@ namespace test.Areas.Admin.Models
     /// </summary>
     public class EditUserViewModel
     {
+        public EditUserViewModel()
+        {
+            File = new List<HttpPostedFileBase>();
+        }
+        public List<HttpPostedFileBase> File { get; set; }
+
         /// <summary>
         /// id пользователя
         /// </summary>
@@ -57,5 +63,9 @@ namespace test.Areas.Admin.Models
         /// </summary>
         [Display(Name = "Аватар")]
         public byte[] NewUserPhoto { get; set; }
+        /// <summary>
+        /// роли пользователя
+        /// </summary>
+        public int[] selectedRole { get; set; }
     }
 }

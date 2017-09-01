@@ -15,28 +15,36 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-edit"></i>Таблица пользователей
-                </div>     
-                <div class="tools">                    
-                    <a href="/Admin/Users/UserTable" class="reload">                        
-                    </a>                   
+                </div>
+                <div class="tools">
+                    <a href="/Admin/Users/UserTable" class="reload">
+                    </a>
                 </div>
             </div>
             <div class="portlet-body">
                 <div class="table-toolbar">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-sm-6">
                             <div class="btn-group">
                                 <button class="btn green" onclick="location.href='@Url.Action("Create", "Users")'">
                                     Добавить нового <i class="fa fa-plus"></i>
                                 </button>
                             </div>
-                        </div>                       
+                        </div>
+                        <div class="col-md-4 col-sm-4 text-right">
+                            <input class="form-control text-box single-line" id="searchString" style="display:inline-block" />
+                        </div>
+                        <div class="col-md-2 col-sm-2 text-left">
+                            <a class="btn default search-string" href='@Url.Action("UserTable", "Users")' style="display:inline-block">
+                                Поиск
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div id="usereTable">                    
+                <div id="usereTable">
                     @* частичное представление с таблицей пользователей *@
-                   @* @{Html.RenderPartial("ListUserPartial");}*@
-                </div>              
+                    @* @{Html.RenderPartial("ListUserPartial");}*@
+                </div>
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->

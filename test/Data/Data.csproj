@@ -57,7 +57,10 @@
     <Compile Include="Migrations\201708310825078_migration12.Designer.cs">
       <DependentUpon>201708310825078_migration12.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\RolesEnum.cs" />
+    <Compile Include="Models\Tags.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Service\Admin\AdminService.cs" />
     <Compile Include="Service\Public\AuthenticationService.cs" />

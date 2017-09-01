@@ -19,9 +19,12 @@ namespace Data
         AuthenticationService auth = new AuthenticationService();
 
         /// <summary>
-        /// список всех зарегестрированных пользователей
+        /// постраничный список всех зарегестрированных пользователей
         /// </summary>
-        /// <returns>список пользователей</returns>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество элементов на странице</param>
+        /// <param name="pageIndex">номер страницы</param>
+        /// <returns></returns>
         public List<UserModel> GetUserList(string search, int pageSize, int pageIndex)
         {
             return db.Users
@@ -29,12 +32,20 @@ namespace Data
                 .ToList().Select(_ => (UserModel)_)
                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
+
+        /// <summary>
+        /// количество страниц в таблице
+        /// </summary>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество элемнтов на странице</param>
+        /// <returns></returns>
         public int GetPageCount(string search, int pageSize)
         {
             return (int)Math.Ceiling(
                 db.Users.Where(_ => string.IsNullOrEmpty(search) ? true : _.UserName.Contains(search))
                 .Count() / (double)pageSize);
         }
+
         /// <summary>
         /// удаление пользователя из бд
         /// </summary>
@@ -54,35 +65,32 @@ namespace Data
         /// <param name="email"></param>
         /// <param name="userRoles">выбранная роль для нового пользователя</param>
         /// <param name="photo">аватар пользователя</param>
-        public void RegisterUser(string userName, string password, string email, RolesEnum[] userRoles, byte[] photo)
+        public void RegisterUser(string userName, string password)
         {
-            if (!db.Users.Any(_ => _.UserName.Equals(userName) && _.UserEmail.Equals(email)))
+            if (!db.Users.Any(_ => _.UserName.Equals(userName)))
             {
                 //генерация токена
                 byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
                 byte[] key = Guid.NewGuid().ToByteArray();
-                string UserToken = Convert.ToBase64String(time.Concat(key).ToArray());
-
-                List<Roles> roles = new List<Roles>();
-                for (int i = 0; i < userRoles.Length; i++)
+                string token = Convert.ToBase64String(time.Concat(key).ToArray());
+                var role = new List<Models.Roles>
                 {
-                    RolesEnum currenRole = userRoles[i];
-                    roles.Add(db.RolesEnums.FirstOrDefault(a => a.Name == currenRole));
-                }
-
+                    db.RolesEnums.FirstOrDefault(a => a.Name == RolesEnum.Authorized)
+                };
+                string salt = auth.GetStringFromHash(auth.GetSalt());
+                password = auth.GeneratePassword(password, salt);
                 User user = new User
                 {
                     UserName = userName,
                     UserPassword = password,
-                    UserEmail = email,
-                    UserConfirmedEmail = true,
-                    UserToken = UserToken,
-                    UserPhoto = photo,
-                    UserRoles = roles
+                    UserToken = token,
+                    UserSalt = salt,
+                    UserRoles = role,
+                    UserConfirmedEmail = true
                 };
                 db.Users.Add(user);
                 db.SaveChanges();
-            }
+            }            
         }
 
         /// <summary>
@@ -96,7 +104,8 @@ namespace Data
         {
             User user = db.Users.First(_ => _.Id == id);
             user.UserEmail = email;
-            if (photo.Length > 0)
+            user.UserConfirmedEmail = true;
+            if (photo != null)
                 user.UserPhoto = photo;
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();

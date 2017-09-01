@@ -24,22 +24,6 @@ namespace test.Areas.Admin.Models
         /// </summary>
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [Display(Name = "Пароль")]
-        public string UserPassword { get; set; }
-        /// <summary>
-        /// почтовый адрес пользователя
-        /// </summary>
-        [Required]
-        [EmailAddress(ErrorMessage = "Некорректный адрес")]
-        [Display(Name = "EMail")]
-        public string UserEmail { get; set; }
-        /// <summary>
-        /// список ролей пользователя
-        /// </summary>
-        public List<RolesModel> UserRoles { get; set; }
-        /// <summary>
-        /// аватар пользователя
-        /// </summary>
-        [Display(Name = "Аватар")]
-        public byte[] UserPhoto { get; set; }
+        public string UserPassword { get; set; }        
     }
 }

@@ -192,7 +192,7 @@ namespace Data
         /// криптографический генератор случайных чисел
         /// </summary>
         private static int saltLengthLimit = 32;
-        private static byte[] GetSalt()
+        public byte[] GetSalt()
         {
             return GetSalt(saltLengthLimit);
         }
@@ -224,7 +224,7 @@ namespace Data
         /// </summary>
         /// <param name="hash">хеш</param>
         /// <returns>строка хеша</returns>
-        private static string GetStringFromHash(byte[] hash)
+        public string GetStringFromHash(byte[] hash)
         {
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)

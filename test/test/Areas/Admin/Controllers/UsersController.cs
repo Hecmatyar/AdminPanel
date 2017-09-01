@@ -20,152 +20,86 @@ namespace test.Areas.Admin.Controllers
 
         }
         // GET: Admin/Users
-
-        public ActionResult Index(int? page/*, string currentFilter, string searchString*/)
+        /// <summary>
+        /// загрузка начальной страницы
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Index()
         {
-            //int pageSize = 3;
-            //int pageNumber = (page ?? 1);
-
-            //if (searchString != null) { page = 1; }
-            //else { searchString = currentFilter; }
-            //ViewBag.CurrentFilter = searchString;
-
-            /*
-             * if (!String.IsNullOrEmpty(searchString))
-            {
-                posts = db.Posts
-                    .Where(a => a.Author.Contains(searchString) || a.Title.Contains(searchString))
-                    .OrderByDescending(d => d.Published)
-                    .ToList();                
-                ViewBag.searchTheme = "Найденные посты";
-            }
-            */
-            var userlist = _AdminService.GetUserList();
-            return View(userlist);
-            //return View();
+            return View();
         }
-
+        /// <summary>
+        /// загрузка таблицы пользователей
+        /// </summary>
+        /// <param name="page">номер страницы</param>
+        /// <param name="searchString">строка поиска</param>
+        /// <returns>таблица пользователей на указаннной страницей</returns>
+        [HttpPost]
+        public PartialViewResult UserTable(int? page, string searchString)
+        {
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);           
+            int countPage = _AdminService.GetPageCount(searchString, pageSize);
+            if (pageNumber > countPage)
+                pageNumber = countPage;
+            ViewBag.page = pageNumber;
+            ViewBag.countPage = countPage;
+            List<UserModel> userlist = _AdminService.GetUserList(searchString, pageSize, pageNumber);
+            return PartialView("ListUserPartial", userlist);
+        }
         /// <summary>
         /// создание нового пользователя в панели администратора
         /// </summary>
         /// <returns></returns>
         public ActionResult Create()
         {
-            List<RolesEnum> ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
+            var ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
             ViewBag.UnRoles = ur;
             return View();
         }
+        /// <summary>
+        /// создание нового опльзователя
+        /// </summary>
+        /// <param name="model">createuser модель</param>
+        /// <param name="selectedRole">список выбранных ролей</param>
+        /// <returns>страница добавления пользователя</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Exclude = "UserPhoto")] CreateUserViewModel model, int[] selectedRole)
+        public ActionResult Create(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
-            {
-                byte[] imageData = null;
-                if (Request.Files.Count > 0)
-                {
-                    HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
-
-                    using (var binary = new BinaryReader(poImgFile.InputStream))
-                    {
-                        imageData = binary.ReadBytes(poImgFile.ContentLength);
-                    }
-                }
-                RolesEnum[] roles = new RolesEnum[selectedRole.Length];
-                for (int i = 0; i < selectedRole.Length; i++)
-                {
-                    roles[i] = (RolesEnum)Enum.ToObject(typeof(RolesEnum), selectedRole[i] - 1);
-                }
-
-                _AdminService.RegisterUser(model.UserName,
-                    model.UserPassword,
-                    model.UserEmail, roles, imageData);
+            {                
+                _AdminService.RegisterUser(model.UserName, model.UserPassword);
                 return RedirectToAction("/Index");
             }
-
-            List<RolesEnum> ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
-            ViewBag.UnRoles = ur;
             return View(model);
         }
 
         /// <summary>
-        /// редактирование личных данных пользователя, который вошел в систему
-        /// </summary>
-        /// <param name="Token"></param>
-        /// <returns></returns>
-        //public ActionResult Edit(string Token)
-        //{
-        //    UserModel user = _AuthenticationRequest.GetUserByToken(Token);
-        //    EditUserViewModel edit = new EditUserViewModel
-        //    {
-        //        UserName = user.UserName,
-        //        UserPassword = user.UserPassword,
-        //        UserEmail = user.UserEmail,
-        //        UserRoles = user.UserRoles,
-        //        UserPhoto = user.UserPhoto,
-        //        UserToken = Token,
-        //        NewUserPassword = ""
-        //    };
-        //    ViewBag.Token = Token;
-        //    List<RolesModel> roles = _AuthenticationRequest.GetUserByToken(Token).UserRoles;
-        //    ViewBag.Roles = roles;
-        //    List<RolesEnum> ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
-        //    ViewBag.UnRoles = ur.Where(a => !roles.Any(r => r.Name == a));
-
-        //    return View(edit);
-        //}
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Exclude = "NewUserPhoto")]EditUserViewModel model, string Token, byte[] UserPhoto, int[] selectedRole)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        byte[] imageData = null;
-        //        if (Request.Files.Count > 0)
-        //        {
-        //            HttpPostedFileBase poImgFile = Request.Files["NewUserPhoto"];
-        //            using (var binary = new BinaryReader(poImgFile.InputStream))
-        //            {
-        //                imageData = binary.ReadBytes(poImgFile.ContentLength);
-        //                if (imageData.Length > 0)
-        //                    model.UserPhoto = imageData;
-        //            }
-        //        }
-        //        RolesEnum[] roles = new RolesEnum[selectedRole.Length];
-        //        for (int i = 0; i < selectedRole.Length; i++)
-        //        {
-        //            roles[i] = (RolesEnum)Enum.ToObject(typeof(RolesEnum), selectedRole[i] - 1);
-        //        }
-        //        if (model.NewUserPassword != null && model.NewUserPassword.Length > 0)
-        //            model.UserPassword = model.NewUserPassword;
-        //        //_AdminService.ChangeUserInfo(
-        //        //    model.UserName,
-        //        //    model.UserPassword,
-        //        //    model.UserEmail, roles,
-        //        //    model.UserPhoto, Token);
-        //        return RedirectToAction("/Index");
-        //    }
-        //    return View(model);
-        //}
-
-        /// <summary>
         /// удаление выбранного пользователя 
         /// </summary>
-        /// <param name="Token"></param>
-        /// <returns></returns>
+        /// <param name="Token">токен пользователя</param>
+        /// <returns>confirm на удаление пользователя</returns>
         public ActionResult Delete(string Token)
         {
             _AdminService.DeleteUser(Token);
             return RedirectToAction("/Index");
         }
+        /// <summary>
+        /// выход
+        /// </summary>
+        /// <returns>переход на стартовую страницу</returns>
         public ActionResult LogOff()
         {
             manager.Logoff();
             return Redirect(Url.Content("~/Home/Index"));
         }
 
-
-
+        /// <summary>
+        /// частичное представление для изменения личной информации пользователя
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модальное окно личной информации</returns>
         [HttpPost]
         public PartialViewResult EditUserPartial(int id)
         {
@@ -179,22 +113,31 @@ namespace test.Areas.Admin.Controllers
             };
             return PartialView("EditUserPartial", edit);
         }
+        /// <summary>
+        /// изменение личной информации пользователя
+        /// </summary>
+        /// <param name="edit">модель редактирования личных данных</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult EditUserInfo([Bind(Exclude = "NewUserPhoto")]EditUserViewModel edit)
+        public ActionResult EditUserInfo(EditUserViewModel edit)
         {
-            byte[] imageData = null;
-            if (Request.Files.Count > 0)
+            byte[] userphoto = null;
+            if (edit.File[0] != null)
             {
-                HttpPostedFileBase poImgFile = Request.Files["NewUserPhoto"];
-                using (var binary = new BinaryReader(poImgFile.InputStream))
-                {
-                    imageData = binary.ReadBytes(poImgFile.ContentLength);
-                }
-            }
-            _AdminService.ChangeUserInfo(edit.UserId, edit.UserEmail, DateTime.Now, imageData);
+                MemoryStream target = new MemoryStream();
+                edit.File.First().InputStream.CopyTo(target);
+                userphoto = target.ToArray();
+            }           
+            _AdminService.ChangeUserInfo(edit.UserId, edit.UserEmail, DateTime.Now, userphoto);
             return RedirectToAction("/Index");
+            //return RedirectToAction("/Index", new RouteValueDictionary(
+            //    new { controller = "Users", action = "Index", page = page }));
         }
-
+        /// <summary>
+        /// частичное представление для сброса пароля пользователя
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модальное окно сброса пароля</returns>
         [HttpPost]
         public PartialViewResult ResetPasswordPartial(int id)
         {
@@ -207,6 +150,11 @@ namespace test.Areas.Admin.Controllers
             };
             return PartialView("EditPasswordPartial", edit);
         }
+        /// <summary>
+        /// сброс пароля пользователя на новый
+        /// </summary>
+        /// <param name="edit">модель редактирования пароля данных</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ResetPassword(EditUserViewModel edit)
         {
@@ -214,6 +162,11 @@ namespace test.Areas.Admin.Controllers
             return RedirectToAction("/Index");
         }
 
+        /// <summary>
+        /// редактирование ролей пользователя в системе
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модальное окно изменения ролей пользователя</returns>
         [HttpPost]
         public PartialViewResult EditRolePartial(int id)
         {
@@ -224,19 +177,23 @@ namespace test.Areas.Admin.Controllers
                 UserName = user.UserName,
                 UserRoles = user.UserRoles,
             };
-            //List<RolesModel> roles = _AuthenticationRequest.GetUserById(id).UserRoles;
-            //ViewBag.Roles = roles;
-            List<RolesEnum> ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
+            var ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
             ViewBag.UnRoles = ur.Where(a => !user.UserRoles.Any(r => r.Name == a));
             return PartialView("EditRolePartial", edit);
         }
+        /// <summary>
+        /// редактирование ролей пользователя
+        /// </summary>
+        /// <param name="edit">модель редактирования ролей пользователя</param>
+        /// <param name="selectedRole">выбранные роли</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult EditUserRoles(EditUserViewModel edit, int[] selectedRole)
+        public ActionResult EditUserRoles(EditUserViewModel edit)
         {
-            RolesEnum[] roles = new RolesEnum[selectedRole.Length];
-            for (int i = 0; i < selectedRole.Length; i++)
+            var roles = new RolesEnum[edit.selectedRole.Length];
+            for (int i = 0; i < edit.selectedRole.Length; i++)
             {
-                roles[i] = (RolesEnum)Enum.ToObject(typeof(RolesEnum), selectedRole[i] - 1);
+                roles[i] = (RolesEnum)Enum.ToObject(typeof(RolesEnum), edit.selectedRole[i] - 1);
             }
             _AdminService.ChangeUserRoles(edit.UserId, roles);
             return RedirectToAction("/Index");

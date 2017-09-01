@@ -63,12 +63,7 @@ namespace IService
         /// добавление нового пользователя
         /// </summary>
         /// <param name="userName">имя пользователя</param>
-        /// <param name="password">пароль пользователя</param>
-        /// <param name="email">почтовый адрес пользователя</param>
-        /// <param name="roles">список ролей пользователя</param>
-        /// <param name="photo">аватар пользователя</param>
-        void RegisterUser(string userName, string password, string email, RolesEnum[] roles, byte[] photo);
-
-
+        /// <param name="password">пароль пользователя</param>      
+        void RegisterUser(string userName, string password);
     }
 }

@@ -21,7 +21,7 @@ namespace test.Areas.Admin.Controllers
         }
         // GET: Admin/Users
 
-        public ActionResult Index(int? page, string currentFilter, string searchString)
+        public ActionResult Index(int? page/*, string currentFilter, string searchString*/)
         {
             //int pageSize = 3;
             //int pageNumber = (page ?? 1);

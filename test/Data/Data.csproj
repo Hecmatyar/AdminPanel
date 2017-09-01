@@ -49,22 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201708310816334_migration1.cs" />
-    <Compile Include="Migrations\201708310816334_migration1.Designer.cs">
-      <DependentUpon>201708310816334_migration1.cs</DependentUpon>
+    <Compile Include="Migrations\PostContext\201709011310471_PostCreation.cs" />
+    <Compile Include="Migrations\PostContext\201709011310471_PostCreation.Designer.cs">
+      <DependentUpon>201709011310471_PostCreation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708310825078_migration12.cs" />
-    <Compile Include="Migrations\201708310825078_migration12.Designer.cs">
-      <DependentUpon>201708310825078_migration12.cs</DependentUpon>
+    <Compile Include="Migrations\PostContext\Configuration.cs" />
+    <Compile Include="Migrations\UserContext\201709011310299_UserCreation.cs" />
+    <Compile Include="Migrations\UserContext\201709011310299_UserCreation.Designer.cs">
+      <DependentUpon>201709011310299_UserCreation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Post.cs" />
-    <Compile Include="Models\RolesEnum.cs" />
-    <Compile Include="Models\Tags.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Migrations\UserContext\Configuration.cs" />
+    <Compile Include="Models\Moderator\Category.cs" />
+    <Compile Include="Models\Moderator\Post.cs" />
+    <Compile Include="Models\Admin\Roles.cs" />
+    <Compile Include="Models\Moderator\Tag.cs" />
+    <Compile Include="Models\Admin\User.cs" />
+    <Compile Include="PostContext.cs" />
     <Compile Include="Service\Admin\AdminService.cs" />
+    <Compile Include="Service\Moderator\ModeratorService.cs" />
     <Compile Include="Service\Public\AuthenticationService.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,11 +82,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708310816334_migration1.resx">
-      <DependentUpon>201708310816334_migration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\PostContext\201709011310471_PostCreation.resx">
+      <DependentUpon>201709011310471_PostCreation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708310825078_migration12.resx">
-      <DependentUpon>201708310825078_migration12.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\UserContext\201709011310299_UserCreation.resx">
+      <DependentUpon>201709011310299_UserCreation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

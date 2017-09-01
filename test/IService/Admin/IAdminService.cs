@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IService
+namespace IService.Admin
 {
     /// <summary>
     /// интерфейс для методов администрирования пользователей ресурса

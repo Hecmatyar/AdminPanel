@@ -6,6 +6,9 @@ using System.Web;
 
 namespace test.Models
 {
+    /// <summary>
+    /// смена пароля пользователя
+    /// </summary>
     public class ChangePasswordViewModel
     {
         [Display(Name = "Старый пароль")]

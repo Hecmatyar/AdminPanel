@@ -1,5 +1,6 @@
 ﻿using Data.Models;
-using IService;
+using Data.Models.Admin;
+using IService.Admin;
 using IService.Models;
 using System;
 using System.Collections.Generic;
@@ -73,7 +74,7 @@ namespace Data
                 byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
                 byte[] key = Guid.NewGuid().ToByteArray();
                 string token = Convert.ToBase64String(time.Concat(key).ToArray());
-                var role = new List<Models.Roles>
+                var role = new List<Models.Admin.Roles>
                 {
                     db.RolesEnums.FirstOrDefault(a => a.Name == RolesEnum.Authorized)
                 };

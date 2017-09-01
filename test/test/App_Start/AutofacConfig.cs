@@ -7,7 +7,10 @@ using test.AuthCustom;
 using Autofac;
 using System.Web.Mvc;
 using Data;
+using Data.Service.Moderator;
 using IService;
+using IService.Admin;
+using IService.Moderator;
 
 namespace test.App_Start
 {
@@ -25,6 +28,7 @@ namespace test.App_Start
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
             builder.RegisterType<AdminService>().As<IAdminService>();
             builder.RegisterType<AuthorizeManager>().As<IAuthorizeManager>();
+            builder.RegisterType<ModeratorService>().As<IModeratorService>();
 
             // создаем новый контейнер с теми зависимостями, которые определены выше
             var container = builder.Build();

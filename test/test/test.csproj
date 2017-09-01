@@ -162,6 +162,13 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Models\CreateUserViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EditUserViewModel.cs" />
+    <Compile Include="Areas\Moderator\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Moderator\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Moderator\Controllers\TagsController.cs" />
+    <Compile Include="Areas\Moderator\Models\CategoryViewModel.cs" />
+    <Compile Include="Areas\Moderator\Models\PostViewModel.cs" />
+    <Compile Include="Areas\Moderator\Models\TagViewModel.cs" />
+    <Compile Include="Areas\Moderator\ModeratorAreaRegistration.cs" />
     <Compile Include="AuthCustom\AuthenticateAttribute.cs" />
     <Compile Include="AuthCustom\AuthorizeManager.cs" />
     <Compile Include="AuthCustom\BaseViewPage.cs" />
@@ -4461,13 +4468,24 @@
     <Content Include="Areas\Admin\Content\assets\global\plugins\typeahead\README.md" />
     <Content Include="Areas\Admin\Content\assets\global\plugins\uniform\css\uniform.default.scss" />
     <Content Include="Areas\Admin\Content\assets\global\plugins\uniform\README.md" />
-    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Users\ListUserPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Authentication.cshtml" />
     <Content Include="Areas\Admin\Views\Users\EditRolePartial.cshtml" />
     <Content Include="Areas\Admin\Views\Users\EditUserPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Users\EditPasswordPartial.cshtml" />
+    <Content Include="Areas\Moderator\Views\web.config" />
+    <Content Include="Views\Home\PostListPartial.cshtml" />
+    <Content Include="Areas\Moderator\Views\Posts\EditPost.cshtml" />
+    <Content Include="Areas\Moderator\Views\Tags\EditTag.cshtml" />
+    <Content Include="Areas\Moderator\Views\Categories\EditCategory.cshtml" />
+    <Content Include="Areas\Moderator\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Moderator\Views\Posts\ListPostPartial.cshtml" />
+    <Content Include="Areas\Moderator\Views\Tags\ListTagPartial.cshtml" />
+    <Content Include="Areas\Moderator\Views\Categories\ListCategoryPartial.cshtml" />
+    <Content Include="Areas\Moderator\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Moderator\Views\Categories\Categories.cshtml" />
+    <Content Include="Areas\Moderator\Views\Tags\Tags.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -4508,6 +4526,7 @@
     <Content Include="Views\Account\NewPassword.cshtml" />
     <Content Include="Views\Account\Letter\ConfirmRegistrationView.cshtml" />
     <Content Include="Views\Account\Letter\ResetPasswordView.cshtml" />
+    <Content Include="Views\Home\SideBarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

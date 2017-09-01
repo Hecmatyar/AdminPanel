@@ -56,11 +56,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\IAdminService.cs" />
-    <Compile Include="Models\RolesModel.cs" />
-    <Compile Include="Models\UserRoles.cs" />
+    <Compile Include="Models\Moderator\CategoryModel.cs" />
+    <Compile Include="Models\Moderator\PostModel.cs" />
+    <Compile Include="Models\Admin\RolesModel.cs" />
+    <Compile Include="Models\Moderator\TagModel.cs" />
+    <Compile Include="Models\Admin\RolesEnum.cs" />
+    <Compile Include="Moderator\IModeratorService.cs" />
     <Compile Include="Public\IAuthenticationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\Admin\UserModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -74,5 +78,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

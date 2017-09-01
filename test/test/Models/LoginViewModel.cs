@@ -5,11 +5,22 @@ using System.Web;
 
 namespace test.Models
 {
+    /// <summary>
+    /// модель логина пользователя
+    /// </summary>
     public class LoginViewModel
     {
-        public int UserId { get; set; }
+        /// <summary>
+        /// имя пользователя
+        /// </summary>       
         public string UserName { get; set; }
+        /// <summary>
+        /// пароль пользователя
+        /// </summary>
         public string UserPassword { get; set; }
+        /// <summary>
+        /// запонить вход
+        /// </summary>
         public bool RememberMe { get; set; }
     }
 }

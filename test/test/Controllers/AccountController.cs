@@ -43,7 +43,7 @@ namespace test.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
-            UserModel user = new UserModel();
+            var user = new UserModel();
             if (_AuthenticationRequest.UserIsExist(model.UserName))
             {
                 user = _AuthenticationRequest.GetUserByLP(model.UserName, model.UserPassword);
@@ -104,14 +104,6 @@ namespace test.Controllers
                             imageData = binary.ReadBytes(poImgFile.ContentLength);
                         }
                     }
-                    //регистрация нового пользователя
-                    _AuthenticationRequest.RegisterUser(model.UserName, model.UserPassword, model.UserEmail, imageData, model.UserBirth);
-                    
-                    //отправка письма для подтверждения почтового адреса
-                    System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
-                                new System.Net.Mail.MailAddress("hecmatyar@yandex.ru", "Web Registration"),
-                                new System.Net.Mail.MailAddress(model.UserEmail));
-                    m.Subject = "Email confirmation";
 
                     LetterConfirmViewModel confirm = new LetterConfirmViewModel
                     {
@@ -124,6 +116,17 @@ namespace test.Controllers
                             RememberMe = model.RememberMe
                         }, Request.Url.Scheme)
                     };
+
+                    //регистрация нового пользователя
+                    _AuthenticationRequest.RegisterUser(model.UserName, model.UserPassword, model.UserEmail, imageData, model.UserBirth);
+                    
+                    //отправка письма для подтверждения почтового адреса
+                    MailMessage m = new MailMessage(
+                                new MailAddress("hecmatyar@yandex.ru", "Web Registration"),
+                                new MailAddress(model.UserEmail));
+                    m.Subject = "Email confirmation";
+
+                    
                     m.Body = RenderRazorViewToString("Letter/ConfirmRegistrationView", confirm);
                     m.IsBodyHtml = true;
                     System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.yandex.ru", 587);
@@ -232,7 +235,7 @@ namespace test.Controllers
             //отправка письма на почту для сброса пароля
             try
             {
-                System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
+                MailMessage m = new System.Net.Mail.MailMessage(
                              new System.Net.Mail.MailAddress("hecmatyar@yandex.ru", "Web Registration"),
                              new System.Net.Mail.MailAddress(model.Email));
                 m.Subject = "Reset password";
@@ -251,7 +254,7 @@ namespace test.Controllers
                 m.Body = RenderRazorViewToString("Letter/ResetPasswordView", reset);
                
                 m.IsBodyHtml = true;
-                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.yandex.ru", 587);
+                SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.yandex.ru", 587);
                 smtp.Credentials = new System.Net.NetworkCredential("hecmatyar@yandex.ru", "Dima2096ku");
                 smtp.EnableSsl = true;
                 smtp.Send(m);
@@ -275,6 +278,12 @@ namespace test.Controllers
             ViewBag.Token = Token;
             return View();
         }        
+        /// <summary>
+        /// установка нового пароля
+        /// </summary>
+        /// <param name="model">модель с данными нового пароля</param>
+        /// <param name="Token">токен</param>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult SetNewPassword(SetPasswordViewModel model, string Token)
         {
@@ -282,6 +291,11 @@ namespace test.Controllers
             _AuthenticationRequest.ResetPassword(Token, model.NewPassword);
             return RedirectToAction("Login", "Account");
         }
+        /// <summary>
+        /// имя уже сущетсвует
+        /// </summary>
+        /// <param name="name">имя пользователя</param>
+        /// <returns>занято ли введенное имя</returns>
         public bool NameIsEngaged(string name)
         {
             return !_AuthenticationRequest.UserIsExist(name);

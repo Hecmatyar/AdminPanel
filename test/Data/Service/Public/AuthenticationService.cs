@@ -10,6 +10,7 @@ using System.Web.Security;
 using System.Web;
 using IService.Models;
 using System.Security.Cryptography;
+using Data.Models.Admin;
 
 namespace Data
 {
@@ -119,7 +120,7 @@ namespace Data
                 byte[] key = Guid.NewGuid().ToByteArray();
                 string token = Convert.ToBase64String(time.Concat(key).ToArray());
 
-                List<Models.Roles> role = new List<Models.Roles>
+                List<Models.Admin.Roles> role = new List<Models.Admin.Roles>
                 {
                     db.RolesEnums.FirstOrDefault(a => a.Name == RolesEnum.Authorized)
                 };

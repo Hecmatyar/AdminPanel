@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace IService.Models
+{
+    public class CategoryModel
+    {
+        /// <summary>
+        /// id категории
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// название категории
+        /// </summary>
+        [DisplayName("Категория")]
+        public string Name { get; set; }        
+    }
+}

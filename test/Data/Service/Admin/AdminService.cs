@@ -22,11 +22,19 @@ namespace Data
         /// список всех зарегестрированных пользователей
         /// </summary>
         /// <returns>список пользователей</returns>
-        public List<UserModel> GetUserList()
+        public List<UserModel> GetUserList(string search, int pageSize, int pageIndex)
         {
-            return db.Users.ToList().Select(_ => (UserModel)_).ToList();
+            return db.Users
+                .Where(_ => string.IsNullOrEmpty(search) ? true : _.UserName.Contains(search))
+                .ToList().Select(_ => (UserModel)_)
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
         }
-
+        public int GetPageCount(string search, int pageSize)
+        {
+            return (int)Math.Ceiling(
+                db.Users.Where(_ => string.IsNullOrEmpty(search) ? true : _.UserName.Contains(search))
+                .Count() / (double)pageSize);
+        }
         /// <summary>
         /// удаление пользователя из бд
         /// </summary>

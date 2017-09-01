@@ -1,6 +1,7 @@
 ﻿.checkboxes input[type=checkbox] {
     display: none !important;
 }
+
 .back-popup {
     position: absolute;
     top: 0;
@@ -8,21 +9,228 @@
     width: 100%;
     height: 100%;
     z-index: 10;
-    background-color: rgba(31, 54, 61, 0.30);
+    background-color: rgba(31, 54, 61, 0.40);
     display: none;
     flex-direction: row;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
 }
-.popup{
-    display:block;   
-    background-color:#fff;
-    padding:40px;
-    border-radius:10px;
+
+.popup {
+    display: block;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
 }
-.flex{
-    display:flex;
+
+.flex {
+    display: flex;
 }
-.none{
-    display:none;
+
+.none {
+    display: none;
+}
+
+*, *::after, *::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    color: #2E4057;
+    text-decoration: none !important;
+}
+
+
+/* -------------------------------- 
+
+Basic style
+
+-------------------------------- */
+nav[role="navigation"] {
+    text-align: right;
+}
+
+.cd-pagination {
+    font-size: 1.4rem;
+    font-family: "PT Sans", sans-serif;
+    width: 90%;
+    max-width: 768px;
+    margin: 2em auto 4em;
+    text-align: center;
+}
+
+    .cd-pagination li {
+        /* hide numbers on small devices */
+        display: none;
+        margin: 0 .2em;
+    }
+
+        .cd-pagination li.button {
+            /* make sure prev next buttons are visible */
+            display: inline-block;
+        }
+
+    .cd-pagination a, .cd-pagination span {
+        display: inline-block;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        /* use padding and font-size to change buttons size */
+        padding: .6em .8em;
+        font-size: 1.4rem;
+    }
+
+    .cd-pagination a {
+        border: 1px solid #e6e6e6;
+        border-radius: 0.25em;
+    }
+
+.no-touch .cd-pagination a:hover {
+    background-color: #f2f2f2;
+}
+
+.cd-pagination a:active {
+    /* click effect */
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    transform: scale(0.9);
+}
+
+.cd-pagination a.disabled {
+    /* button disabled */
+    color: rgba(46, 64, 87, 0.4);
+    pointer-events: none;
+}
+
+    .cd-pagination a.disabled::before, .cd-pagination a.disabled::after {
+        opacity: .4;
+    }
+
+.cd-pagination .button:first-of-type a::before {
+    content: '\00ab  ';
+}
+
+.cd-pagination .button:last-of-type a::after {
+    content: ' \00bb';
+}
+
+.cd-pagination .current {
+    /* selected number */
+    background-color: #64a281;
+    border-color: #64a281;
+    color: #ffffff;
+    pointer-events: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .cd-pagination li {
+        display: inline-block;
+    }
+}
+
+@media only screen and (min-width: 1170px) {
+    .cd-pagination {
+        margin: 4em auto 8em;
+    }
+}
+
+/* -------------------------------- 
+
+No space - remove distance between list items
+
+-------------------------------- */
+.cd-pagination.no-space {
+    width: auto;
+    max-width: none;
+    display: inline-block;
+    border-radius: 0.25em;
+    border: 1px solid #e6e6e6;
+}
+
+    .cd-pagination.no-space:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .cd-pagination.no-space li {
+        margin: 0;
+        float: left;
+        border-right: 1px solid #e6e6e6;
+    }
+
+        .cd-pagination.no-space li:last-of-type {
+            border-right: none;
+        }
+
+    .cd-pagination.no-space a, .cd-pagination.no-space span {
+        float: left;
+        border-radius: 0;
+        padding: .6em .8em;
+        border: none;
+    }
+
+    .cd-pagination.no-space li:first-of-type a {
+        border-radius: 0.25em 0 0 0.25em;
+    }
+
+    .cd-pagination.no-space li:last-of-type a {
+        border-radius: 0 0.25em 0.25em 0;
+    }
+
+/* -------------------------------- 
+
+move buttons - move prev and next buttons to the sides
+
+-------------------------------- */
+.cd-pagination.move-buttons:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.cd-pagination.move-buttons .button:first-of-type {
+    float: left;
+}
+
+.cd-pagination.move-buttons .button:last-of-type {
+    float: right;
+}
+
+.cd-pagination.no-space.move-buttons {
+    width: 90%;
+    max-width: 768px;
+    display: block;
+    overflow: hidden;
+}
+
+    .cd-pagination.no-space.move-buttons li {
+        float: none;
+        border: none;
+    }
+
+    .cd-pagination.no-space.move-buttons a, .cd-pagination.no-space.move-buttons span {
+        float: none;
+    }
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
 }

@@ -13,7 +13,6 @@
                 <td class="center">@Html.DisplayFor(modelItem => item.UserName)</td>
                 <td class="center">@Html.DisplayFor(modelItem => item.UserEmail)</td>
                 <td>
-                    @*@Html.ActionLink("Изменить личные данные", "Edit", new { @class = "edit-popup", Token = item.UserToken })*@
                     @Html.ActionLink("Изменить личные данные", "EditUserPartial", null, new { @class = "edit-popup", iduser = item.Id })
                 </td>
                 <td>
@@ -32,3 +31,26 @@
         }
     </tbody>
 </table>
+<section>
+    <nav role="navigation">
+        <ul class="cd-pagination no-space">
+            <li class="button"><a href="#0"></a></li>
+            @for (int i = 1; i <= ViewBag.countPage; i++)
+            {
+                <li class="button">
+                    @if (i == ViewBag.page)
+                    {
+                        @Html.ActionLink(i.ToString(), "UserTable", null, new { @class = "page current", page = i })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(i.ToString(), "UserTable", null, new { @class = "page", page = i })
+                    }
+                </li>
+            }
+            @*<li><a class="current" href="#0">3</a></li>*@
+            <li class="button"><a href="#0"></a></li>
+        </ul>
+    </nav>
+</section>
+@*@Html.ActionLink("Изменить личные данные", "Edit", new { @class = "edit-popup", Token = item.UserToken })*@

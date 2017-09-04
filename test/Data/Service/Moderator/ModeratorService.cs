@@ -14,7 +14,7 @@ namespace Data.Service.Moderator
     /// </summary>
     public class ModeratorService : IModeratorService
     {
-        private PostContext db = new PostContext();
+        private DataContext db = new DataContext();
         /// <summary>
         /// удаление категории
         /// </summary>
@@ -74,6 +74,24 @@ namespace Data.Service.Moderator
             throw new NotImplementedException();
         }
         /// <summary>
+        /// получение тэга по его id
+        /// </summary>
+        /// <param name="idTag">id тэга</param>
+        /// <returns>тэг с данным id</returns>
+        public TagModel GetTagById(int idTag)
+        {
+            return (TagModel)db.Tags.First(_ => _.Id == idTag);
+        }
+        /// <summary>
+        /// получение поста по его id
+        /// </summary>
+        /// <param name="idPost">id поста</param>
+        /// <returns>пост с данными id</returns>
+        public PostModel GetPostById(int idPost)
+        {
+            return (PostModel)db.Posts.First(_ => _.Id == idPost);
+        }
+        /// <summary>
         /// получение категории по ее id
         /// </summary>
         /// <param name="idCategory">id категории</param>
@@ -92,19 +110,15 @@ namespace Data.Service.Moderator
         /// <returns>количество страниц</returns>
         public int GetPageCount(string search, TagModel tag, CategoryModel category, int pageSize)
         {
-            return(int)Math.Ceiling(
-                db.Posts.Where(_ => string.IsNullOrEmpty(search) ? true : _.Title.Contains(search) ||
-                _.Tags.Any(a=>a.Name == tag.Name) || _.Category.Name.Equals(category.Name))
-                .Count() / (double)pageSize);
-        }
-        /// <summary>
-        /// получение поста по его id
-        /// </summary>
-        /// <param name="idPost">id поста</param>
-        /// <returns>пост с данными id</returns>
-        public PostModel GetPostById(int idPost)
-        {
-            return (PostModel)db.Posts.First(_ => _.Id == idPost);
+            var posts = db.Posts.ToList();
+            if (!string.IsNullOrEmpty(search))
+                posts = posts.Where(_ => _.Title.Contains(search)).ToList();
+            if (tag.Name != null)
+                posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
+            if (category.Name != null)
+                posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
+
+            return (int)Math.Ceiling( posts.Count() / (double)pageSize);
         }
         /// <summary>
         /// получение списка постов
@@ -115,22 +129,18 @@ namespace Data.Service.Moderator
         /// <param name="tag">требуемый тэг</param>
         /// <param name="category">требемая категория</param>
         /// <returns>список постов, которые содержат указанный тэг или категорию
-        /// поиск осуществляется по авторам и именам постов</returns>
+        /// поиск осуществляется по заголовкам постов</returns>
         public List<PostModel> GetPostList(string search, int pageSize, int pageIndex, TagModel tag, CategoryModel category)
         {
-            return db.Posts
-                .Where(_ => string.IsNullOrEmpty(search) ? true : _.Title.Contains(search) ||
-                _.Tags.Any(a => a.Name == tag.Name) || _.Category.Name.Equals(category.Name))
-                .ToList().Select(_ => (PostModel)_).ToList();
-        }
-        /// <summary>
-        /// получение тэга по его id
-        /// </summary>
-        /// <param name="idTag">id тэга</param>
-        /// <returns>тэг с данным id</returns>
-        public TagModel GetTagById(int idTag)
-        {
-            return (TagModel)db.Tags.First(_ => _.Id == idTag);
+            var posts = db.Posts.ToList();
+            if (!string.IsNullOrEmpty(search))
+                posts = posts.Where(_ => _.Title.Contains(search)).ToList();
+            if (tag.Name != null)
+                posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
+            if(category.Name != null)
+                posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
+            return posts.Select(_ => (PostModel)_)
+                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();            
         }
     }
 }

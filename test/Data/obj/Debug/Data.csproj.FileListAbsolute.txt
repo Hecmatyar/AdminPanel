@@ -56,9 +56,6 @@ C:\working\tir-script\AdminPanel\test\Data\bin\Debug\IService.pdb
 C:\working\tir-script\AdminPanel\test\Data\bin\Debug\EntityFramework.xml
 C:\working\tir-script\AdminPanel\test\Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
-C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.migration1.resources
-C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.migration12.resources
-C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.dll
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.pdb
 C:\w_h\projects\AdminPanel\test\Data\bin\Debug\Data.dll.config
@@ -77,3 +74,5 @@ C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.pdb
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.UserContext.UserCreation.resources
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.PostContext.PostCreation.resources
+C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.DataContext.resources
+C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache

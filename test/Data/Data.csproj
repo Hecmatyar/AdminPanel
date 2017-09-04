@@ -49,26 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\PostContext\201709011310471_PostCreation.cs" />
-    <Compile Include="Migrations\PostContext\201709011310471_PostCreation.Designer.cs">
-      <DependentUpon>201709011310471_PostCreation.cs</DependentUpon>
+    <Compile Include="Migrations\201709041513058_DataContext.cs" />
+    <Compile Include="Migrations\201709041513058_DataContext.Designer.cs">
+      <DependentUpon>201709041513058_DataContext.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\PostContext\Configuration.cs" />
-    <Compile Include="Migrations\UserContext\201709011310299_UserCreation.cs" />
-    <Compile Include="Migrations\UserContext\201709011310299_UserCreation.Designer.cs">
-      <DependentUpon>201709011310299_UserCreation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\UserContext\Configuration.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Moderator\Category.cs" />
     <Compile Include="Models\Moderator\Post.cs" />
     <Compile Include="Models\Admin\Roles.cs" />
     <Compile Include="Models\Moderator\Tag.cs" />
     <Compile Include="Models\Admin\User.cs" />
-    <Compile Include="PostContext.cs" />
+    <Compile Include="DataContext.cs" />
     <Compile Include="Service\Admin\AdminService.cs" />
     <Compile Include="Service\Moderator\ModeratorService.cs" />
     <Compile Include="Service\Public\AuthenticationService.cs" />
-    <Compile Include="UserContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,11 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\PostContext\201709011310471_PostCreation.resx">
-      <DependentUpon>201709011310471_PostCreation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\UserContext\201709011310299_UserCreation.resx">
-      <DependentUpon>201709011310299_UserCreation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709041513058_DataContext.resx">
+      <DependentUpon>201709041513058_DataContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

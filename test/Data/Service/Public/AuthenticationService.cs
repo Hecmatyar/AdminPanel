@@ -22,7 +22,7 @@ namespace Data
     public class AuthenticationService : IAuthenticationService
     {
 
-        private UserContext db = new UserContext();
+        private DataContext db = new DataContext();
 
         /// <summary>
         /// существует ли пользователь в базе данных
@@ -89,7 +89,7 @@ namespace Data
         {
             User user = db.Users.FirstOrDefault(_ => _.UserName == login);
             string userPassword = GeneratePassword(password, user.UserSalt);
-            UserModel um = (UserModel)db.Users.First(_ => _.UserName == login && _.UserPassword == userPassword);
+            UserModel um = (UserModel)db.Users.FirstOrDefault(_ => _.UserName == login && _.UserPassword == userPassword);
             return um;
         }
 

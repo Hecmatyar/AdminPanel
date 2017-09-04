@@ -40,7 +40,8 @@ namespace Data.Models.Moderator
         /// автор публикации поста
         /// </summary>
         [DisplayName("Автор")]
-        public User Author { get; set; }
+        public int UserId { get; set; }
+        public virtual User Author { get; set; }
         /// <summary>
         /// категория, к которой относится пост
         /// </summary>
@@ -68,7 +69,7 @@ namespace Data.Models.Moderator
                 ShortDescription = v.ShortDescription,
                 Description = v.Description,
                 Published = v.Published,
-                Author = v.Author,
+                Author = (UserModel)v.Author,
                 Category = (CategoryModel)v.Category,
                 Tags = tags
             };

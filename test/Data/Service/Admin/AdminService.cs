@@ -16,7 +16,7 @@ namespace Data
     /// </summary>
     public class AdminService : IAdminService
     {
-        private UserContext db = new UserContext();
+        private DataContext db = new DataContext();
         AuthenticationService auth = new AuthenticationService();
 
         /// <summary>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using test.AuthCustom;
+using test.Letters;
 using test.Models;
 
 namespace test.Controllers
@@ -13,8 +14,8 @@ namespace test.Controllers
     public class HomeController : ControllerBase
     {        
         public ActionResult Index()
-        {
-            var post = _ModeratorService.GetPostList(null, 10, 1, null, null);
+        {  
+            var post = _ModeratorService.GetPostList(null, 10, 1, new TagModel { Name = null }, new CategoryModel { Name = null});
             return View(post);
         }
 

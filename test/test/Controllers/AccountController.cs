@@ -16,15 +16,24 @@ using System.Data;
 using IService;
 using System.IO;
 using IService.Models;
+using System.Net.Configuration;
+using test.Letters;
 
 namespace test.Controllers
 {
     public class AccountController : ControllerBase
-    {        
+    {
+        SendingLetters letter = new SendingLetters();
+
         public AccountController()
         {
-        }
 
+        }
+        /// <summary>
+        /// страница входа на ресурс
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -104,7 +113,9 @@ namespace test.Controllers
                             imageData = binary.ReadBytes(poImgFile.ContentLength);
                         }
                     }
-
+                    //регистрация нового пользователя
+                    _AuthenticationRequest.RegisterUser(model.UserName, model.UserPassword, model.UserEmail, imageData, model.UserBirth);
+                    
                     LetterConfirmViewModel confirm = new LetterConfirmViewModel
                     {
                         UserName = model.UserName,
@@ -117,22 +128,8 @@ namespace test.Controllers
                         }, Request.Url.Scheme)
                     };
 
-                    //регистрация нового пользователя
-                    _AuthenticationRequest.RegisterUser(model.UserName, model.UserPassword, model.UserEmail, imageData, model.UserBirth);
-                    
-                    //отправка письма для подтверждения почтового адреса
-                    MailMessage m = new MailMessage(
-                                new MailAddress("hecmatyar@yandex.ru", "Web Registration"),
-                                new MailAddress(model.UserEmail));
-                    m.Subject = "Email confirmation";
-
-                    
-                    m.Body = RenderRazorViewToString("Letter/ConfirmRegistrationView", confirm);
-                    m.IsBodyHtml = true;
-                    System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.yandex.ru", 587);
-                    smtp.Credentials = new System.Net.NetworkCredential("hecmatyar@yandex.ru", "Dima2096ku");
-                    smtp.EnableSsl = true;
-                    smtp.Send(m);
+                    //отправка письма для подтверждения почтового адреса                    
+                    letter.SendConfirmMail(confirm, this.ControllerContext);
                 }
                 catch (Exception e)
                 {
@@ -235,11 +232,6 @@ namespace test.Controllers
             //отправка письма на почту для сброса пароля
             try
             {
-                MailMessage m = new System.Net.Mail.MailMessage(
-                             new System.Net.Mail.MailAddress("hecmatyar@yandex.ru", "Web Registration"),
-                             new System.Net.Mail.MailAddress(model.Email));
-                m.Subject = "Reset password";
-               
                 UserModel user = _AuthenticationRequest.GetUserByEmail(model.Email);
                 LetterResetPasswordViewModel reset = new LetterResetPasswordViewModel
                 {
@@ -248,16 +240,11 @@ namespace test.Controllers
                     UserActivationLink = Url.Action("NewPassword", "Account", new
                     {
                         Token = user.UserToken,
-                        Email = user.UserEmail                        
+                        Email = user.UserEmail
                     }, Request.Url.Scheme)
                 };
-                m.Body = RenderRazorViewToString("Letter/ResetPasswordView", reset);
-               
-                m.IsBodyHtml = true;
-                SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.yandex.ru", 587);
-                smtp.Credentials = new System.Net.NetworkCredential("hecmatyar@yandex.ru", "Dima2096ku");
-                smtp.EnableSsl = true;
-                smtp.Send(m);
+                //отправка письма
+                letter.SendResetPasswordMail(reset, this.ControllerContext);
             }
             catch (Exception e)
             {

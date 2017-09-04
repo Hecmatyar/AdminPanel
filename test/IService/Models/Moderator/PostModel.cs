@@ -35,7 +35,7 @@ namespace IService.Models
         /// автор публикации поста
         /// </summary>
         [DisplayName("Автор")]
-        public string Author { get; set; }
+        public UserModel Author { get; set; }
         /// <summary>
         /// категория, к которой относится пост
         /// </summary>

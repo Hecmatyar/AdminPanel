@@ -108,7 +108,7 @@ namespace Data.Service.Moderator
         /// <param name="category">требуемая категория</param>
         /// <param name="pageSize">количество постов на страницу</param>
         /// <returns>количество страниц</returns>
-        public int GetPageCount(string search, TagModel tag, CategoryModel category, int pageSize)
+        public int GetPageCountPost(string search, TagModel tag, CategoryModel category, int pageSize)
         {
             var posts = db.Posts.ToList();
             if (!string.IsNullOrEmpty(search))
@@ -118,7 +118,7 @@ namespace Data.Service.Moderator
             if (category.Name != null)
                 posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
 
-            return (int)Math.Ceiling( posts.Count() / (double)pageSize);
+            return (int)Math.Ceiling(posts.Count() / (double)pageSize);
         }
         /// <summary>
         /// получение списка постов
@@ -137,10 +137,58 @@ namespace Data.Service.Moderator
                 posts = posts.Where(_ => _.Title.Contains(search)).ToList();
             if (tag.Name != null)
                 posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
-            if(category.Name != null)
+            if (category.Name != null)
                 posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
             return posts.Select(_ => (PostModel)_)
-                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();            
+                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+        /// <summary>
+        /// получение списка тэгов удовлетворяющих поиску и параметрам страницы
+        /// </summary>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество постов на странице</param>
+        /// <param name="pageIndex">номер страниццы</param>
+        /// <returns>список тэгов</returns>
+        public List<TagModel> GetTagList(string search, int pageSize, int pageIndex)
+        {
+            return db.Tags.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+                .ToList().Select(_ => (TagModel)_).ToList()
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+        /// <summary>
+        /// количетсво страниц с тэгами
+        /// </summary>
+        /// <param name="search">строка посика</param>
+        /// <param name="pageSize">количество элементов на странице</param>
+        /// <returns>количество страниц</returns>
+        public int GetPageCountTag(string search, int pageSize)
+        {
+            return (int)Math.Ceiling(db.Tags.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+                .ToList().Count() / (double)pageSize);
+        }
+        /// <summary>
+        /// получение списка категорий удовлетворяющих поиску и параметрам страницы
+        /// </summary>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество постов на странице</param>
+        /// <param name="pageIndex">номер страниццы</param>
+        /// <returns>список категорий</returns>
+        public List<CategoryModel> GetCategoryList(string search, int pageSize, int pageIndex)
+        {
+            return db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+                .ToList().Select(_ => (CategoryModel)_).ToList()
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+        }
+        /// <summary>
+        /// количество страниц с категориями
+        /// </summary>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество элемнтов на стрнице</param>
+        /// <returns>количество страниц</returns>
+        public int GetPageCountCategory(string search, int pageSize)
+        {
+            return (int)Math.Ceiling(db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+                .ToList().Count() / (double)pageSize);
         }
     }
 }

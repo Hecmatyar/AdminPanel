@@ -4528,6 +4528,8 @@
     <Content Include="Views\Account\Letter\ConfirmRegistrationView.cshtml" />
     <Content Include="Views\Account\Letter\ResetPasswordView.cshtml" />
     <Content Include="Views\Home\SideBarPartial.cshtml" />
+    <Content Include="Views\Home\CategoryListPartial.cshtml" />
+    <Content Include="Views\Home\TagListPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

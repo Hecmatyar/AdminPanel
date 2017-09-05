@@ -39,10 +39,10 @@ namespace test.Letters
         public void SendResetPasswordMail(LetterResetPasswordViewModel reset, ControllerContext context)
         {
             MailMessage m = new MailMessage(
-                               new MailAddress(smtpSection.From, "Web Registration"),
+                               new MailAddress(smtpSection.From, "Reset account password"),
                                new MailAddress(reset.UserEmail))
             {
-                Subject = "Email confirmation",
+                Subject = "Reset Password",
                 Body = RenderRazorViewToString("Letter/ResetPasswordView", reset, context),
                 IsBodyHtml = true
             };

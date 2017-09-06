@@ -1,0 +1,44 @@
+﻿@model test.Models.Posts
+@using IService.Models
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="bottomNav" onclick="history.go(-1); return false;" href="#">Назад</a><br />
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="title-post" style="padding:20px 0 0 0;">
+            <h2>@Model.CurrentPosts.Title</h2>
+        </div>
+        <div class="info-post" style="padding:10px 0;">
+            <p>
+                <span>Категория: </span>
+                @Html.ActionLink(@Model.CurrentPosts.Category.Name, "Index", new
+               {
+                   currentCategory = @Model.CurrentPosts.Category.Name,
+                   currentTag = ""
+               })
+                <span> Тэги</span>
+                @foreach (TagModel c in Model.CurrentPosts.Tags)
+                {
+                    <span class="tag-post">
+                        @Html.ActionLink(@c.Name, "Index", new { currentCategory = "", currentTag = @c.Name })
+                    </span>
+                }
+                <span style="float:right;">@Model.CurrentPosts.Published.ToString("dd MMMM yyyy HH:mm")</span>
+            </p>
+        </div>
+        <div class="desc-post">
+            <p>@Html.Raw(@Model.CurrentPosts.Description)</p>
+        </div>
+        <div class="learn-post">
+            <span class="author-post" style="float:left;">Author: @Model.CurrentPosts.Author.UserName</span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        @{Html.RenderPartial("SideBarPartial");}
+    </div>
+</div>
+<div id="disqus_thread"></div>
+

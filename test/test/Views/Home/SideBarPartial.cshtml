@@ -1,4 +1,5 @@
-﻿@{
+﻿@model test.Models.Posts
+@{
     Layout = null;
 }
 <div class="control-post">
@@ -8,7 +9,7 @@
             <div class="form-actions no-color">
                 <p>
                     Поиск по названию поста или автору <br />
-                    <input type="text" class="searchfield" name="SearchString" value="@ViewBag.currentFilter" />
+                    <input type="text" class="searchfield" name="SearchField" value="@Model.SearchField" />
                     <input type="submit" value="Search" class="btn btn-default" /> |
                     @Html.ActionLink(" Все посты", "Index")
                 </p>

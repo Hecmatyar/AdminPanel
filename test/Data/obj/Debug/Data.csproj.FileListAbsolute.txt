@@ -71,8 +71,7 @@ C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.csprojResolveAssemblyReferen
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.dll
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.pdb
-C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.UserContext.UserCreation.resources
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache
-C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.PostContext.PostCreation.resources
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.DataContext.resources
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache
+C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.DataContext.resources

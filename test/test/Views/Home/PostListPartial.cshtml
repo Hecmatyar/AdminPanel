@@ -1,37 +1,74 @@
-﻿@model List<IService.Models.PostModel>
+﻿@model test.Models.Posts
 @using IService.Models
-
-@foreach (var b in Model)
+@using test.Models
+@{ 
+    var model = Model;
+}
+@foreach (var postlist in model.PostsList)
 {
-    <div class="post" id="@b.Id" style="padding:20px 0;">
+    <div class="post" id="@postlist.Id" style="padding:20px 0;">
         <div class="title-post" style="background-color:#eee; padding:5px 0 15px  30px;">
-            <h3><a style="text-decoration:none; color: #444;" href="/Home/Post/@b.Id">@b.Title</a></h3>
+            <h3><a style="text-decoration:none; color: #444;" href="/Home/Post/@postlist.Id">@postlist.Title</a></h3>
         </div>
         <div class="info-post" style="padding:10px 0;">
             <p>
                 <span>Категория: </span>
-                @Html.ActionLink(@b.Category.Name, "Index", new
-           {
-               currentCategory = @b.Category.Name,
-               currentTag = ""
-           })
+                @Html.ActionLink(@postlist.Category.Name, "Index", new
+               {              
+                   categoryName = @postlist.Category.Name,
+                   searchField = Model.SearchField                
+               }, null)
                 <span> Тэги</span>
-                @foreach (TagModel c in b.Tags)
-                {
+                @foreach (TagModel c in postlist.Tags)
+                {                   
                     <span class="tag-post">
-                        @Html.ActionLink(@c.Name, "Index", new { currentCategory = "", currentTag = @c.Name })
-                    </span>
+                        @Html.ActionLink(@c.Name, "Index", new {
+                       tagName = @c.Name,
+                       searchField = Model.SearchField
+                   }, null)
+                </span>
                 }
-                <span style="float:right;">@b.Published.ToString("dd MMMM yyyy HH:mm")</span>
+                <span style="float:right;">@postlist.Published.ToString("dd MMMM yyyy HH:mm")</span>
             </p>
         </div>
         <div class="desc-post">
-            <p>@Html.Raw(@b.ShortDescription)</p>
+            <p>@Html.Raw(@postlist.ShortDescription)</p>
         </div>
         <div class="learn-post">
-            <span class="author-post" style="float:left;">Author: @b.Author.UserName</span>
-            <span style="float:right;"><a href="/Home/Post/@b.Id">Дальше ...</a></span>
+            <span class="author-post" style="float:left;">Author: @postlist.Author.UserName</span>
+            <span style="float:right;"><a href="/Home/Post/@postlist.Id">Дальше ...</a></span>
         </div>
     </div>
 }
 <br /><br />
+<section>
+    <nav role="navigation">
+        <ul class="cd-pagination no-space">
+            <li class="button"><a href="#0"></a></li>
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+                <li class="button">
+                    @if (i == Model.PageNumber)
+                    {
+                        @Html.ActionLink(i.ToString(), "Index", new {
+                       pageNumber = i,
+                       tagName = Model.TagName,
+                       categoryName = Model.CategoryName,
+                       searchField = Model.SearchField },
+                       new { @class = "page current", id = "current" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(i.ToString(), "Index", new {
+                       pageNumber = i,
+                       tagName = Model.TagName,
+                       categoryName = Model.CategoryName,
+                       searchField = Model.SearchField }, 
+                       new { @class = "page" })
+                    }
+                </li>
+            }
+            <li class="button"><a href="#0"></a></li>
+        </ul>
+    </nav>
+</section>

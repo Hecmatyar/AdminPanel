@@ -7,9 +7,9 @@
 {
     <p class="category">
         @Html.ActionLink(@category.Name, "Index", new
-   {
-       currentCategory = @category.Name,
-       currentTag = ""
+   {      
+       categoryName = @category.Name,
+       searchField = ViewBag.search
    })
     </p>
 }

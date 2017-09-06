@@ -13,10 +13,51 @@ namespace test.Controllers
 {
     public class HomeController : ControllerBase
     {
-        public ActionResult Index()
+        /// <summary>
+        /// вывод ленты постов по страницам
+        /// </summary>
+        /// <param name="posts">модель постов с данными поиска</param>
+        /// <returns>посты, удовлетворяющие параметрам поиска</returns>
+        public ActionResult Index(Posts posts)
         {
-            var post = _ModeratorService.GetPostList(null, 10, 1, new TagModel { Name = null }, new CategoryModel { Name = null });
-            return View(post);
+            int pageSize = 5;
+            int pageNumber = (posts.PageNumber ?? 1);
+            if (posts.TagName != null || posts.CategoryName != null)
+                pageNumber = 1;
+
+            int countPage = _ModeratorService.GetPageCountPost(
+                posts.SearchField,
+                new TagModel { Name = posts.TagName ?? null },
+                new CategoryModel { Name = posts.CategoryName ?? null },
+                pageSize);
+
+            if (pageNumber > countPage)
+                pageNumber = countPage;
+
+            posts.PageCount = countPage;
+            posts.PageNumber = pageNumber;
+
+            posts.PostsList = _ModeratorService.GetPostList(posts.SearchField,
+                pageSize,
+                pageNumber,
+                new TagModel { Name = posts.TagName ?? null },
+                new CategoryModel { Name = posts.CategoryName ?? null });
+
+            return View(posts);
+        }       
+        /// <summary>
+        /// страница с выбранным постом
+        /// </summary>
+        /// <param name="id">id выбранного поста</param>
+        /// <returns>страница с постом</returns>
+        [HttpGet]
+        public ActionResult Post(int id)
+        {
+            Posts posts = new Posts
+            {
+                CurrentPosts = _ModeratorService.GetPostById(id)
+            };
+            return View(posts);
         }
         /// <summary>
         /// частичное представление со списком категорий

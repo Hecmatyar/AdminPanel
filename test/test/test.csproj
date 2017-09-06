@@ -180,13 +180,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Letters\SendingLetters.cs" />
-    <Compile Include="Models\ChangePasswordViewModel.cs" />
-    <Compile Include="Models\LetterConfirmViewModel.cs" />
-    <Compile Include="Models\LetterResetPasswordViewModel.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\RegisterViewModel.cs" />
-    <Compile Include="Models\ResetPasswordViewModel.cs" />
-    <Compile Include="Models\SetPasswordViewModel.cs" />
+    <Compile Include="Models\Authentication\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\Authentication\LetterConfirmViewModel.cs" />
+    <Compile Include="Models\Authentication\LetterResetPasswordViewModel.cs" />
+    <Compile Include="Models\Authentication\LoginViewModel.cs" />
+    <Compile Include="Models\Authentication\RegisterViewModel.cs" />
+    <Compile Include="Models\Authentication\ResetPasswordViewModel.cs" />
+    <Compile Include="Models\Authentication\SetPasswordViewModel.cs" />
+    <Compile Include="Models\Posts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -4530,6 +4531,7 @@
     <Content Include="Views\Home\SideBarPartial.cshtml" />
     <Content Include="Views\Home\CategoryListPartial.cshtml" />
     <Content Include="Views\Home\TagListPartial.cshtml" />
+    <Content Include="Views\Home\Post.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -8,8 +8,8 @@
     <span class="tag">
         @Html.ActionLink(@tag.Name, "Index", new
    {
-       currentCategory = "",
-       currentTag = @tag.Name
+       tagName = @tag.Name,
+       searchField = ViewBag.search
    })
     </span>
 }

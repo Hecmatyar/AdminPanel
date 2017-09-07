@@ -52,11 +52,30 @@ namespace test.Areas.Moderator.Controllers
         /// <returns>страница с постом</returns>
         public ActionResult EditPost(int id)
         {
-            PostViewModel posts = new PostViewModel
+            var tagList = _ModeratorService.GetTagList(null, int.MaxValue, 1);
+            var post = _ModeratorService.GetPostById(id);
+            var categoryList = _ModeratorService.GetCategoryList(null, int.MaxValue, 1);
+
+            tagList = tagList.Where(a => !post.Tags.Any(r => r.Name == a.Name)).ToList();
+            CreateEditPost posts = new CreateEditPost
             {
-                CurrentPosts = _ModeratorService.GetPostById(id)
+                CurrentPosts = post,
+                TagsList = tagList,
+                CategoriesList = categoryList
             };
             return View(posts);
+        }
+        [HttpPost]
+        public ActionResult EditPost(CreateEditPost post)
+        {
+            _ModeratorService.EditPost(post.CurrentPosts.Id,
+                post.CurrentPosts.Title,
+                post.CurrentPosts.ShortDescription,
+                post.CurrentPosts.Description,
+                post.SelectedCategory,
+                post.SelectedTag,
+                manager.CurrentUser.Id);
+            return RedirectToAction("/Posts");
         }
         /// <summary>
         /// создание нового поста
@@ -64,7 +83,27 @@ namespace test.Areas.Moderator.Controllers
         /// <returns>страница создания поста</returns>
         public ActionResult CreatePost()
         {
-            return View();
+            var tagList = _ModeratorService.GetTagList(null, int.MaxValue, 1);           
+            var categoryList = _ModeratorService.GetCategoryList(null, int.MaxValue, 1);
+            
+            CreateEditPost posts = new CreateEditPost
+            {               
+                TagsList = tagList,
+                CategoriesList = categoryList
+            };
+            return View(posts);
+        }
+        [HttpPost]
+        public ActionResult CreatePost(CreateEditPost post)
+        {
+            _ModeratorService.CreatePost(
+                post.CurrentPosts.Title,
+                post.CurrentPosts.ShortDescription,
+                post.CurrentPosts.Description,
+                post.SelectedCategory,
+                post.SelectedTag,
+                manager.CurrentUser.Id);
+            return RedirectToAction("/Posts");
         }
         public ActionResult DeletePost(int id)
         {

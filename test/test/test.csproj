@@ -168,6 +168,7 @@
     <Compile Include="Areas\Moderator\Controllers\PostsController.cs" />
     <Compile Include="Areas\Moderator\Controllers\TagsController.cs" />
     <Compile Include="Areas\Moderator\Models\CategoryViewModel.cs" />
+    <Compile Include="Areas\Moderator\Models\CreateEditPost.cs" />
     <Compile Include="Areas\Moderator\Models\PostViewModel.cs" />
     <Compile Include="Areas\Moderator\Models\TagViewModel.cs" />
     <Compile Include="Areas\Moderator\ModeratorAreaRegistration.cs" />
@@ -4224,6 +4225,7 @@
     <Content Include="Areas\Admin\Content\assets\global\scripts\datatable.js" />
     <Content Include="Areas\Admin\Content\assets\global\scripts\metronic.js" />
     <Content Include="Areas\Admin\Content\Style.css" />
+    <Content Include="Areas\Moderator\Content\mStyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />

@@ -74,7 +74,7 @@ namespace IService.Moderator
         /// </summary>
         /// <param name="idPost">id поста</param>
         /// <param name="post">модель с новыми данными</param>
-        void EditPost(int idPost, PostModel post);
+        void EditPost(int idPost, string title, string shortdescription, string description, int category, int[] tags, int authorId);
 
         /// <summary>
         /// редактирование тэга
@@ -133,7 +133,7 @@ namespace IService.Moderator
         /// добавление поста
         /// </summary>
         /// <param name="post">модель с данными</param>
-        void CreatePost(PostModel post);
+        void CreatePost(string title, string shortdescription, string description, int category, int[] tags, int authorId);
 
         /// <summary>
         /// добавление тэга

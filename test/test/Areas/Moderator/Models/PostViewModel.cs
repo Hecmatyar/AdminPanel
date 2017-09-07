@@ -36,8 +36,17 @@ namespace test.Areas.Moderator.Models
         /// </summary>
         public List<PostModel> PostsList { get; set; }
         /// <summary>
+        /// список категорий
+        /// </summary>
+        //public List<CategoryModel> CategoriesList { get; set; }
+        /// <summary>
+        /// список постов
+        /// </summary>
+        //public List<TagModel> TagsList { get; set; }
+        /// <summary>
         /// выбранный пост из ленты
         /// </summary>
         public PostModel CurrentPosts { get; set; }
+        
     }
 }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using IService.Models;
 using IService.Moderator;
 using System.Data.Entity;
+using Data.Models.Moderator;
+using Data.Models.Admin;
 
 namespace Data.Service.Moderator
 {
@@ -13,7 +15,7 @@ namespace Data.Service.Moderator
     /// реализация интерфейса модератора
     /// </summary>
     public class ModeratorService : IModeratorService
-    {       
+    {
         /// <summary>
         /// удаление категории
         /// </summary>
@@ -25,7 +27,7 @@ namespace Data.Service.Moderator
                 var category = db.Categories.First(_ => _.Id == id);
                 db.Entry(category).State = EntityState.Deleted;
                 db.SaveChanges();
-            }               
+            }
         }
         /// <summary>
         /// удаление поста
@@ -65,19 +67,32 @@ namespace Data.Service.Moderator
             {
 
             }
-                throw new NotImplementedException();
+            throw new NotImplementedException();
         }
         /// <summary>
         /// редактирование поста
         /// </summary>
         /// <param name="idPost">id поста</param>
         /// <param name="post">модель с новыми данными</param>
-        public void EditPost(int idPost, PostModel post)
+        public void EditPost(int idPost, string title, string shortdescription, string description, int category, int[] tags, int authorId)
         {
             using (var db = new DataContext())
             {
+                var Tags = db.Tags.Where(a => tags.Contains(a.Id)).ToList();
+                var post = db.Posts.FirstOrDefault(a => a.Id == idPost);
+
+                post.Title = title;
+                post.ShortDescription = shortdescription;
+                post.Description = description;
+                post.CategoryId = category;
+                post.Tags.Clear();
+                post.Tags = Tags;
+                post.Published = DateTime.UtcNow;
+                post.UserId = authorId;
+
+                db.Entry(post).State = EntityState.Modified;
+                db.SaveChanges();
             }
-                throw new NotImplementedException();
         }
         /// <summary>
         /// редактирование тэга
@@ -89,7 +104,7 @@ namespace Data.Service.Moderator
             using (var db = new DataContext())
             {
             }
-                throw new NotImplementedException();
+            throw new NotImplementedException();
         }
         /// <summary>
         /// добавление категории
@@ -100,18 +115,30 @@ namespace Data.Service.Moderator
             using (var db = new DataContext())
             {
             }
-                throw new NotImplementedException();
+            throw new NotImplementedException();
         }
         /// <summary>
         /// добавление поста
         /// </summary>
         /// <param name="post">модель с данными</param>
-        public void CreatePost(PostModel post)
+        public void CreatePost(string title, string shortdescription, string description, int category, int[] tags, int authorId)
         {
             using (var db = new DataContext())
             {
-            }
-                throw new NotImplementedException();
+                var Tags = db.Tags.Where(a => tags.Contains(a.Id)).ToList();
+                Post post = new Post()
+                {
+                    Title = title,
+                    ShortDescription = shortdescription,
+                    Description = description,
+                    CategoryId = category,
+                    Tags = Tags,
+                    Published = DateTime.UtcNow,
+                    UserId = authorId
+                };
+                db.Posts.Add(post);
+                db.SaveChanges();
+            }            
         }
         /// <summary>
         /// добавление тэга
@@ -134,7 +161,7 @@ namespace Data.Service.Moderator
             using (var db = new DataContext())
             {
                 return (TagModel)db.Tags.First(_ => _.Id == idTag);
-            }           
+            }
         }
         /// <summary>
         /// получение поста по его id
@@ -174,7 +201,7 @@ namespace Data.Service.Moderator
             {
                 var posts = db.Posts.ToList();
                 if (!string.IsNullOrEmpty(search))
-                    posts = posts.Where(_ => _.Title.Contains(search)).ToList();
+                    posts = posts.Where(_ => _.Title.ToLower().Contains(search.ToLower())).ToList();
                 if (tag.Name != null)
                     posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
                 if (category.Name != null)
@@ -199,7 +226,7 @@ namespace Data.Service.Moderator
             {
                 var posts = db.Posts.ToList();
                 if (!string.IsNullOrEmpty(search))
-                    posts = posts.Where(_ => _.Title.Contains(search)).ToList();
+                    posts = posts.Where(_ => _.Title.ToLower().Contains(search.ToLower())).ToList();
                 if (tag.Name != null)
                     posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
                 if (category.Name != null)

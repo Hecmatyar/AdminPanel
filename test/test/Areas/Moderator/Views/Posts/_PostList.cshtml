@@ -4,13 +4,25 @@
 @{
     var model = Model;
 }
+<div class="post-first">
+
+    @using (Html.BeginForm("Posts", "Posts", FormMethod.Get, new { @class = "form-actions no-color" }))
+    {
+        <div class="first">
+            <span class="ann">Опубликованные посты</span>
+            <div>
+                <input type="text" class="search-field" name="SearchField" value="@Model.SearchField" />
+                <button type="submit" class="search" value="Search"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    }
+</div>
+
 @foreach (var postlist in model.PostsList)
 {
-    <div class="post" id="@postlist.Id" style="padding:20px 0;">
-        <div class="title-post" style="background-color:#eee; padding:5px 0 15px  30px;">
-            <h3><a style="text-decoration:none; color: #444;">@postlist.Title</a></h3>
-        </div>
-        <div class="info-post" style="padding:10px 0;">
+    <div class="post" id="@postlist.Id">
+        <p class="author">Автор: <b>@postlist.Author.UserName</b></p>
+        <div class="info">
             <p>
                 <span>Категория: </span>
                 @Html.ActionLink(@postlist.Category.Name, "Posts", new
@@ -18,7 +30,7 @@
                categoryName = @postlist.Category.Name,
                searchField = Model.SearchField
            }, null)
-                <span> Тэги</span>
+                <span> Тэги: </span>
                 @foreach (TagModel c in postlist.Tags)
                 {
                     <span class="tag-post">
@@ -29,16 +41,20 @@
                    }, null)
                     </span>
                 }
-                <span style="float:right;">@postlist.Published.ToString("dd MMMM yyyy HH:mm")</span>
             </p>
         </div>
+        <h3 class="title">@postlist.Title</h3>
         <div class="desc-post">
             <p>@Html.Raw(@postlist.ShortDescription)</p>
         </div>
-        <div class="learn-post">
-            <span class="author-post" style="float:left;">Author: @postlist.Author.UserName</span>
-            <span style="float:right;"><a href="@Url.Action("EditPost/" + @postlist.Id, "Posts")">Редактировать</a></span>
-            <span style="float:right;"><a href="@Url.Action("EditPost/" + @postlist.Id, "Posts")">Удалить</a></span>
+        <div class="foot">
+            <span class="date">Опубликовано: @postlist.Published.ToString("dd MMMM yyyy HH:mm")</span>
+            <span><a class="action" href="@Url.Action("EditPost/" + @postlist.Id, "Posts")"><i class="fa fa-edit"></i> Редактировать</a></span>
+            <span>
+                <a class="action" href="@Url.Action("DeletePost/" + @postlist.Id, "Posts")">
+                    <i class="fa fa-trash"></i> Удалить
+                </a>
+            </span>
         </div>
     </div>
 }

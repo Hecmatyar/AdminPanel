@@ -50,6 +50,7 @@ Basic style
 -------------------------------- */
 nav[role="navigation"] {
     text-align: right;
+    line-height:1;
 }
 
 .cd-pagination {
@@ -227,9 +228,6 @@ ul, li {
     vertical-align: baseline;
 }
 
-body {
-    line-height: 1;
-}
 
 ol, ul {
     list-style: none;

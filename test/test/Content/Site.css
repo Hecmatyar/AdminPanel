@@ -7,7 +7,9 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.page-content {
+    background-color: #f3f6f8 !important;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -121,6 +123,7 @@ Basic style
 -------------------------------- */
 nav[role="navigation"] {
     text-align: right;
+    line-height:1;
 }
 
 .cd-pagination {
@@ -296,10 +299,6 @@ ul, li {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-}
-
-body {
-    line-height: 1;
 }
 
 ol, ul {

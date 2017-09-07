@@ -1,43 +1,97 @@
-﻿@model test.Areas.Moderator.Models.PostViewModel
+﻿@model test.Areas.Moderator.Models.CreateEditPost
 @using IService.Models
 @{
     ViewBag.Title = "EditPost";
     Layout = "~/Areas/Moderator/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditPost</h2>
+<h2>Редактирование поста</h2><br />
 
-<a class="bottomNav" onclick="history.go(-1); return false;" href="#">Назад</a><br />
-<div class="row">
-    <div class="col-md-8">
-        <div class="title-post" style="padding:20px 0 0 0;">
-            <h2>@Model.CurrentPosts.Title</h2>
-        </div>
-        <div class="info-post" style="padding:10px 0;">
-            <p>
-                <span>Категория: </span>
-                @Html.ActionLink(@Model.CurrentPosts.Category.Name, "Index", new
-           {
-               currentCategory = @Model.CurrentPosts.Category.Name,
-               currentTag = ""
-           })
-                <span> Тэги</span>
-                @foreach (TagModel c in Model.CurrentPosts.Tags)
-                {
-                    <span class="tag-post">
-                        @Html.ActionLink(@c.Name, "Index", new { currentCategory = "", currentTag = @c.Name })
-                    </span>
-                }
-                <span style="float:right;">@Model.CurrentPosts.Published.ToString("dd MMMM yyyy HH:mm")</span>
-            </p>
-        </div>
-        <div class="desc-post">
-            <p>@Html.Raw(@Model.CurrentPosts.Description)</p>
-        </div>
-        <div class="learn-post">
-            <span class="author-post" style="float:left;">Author: @Model.CurrentPosts.Author.UserName</span>
-        </div>
-    </div>   
+<div class="post">
+    <div class="row">
+        @using (Html.BeginForm("EditPost", "Posts", FormMethod.Post,
+                        new { @class = "form-horizontal form-row-sepe", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-body">
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => @Model.CurrentPosts.Id)
+                <div class="alert alert-success display-hide">
+                    <button class="close" data-close="alert"></button>
+                    Your form validation is successful!
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        Заголовок
+                    </label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CurrentPosts.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        Краткое описание
+                    </label>
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.CurrentPosts.ShortDescription, new { @rows = 10, @class = "form-control post-area" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        Полное описание
+                    </label>
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.CurrentPosts.Description, new { @rows = 10, @class = "form-control post-area" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        Категория
+                    </label>
+                    <div class="col-md-10">
+                        <select class="form-control input-small select2me" name="selectedCategory">
+                            @foreach (CategoryModel c in Model.CategoriesList)
+                            {
+                                if (c.Name == Model.CurrentPosts.Category.Name)
+                                {
+                                    <option selected="selected" value="@c.Id" id="select_@c.Id">@c.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@c.Id" id="select_@c.Id">@c.Name</option> 
+                                }
+                            }                           
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">
+                        Тэги
+                    </label>
+                    <div class="col-md-10 checkboxes">
+                        @foreach (TagModel c in Model.CurrentPosts.Tags)
+                        {
+                            <input type="checkbox" checked="checked" name="selectedTag" value="@c.Id" id="check_@c.Id" />
+                            <label for="check_@c.Id" class="check btn green">@c.Name</label>
+                        }
+                        @foreach (TagModel c in Model.TagsList)
+                        {
+                            <input type="checkbox" name="selectedTag" value="@c.Id" id="check_@c.Id" />
+                            <label for="check_@c.Id" class="check btn default">@c.Name</label>
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <br />
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-9">
+                        <button type="submit" class="btn blue"><i class="fa fa-check"></i> Применить</button>
+                        <a class="btn red" onclick="history.go(-1); return false;">Отменить</a><br />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
-<div id="disqus_thread"></div>
-

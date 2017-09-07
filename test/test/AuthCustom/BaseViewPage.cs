@@ -9,7 +9,8 @@ using System.Web.Mvc;
 namespace test.AuthCustom
 {
     public class BaseViewPage : WebViewPage
-    {        
+    {
+        protected AuthorizeManager manager = new AuthorizeManager();
         /// <summary>
         /// текущий пользователь
         /// </summary>
@@ -17,7 +18,7 @@ namespace test.AuthCustom
         {
             get
             {
-                return DependencyResolver.Current.GetService<IAuthorizeManager>().CurrentUser;               
+                return manager.CurrentUser;               
             }
         }
         /// <summary>
@@ -48,7 +49,8 @@ namespace test.AuthCustom
     }
 
     public class BaseViewPage<TModel> : WebViewPage<TModel>
-    {       
+    {
+        protected AuthorizeManager manager = new AuthorizeManager();
         /// <summary>
         /// текущий пользователь
         /// </summary>
@@ -56,7 +58,7 @@ namespace test.AuthCustom
         {
             get
             {
-                return DependencyResolver.Current.GetService<IAuthorizeManager>().CurrentUser;               
+                return manager.CurrentUser;               
             }
         }
 

@@ -66,6 +66,6 @@ namespace test.Areas.Admin.Models
         /// <summary>
         /// роли пользователя
         /// </summary>
-        public int[] selectedRole { get; set; }
+        public int[] SelectedRole { get; set; }
     }
 }

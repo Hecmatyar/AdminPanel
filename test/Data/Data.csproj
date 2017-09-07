@@ -64,6 +64,7 @@
     <Compile Include="Service\Moderator\ModeratorService.cs" />
     <Compile Include="Service\Public\AuthenticationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\Public\DisplayContentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IService\IService.csproj">

@@ -64,36 +64,19 @@
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <img alt="" class="img-circle" src="~/Areas/Admin/Content/assets/admin/layout/img/avatar3_small.jpg" />
-                            <span class="username username-hide-on-mobile">
-                                @*@User.userroles*@
+                            <span class="username username-hide-on-mobile">                             
                                 @User.UserName
                             </span>
                             <i class="fa fa-angle-down"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-default">
-                            @*<li>
-                                    <a href="extra_lock.html">
-                                        <i class="icon-lock"></i> Главная
-                                    </a>
-                                </li>
-                                <li class="divider">
-                                </li>*@
+                        <ul class="dropdown-menu dropdown-menu-default">                           
                             <li>
                                 <a href="@Url.Action("LogOff", "Users", new { Area = "" })">
                                     <i class="icon-key"></i> Выход
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <!-- END USER LOGIN DROPDOWN -->
-                    <!-- BEGIN QUICK SIDEBAR TOGGLER -->
-                    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                    @*<li class="dropdown dropdown-quick-sidebar-toggler">
-                            <a href="javascript:;" class="dropdown-toggle">
-                                <i class="icon-logout"></i>
-                            </a>
-                        </li>*@
-                    <!-- END QUICK SIDEBAR TOGGLER -->
+                    </li>                   
                 </ul>
             </div>
             <!-- END TOP NAVIGATION MENU -->
@@ -109,14 +92,7 @@
         <div class="page-sidebar-wrapper">
             <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
             <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-            <div class="page-sidebar navbar-collapse collapse">
-                <!-- BEGIN SIDEBAR MENU -->
-                <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
-                <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
-                <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
-                <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-                <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
-                <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+            <div class="page-sidebar navbar-collapse collapse">               
                 <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
                     <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
                     <li class="sidebar-toggler-wrapper">
@@ -131,20 +107,62 @@
                     <li class="start active open">
                         <a href="javascript:;">
                             <i class="icon-home"></i>
-                            <span class="title">Главное меню</span>
+                            <span class="title">Посты</span>
                             <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
                             <li class="active open">
-                                <a href="Index">
+                                <a href="@Url.Action("Posts", "Posts")">
                                     <i class="icon-bar-chart"></i>
-                                    Все пользователи
+                                    Все посты
                                 </a>
                             </li>
                             <li>
-                                <a href="Create">
+                                <a href="@Url.Action("CreatePost", "Posts")">
                                     <i class="icon-bulb"></i>
-                                    Новый пользователь
+                                    Новый пост
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="start open">
+                        <a href="javascript:;">
+                            <i class="icon-home"></i>
+                            <span class="title">Категории</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class=" open">
+                                <a href="@Url.Action("Categories", "Categories")">
+                                    <i class="icon-bar-chart"></i>
+                                    Все категории
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("CreateCategory", "Categories")">
+                                    <i class="icon-bulb"></i>
+                                    Новая категория
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="start open">
+                        <a href="javascript:;">
+                            <i class="icon-home"></i>
+                            <span class="title">Тэги</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="open">
+                                <a href="@Url.Action("Tags", "Tags")">
+                                    <i class="icon-bar-chart"></i>
+                                    Все тэги
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("CreateTag", "Tags")">
+                                    <i class="icon-bulb"></i>
+                                    Новый тэг
                                 </a>
                             </li>
                         </ul>

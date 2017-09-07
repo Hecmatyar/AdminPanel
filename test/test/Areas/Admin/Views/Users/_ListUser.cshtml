@@ -1,0 +1,54 @@
+﻿@model IEnumerable<IService.Models.UserModel>
+@{
+    Layout = null;
+}
+<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
+    <thead>
+        <tr><th>Логин</th><th>EMail</th><th>Данные</th><th>Пароль</th><th>Роли</th><th>Удалить</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="center">@Html.DisplayFor(modelItem => item.UserName)</td>
+                <td class="center">@Html.DisplayFor(modelItem => item.UserEmail)</td>
+                <td>
+                    @Html.ActionLink("Изменить личные данные", "EditUserPartial", null, new { @class = "edit-popup", iduser = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Сбросить пароль", "ResetPasswordPartial", null, new { @class = "reset-popup", iduser = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить роли", "EditRolePartial", null, new { @class = "role-popup", iduser = item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", new { Token = item.UserToken }, new
+               {
+                   onclick = "return confirm('Пользователь " + item.UserName + " будет удален')"
+               })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<section>
+    <nav role="navigation">
+        <ul class="cd-pagination no-space">
+            <li class="button"><a href="#0"></a></li>
+            @for (int i = 1; i <= ViewBag.countPage; i++)
+            {
+                <li class="button">
+                    @if (i == ViewBag.page)
+                    {
+                        @Html.ActionLink(i.ToString(), "UserTable", null, new { @class = "page current", id= "current", page = i })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(i.ToString(), "UserTable", null, new { @class = "page", page = i })
+                    }
+                </li>
+            }            
+            <li class="button"><a href="#0"></a></li>
+        </ul>
+    </nav>
+</section>

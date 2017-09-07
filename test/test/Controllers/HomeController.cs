@@ -25,7 +25,7 @@ namespace test.Controllers
             if (posts.TagName != null || posts.CategoryName != null)
                 pageNumber = 1;
 
-            int countPage = _ModeratorService.GetPageCountPost(
+            int countPage = _DisplayContent.GetPageCountPost(
                 posts.SearchField,
                 new TagModel { Name = posts.TagName ?? null },
                 new CategoryModel { Name = posts.CategoryName ?? null },
@@ -37,7 +37,7 @@ namespace test.Controllers
             posts.PageCount = countPage;
             posts.PageNumber = pageNumber;
 
-            posts.PostsList = _ModeratorService.GetPostList(posts.SearchField,
+            posts.PostsList = _DisplayContent.GetPostList(posts.SearchField,
                 pageSize,
                 pageNumber,
                 new TagModel { Name = posts.TagName ?? null },
@@ -55,7 +55,7 @@ namespace test.Controllers
         {
             Posts posts = new Posts
             {
-                CurrentPosts = _ModeratorService.GetPostById(id)
+                CurrentPosts = _DisplayContent.GetPostById(id)
             };
             return View(posts);
         }
@@ -66,8 +66,8 @@ namespace test.Controllers
         [HttpGet]
         public ActionResult CategoryList()
         {
-            var category = _ModeratorService.GetCategoryList(null, 10, 1);
-            return View("CategoryListPartial", category);
+            var category = _DisplayContent.GetCategoryList(null, 10, 1);
+            return View("_CategoryList", category);
         }
         /// <summary>
         /// частичное представление со спсиком тэгов
@@ -76,8 +76,8 @@ namespace test.Controllers
         [HttpGet]
         public ActionResult TagList()
         {
-            var tags = _ModeratorService.GetTagList(null, 10, 1);
-            return View("TagListPartial", tags);
+            var tags = _DisplayContent.GetTagList(null, 10, 1);
+            return View("_TagList", tags);
         }
         /// <summary>
         /// просто так с доступом админа

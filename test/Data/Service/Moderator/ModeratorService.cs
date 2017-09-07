@@ -13,17 +13,19 @@ namespace Data.Service.Moderator
     /// реализация интерфейса модератора
     /// </summary>
     public class ModeratorService : IModeratorService
-    {
-        private DataContext db = new DataContext();
+    {       
         /// <summary>
         /// удаление категории
         /// </summary>
         /// <param name="id">id категории</param>
         public void DeleteCategory(int id)
         {
-            var category = db.Categories.First(_ => _.Id == id);
-            db.Entry(category).State = EntityState.Deleted;
-            db.SaveChanges();
+            using (var db = new DataContext())
+            {
+                var category = db.Categories.First(_ => _.Id == id);
+                db.Entry(category).State = EntityState.Deleted;
+                db.SaveChanges();
+            }               
         }
         /// <summary>
         /// удаление поста
@@ -31,9 +33,12 @@ namespace Data.Service.Moderator
         /// <param name="id">id поста</param>
         public void DeletePost(int id)
         {
-            var post = db.Posts.First(_ => _.Id == id);
-            db.Entry(post).State = EntityState.Deleted;
-            db.SaveChanges();
+            using (var db = new DataContext())
+            {
+                var post = db.Posts.First(_ => _.Id == id);
+                db.Entry(post).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
         /// <summary>
         /// удаление тэга
@@ -41,9 +46,12 @@ namespace Data.Service.Moderator
         /// <param name="id">id тэга</param>
         public void DeleteTag(int id)
         {
-            var tag = db.Tags.First(_ => _.Id == id);
-            db.Entry(tag).State = EntityState.Deleted;
-            db.SaveChanges();
+            using (var db = new DataContext())
+            {
+                var tag = db.Tags.First(_ => _.Id == id);
+                db.Entry(tag).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -53,7 +61,11 @@ namespace Data.Service.Moderator
         /// <param name="category">модель с новыми данными</param>
         public void EditCategory(int idCategory, CategoryModel category)
         {
-            throw new NotImplementedException();
+            using (var db = new DataContext())
+            {
+
+            }
+                throw new NotImplementedException();
         }
         /// <summary>
         /// редактирование поста
@@ -62,7 +74,10 @@ namespace Data.Service.Moderator
         /// <param name="post">модель с новыми данными</param>
         public void EditPost(int idPost, PostModel post)
         {
-            throw new NotImplementedException();
+            using (var db = new DataContext())
+            {
+            }
+                throw new NotImplementedException();
         }
         /// <summary>
         /// редактирование тэга
@@ -71,6 +86,42 @@ namespace Data.Service.Moderator
         /// <param name="tag">модель с новыми данными</param>
         public void EditTag(int idTag, TagModel tag)
         {
+            using (var db = new DataContext())
+            {
+            }
+                throw new NotImplementedException();
+        }
+        /// <summary>
+        /// добавление категории
+        /// </summary>
+        /// <param name="category">модель с новыми данными</param>
+        public void CreateCategory(CategoryModel category)
+        {
+            using (var db = new DataContext())
+            {
+            }
+                throw new NotImplementedException();
+        }
+        /// <summary>
+        /// добавление поста
+        /// </summary>
+        /// <param name="post">модель с данными</param>
+        public void CreatePost(PostModel post)
+        {
+            using (var db = new DataContext())
+            {
+            }
+                throw new NotImplementedException();
+        }
+        /// <summary>
+        /// добавление тэга
+        /// </summary>
+        /// <param name="tag">модель с данными</param>
+        public void CreateTag(TagModel tag)
+        {
+            using (var db = new DataContext())
+            {
+            }
             throw new NotImplementedException();
         }
         /// <summary>
@@ -80,7 +131,10 @@ namespace Data.Service.Moderator
         /// <returns>тэг с данным id</returns>
         public TagModel GetTagById(int idTag)
         {
-            return (TagModel)db.Tags.First(_ => _.Id == idTag);
+            using (var db = new DataContext())
+            {
+                return (TagModel)db.Tags.First(_ => _.Id == idTag);
+            }           
         }
         /// <summary>
         /// получение поста по его id
@@ -89,7 +143,10 @@ namespace Data.Service.Moderator
         /// <returns>пост с данными id</returns>
         public PostModel GetPostById(int idPost)
         {
-            return (PostModel)db.Posts.First(_ => _.Id == idPost);
+            using (var db = new DataContext())
+            {
+                return (PostModel)db.Posts.First(_ => _.Id == idPost);
+            }
         }
         /// <summary>
         /// получение категории по ее id
@@ -98,7 +155,10 @@ namespace Data.Service.Moderator
         /// <returns>категория с данным id</returns>
         public CategoryModel GetCategoryById(int idCategory)
         {
-            return (CategoryModel)db.Categories.First(_ => _.Id == idCategory);
+            using (var db = new DataContext())
+            {
+                return (CategoryModel)db.Categories.First(_ => _.Id == idCategory);
+            }
         }
         /// <summary>
         /// количество страниц, которые будут выведены
@@ -110,15 +170,18 @@ namespace Data.Service.Moderator
         /// <returns>количество страниц</returns>
         public int GetPageCountPost(string search, TagModel tag, CategoryModel category, int pageSize)
         {
-            var posts = db.Posts.ToList();
-            if (!string.IsNullOrEmpty(search))
-                posts = posts.Where(_ => _.Title.Contains(search)).ToList();
-            if (tag.Name != null)
-                posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
-            if (category.Name != null)
-                posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
+            using (var db = new DataContext())
+            {
+                var posts = db.Posts.ToList();
+                if (!string.IsNullOrEmpty(search))
+                    posts = posts.Where(_ => _.Title.Contains(search)).ToList();
+                if (tag.Name != null)
+                    posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
+                if (category.Name != null)
+                    posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
 
-            return (int)Math.Ceiling(posts.Count() / (double)pageSize);
+                return (int)Math.Ceiling(posts.Count() / (double)pageSize);
+            }
         }
         /// <summary>
         /// получение списка постов
@@ -132,15 +195,18 @@ namespace Data.Service.Moderator
         /// поиск осуществляется по заголовкам постов</returns>
         public List<PostModel> GetPostList(string search, int pageSize, int pageIndex, TagModel tag, CategoryModel category)
         {
-            var posts = db.Posts.ToList();
-            if (!string.IsNullOrEmpty(search))
-                posts = posts.Where(_ => _.Title.Contains(search)).ToList();
-            if (tag.Name != null)
-                posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
-            if (category.Name != null)
-                posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
-            return posts.Select(_ => (PostModel)_)
-                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            using (var db = new DataContext())
+            {
+                var posts = db.Posts.ToList();
+                if (!string.IsNullOrEmpty(search))
+                    posts = posts.Where(_ => _.Title.Contains(search)).ToList();
+                if (tag.Name != null)
+                    posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
+                if (category.Name != null)
+                    posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
+                return posts.OrderByDescending(_ => _.Published).ToList().Select(_ => (PostModel)_)
+                     .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
         }
         /// <summary>
         /// получение списка тэгов удовлетворяющих поиску и параметрам страницы
@@ -151,9 +217,12 @@ namespace Data.Service.Moderator
         /// <returns>список тэгов</returns>
         public List<TagModel> GetTagList(string search, int pageSize, int pageIndex)
         {
-            return db.Tags.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+            using (var db = new DataContext())
+            {
+                return db.Tags.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
                 .ToList().Select(_ => (TagModel)_).ToList()
                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
         }
         /// <summary>
         /// количетсво страниц с тэгами
@@ -163,8 +232,11 @@ namespace Data.Service.Moderator
         /// <returns>количество страниц</returns>
         public int GetPageCountTag(string search, int pageSize)
         {
-            return (int)Math.Ceiling(db.Tags.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+            using (var db = new DataContext())
+            {
+                return (int)Math.Ceiling(db.Tags.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
                 .ToList().Count() / (double)pageSize);
+            }
         }
         /// <summary>
         /// получение списка категорий удовлетворяющих поиску и параметрам страницы
@@ -175,9 +247,12 @@ namespace Data.Service.Moderator
         /// <returns>список категорий</returns>
         public List<CategoryModel> GetCategoryList(string search, int pageSize, int pageIndex)
         {
-            return db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+            using (var db = new DataContext())
+            {
+                return db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
                 .ToList().Select(_ => (CategoryModel)_).ToList()
                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
         }
         /// <summary>
         /// количество страниц с категориями
@@ -187,8 +262,11 @@ namespace Data.Service.Moderator
         /// <returns>количество страниц</returns>
         public int GetPageCountCategory(string search, int pageSize)
         {
-            return (int)Math.Ceiling(db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+            using (var db = new DataContext())
+            {
+                return (int)Math.Ceiling(db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
                 .ToList().Count() / (double)pageSize);
+            }
         }
     }
 }

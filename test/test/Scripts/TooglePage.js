@@ -1,13 +1,18 @@
 ﻿$(function () {
+    console.log("lolo");
     $('.page-sidebar-menu li ul a').each(function () {
         var pathname = window.location.pathname.split('/'); //получаем необходимое свойство текущей ссылки
-        var thislink = $(this).attr('href'); //получаем значение атрибута href для ссылок меню
-        //если значения идентичный - присваиваем новый класс 
-        if (thislink.toLowerCase() == pathname[pathname.length - 1].toLowerCase()) {
+        var thislink = $(this).attr('href').split('/'); //получаем значение атрибута href для ссылок меню
+        //если значения идентичный - присваиваем новый класс        
+        if (thislink[thislink.length - 1].toLowerCase() == pathname[pathname.length - 1].toLowerCase()) {            
+            
+            $('.page-sidebar-menu li').each(function () {
+                $(this).removeClass("active open");
+            });
             $(this).parent().addClass('active open');
             $(this).parent().parent().parent().addClass('active open');
-        } else {
-            $(this).parent().removeClass('active open');
+        } else {            
+            $(this).parent().removeClass('active open');            
         }
     });
 
@@ -78,7 +83,7 @@
             },
             dataType: 'HTML',
             success: function (data) {
-                $("#usereTable").html(data);                
+                $("#usereTable").html(data);
             },
             error: function (data) {
                 alert(data);
@@ -102,14 +107,14 @@
     });
 
     //стартовая загрузка списка пользователей
-    $(function () {        
+    $(function () {
         if ($("#usereTable").length != 0) {
             if (sessvars.page == 'undefined')
                 sessvars.page = 1;
             if (sessvars.search == 'undefined')
-                sessvars.search = "";           
-            
-            $('#searchString').val(sessvars.search);            
+                sessvars.search = "";
+
+            $('#searchString').val(sessvars.search);
             $.ajax({
                 url: '/Admin/Users/UserTable',
                 type: 'POST',

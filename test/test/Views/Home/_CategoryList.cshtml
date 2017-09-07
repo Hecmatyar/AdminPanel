@@ -1,0 +1,15 @@
+﻿@{
+    Layout = null;
+}
+@model List<IService.Models.CategoryModel>
+
+@foreach (IService.Models.CategoryModel category in Model)
+{
+    <p class="category">
+        @Html.ActionLink(@category.Name, "Index", new
+   {      
+       categoryName = @category.Name,
+       searchField = ViewBag.search
+   })
+    </p>
+}

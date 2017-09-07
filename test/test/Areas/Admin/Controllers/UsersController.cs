@@ -13,7 +13,7 @@ using IService.Models;
 namespace test.Areas.Admin.Controllers
 {
     [AuthenticateAttribute(RolesEnum.Admin)]
-    public class UsersController : test.Controllers.ControllerBase
+    public class UsersController : ControllerBase
     {
         public UsersController()
         {
@@ -23,7 +23,7 @@ namespace test.Areas.Admin.Controllers
         /// <summary>
         /// загрузка начальной страницы
         /// </summary>
-        /// <returns></returns>
+        /// <returns>начальная стсаница</returns>
         public ActionResult Index()
         {
             return View();
@@ -35,7 +35,7 @@ namespace test.Areas.Admin.Controllers
         /// <param name="searchString">строка поиска</param>
         /// <returns>таблица пользователей на указаннной страницей</returns>
         [HttpPost]
-        public PartialViewResult UserTable(int? page, string searchString)
+        public ActionResult UserTable(int? page, string searchString)
         {
             int pageSize = 2;
             int pageNumber = (page ?? 1);           
@@ -45,7 +45,7 @@ namespace test.Areas.Admin.Controllers
             ViewBag.page = pageNumber;
             ViewBag.countPage = countPage;
             List<UserModel> userlist = _AdminService.GetUserList(searchString, pageSize, pageNumber);
-            return PartialView("ListUserPartial", userlist);
+            return View("_ListUser", userlist);
         }
         /// <summary>
         /// создание нового пользователя в панели администратора
@@ -101,9 +101,9 @@ namespace test.Areas.Admin.Controllers
         /// <param name="id">id пользователя</param>
         /// <returns>модальное окно личной информации</returns>
         [HttpPost]
-        public PartialViewResult EditUserPartial(int id)
+        public ActionResult EditUserPartial(int id)
         {
-            UserModel user = _AuthenticationRequest.GetUserById(id);
+            UserModel user = _AdminService.GetUserById(id);
             EditUserViewModel edit = new EditUserViewModel
             {
                 UserId = id,
@@ -111,7 +111,7 @@ namespace test.Areas.Admin.Controllers
                 UserEmail = user.UserEmail,
                 UserPhoto = user.UserPhoto
             };
-            return PartialView("EditUserPartial", edit);
+            return View("_EditUser", edit);
         }
         /// <summary>
         /// изменение личной информации пользователя
@@ -139,16 +139,16 @@ namespace test.Areas.Admin.Controllers
         /// <param name="id">id пользователя</param>
         /// <returns>модальное окно сброса пароля</returns>
         [HttpPost]
-        public PartialViewResult ResetPasswordPartial(int id)
+        public ActionResult ResetPasswordPartial(int id)
         {
-            UserModel user = _AuthenticationRequest.GetUserById(id);
+            UserModel user = _AdminService.GetUserById(id);
             EditUserViewModel edit = new EditUserViewModel
             {
                 UserId = id,
                 UserName = user.UserName,
                 NewUserPassword = ""
             };
-            return PartialView("EditPasswordPartial", edit);
+            return View("_EditPassword", edit);
         }
         /// <summary>
         /// сброс пароля пользователя на новый
@@ -168,9 +168,9 @@ namespace test.Areas.Admin.Controllers
         /// <param name="id">id пользователя</param>
         /// <returns>модальное окно изменения ролей пользователя</returns>
         [HttpPost]
-        public PartialViewResult EditRolePartial(int id)
+        public ActionResult EditRolePartial(int id)
         {
-            UserModel user = _AuthenticationRequest.GetUserById(id);
+            UserModel user = _AdminService.GetUserById(id);
             EditUserViewModel edit = new EditUserViewModel
             {
                 UserId = id,
@@ -179,7 +179,7 @@ namespace test.Areas.Admin.Controllers
             };
             var ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
             ViewBag.UnRoles = ur.Where(a => !user.UserRoles.Any(r => r.Name == a));
-            return PartialView("EditRolePartial", edit);
+            return View("_EditRole", edit);
         }
         /// <summary>
         /// редактирование ролей пользователя
@@ -190,10 +190,10 @@ namespace test.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditUserRoles(EditUserViewModel edit)
         {
-            var roles = new RolesEnum[edit.selectedRole.Length];
-            for (int i = 0; i < edit.selectedRole.Length; i++)
+            var roles = new RolesEnum[edit.SelectedRole.Length];
+            for (int i = 0; i < edit.SelectedRole.Length; i++)
             {
-                roles[i] = (RolesEnum)Enum.ToObject(typeof(RolesEnum), edit.selectedRole[i] - 1);
+                roles[i] = (RolesEnum)Enum.ToObject(typeof(RolesEnum), edit.SelectedRole[i] - 1);
             }
             _AdminService.ChangeUserRoles(edit.UserId, roles);
             return RedirectToAction("/Index");

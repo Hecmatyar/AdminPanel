@@ -21,9 +21,6 @@ namespace Data
 
     public class AuthenticationService : IAuthenticationService
     {
-
-        private DataContext db = new DataContext();
-
         /// <summary>
         /// существует ли пользователь в базе данных
         /// </summary>
@@ -31,8 +28,11 @@ namespace Data
         /// <param name="password">пароль пользователя</param>
         /// <returns>существует ли такой пользователь в системе</returns>
         public bool UserIsExist(string login)
-        {            
-            return db.Users.Any(_ => _.UserName == login);
+        {
+            using (var db = new DataContext())
+            {
+                return db.Users.Any(_ => _.UserName == login);
+            }
         }
 
         /// <summary>
@@ -43,7 +43,10 @@ namespace Data
         /// <returns>подтвердил ли пользователь свой почтовый адрес</returns>
         public bool UserIsConfirmedEmail(string token, string email)
         {
-            return db.Users.Any(_ => _.UserConfirmedEmail == true && _.UserEmail == email && _.UserToken == token);
+            using (var db = new DataContext())
+            {
+                return db.Users.Any(_ => _.UserConfirmedEmail == true && _.UserEmail == email && _.UserToken == token);
+            }
         }
 
         /// <summary>
@@ -53,10 +56,13 @@ namespace Data
         /// <param name="email">почтовый адрес</param>
         public void UserConfirmedEmail(string token, string email)
         {
-            User user = db.Users.First(_ => _.UserToken == token && _.UserEmail == email);
-            user.UserConfirmedEmail = true;
-            db.Entry(user).State = EntityState.Modified;
-            db.SaveChanges();
+            using (var db = new DataContext())
+            {
+                User user = db.Users.First(_ => _.UserToken == token && _.UserEmail == email);
+                user.UserConfirmedEmail = true;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -66,7 +72,10 @@ namespace Data
         /// <returns></returns>
         public UserModel GetUserByToken(string token)
         {
-            return (UserModel)db.Users.First(_ => _.UserToken == token);
+            using (var db = new DataContext())
+            {
+                return (UserModel)db.Users.First(_ => _.UserToken == token);
+            }
         }
 
         /// <summary>
@@ -76,7 +85,10 @@ namespace Data
         /// <returns>пользователь с данным почтовым адресом</returns>
         public UserModel GetUserByEmail(string email)
         {
-            return (UserModel)db.Users.First(_ => _.UserEmail == email);
+            using (var db = new DataContext())
+            {
+                return (UserModel)db.Users.First(_ => _.UserEmail == email);
+            }
         }
 
         /// <summary>
@@ -87,10 +99,13 @@ namespace Data
         /// <returns>пользователь с данным логином и паролем</returns>
         public UserModel GetUserByLP(string login, string password)
         {
-            User user = db.Users.FirstOrDefault(_ => _.UserName == login);
-            string userPassword = GeneratePassword(password, user.UserSalt);
-            UserModel um = (UserModel)db.Users.FirstOrDefault(_ => _.UserName == login && _.UserPassword == userPassword);
-            return um;
+            using (var db = new DataContext())
+            {
+                User user = db.Users.FirstOrDefault(_ => _.UserName == login);
+                string userPassword = GeneratePassword(password, user.UserSalt);
+                UserModel um = (UserModel)db.Users.FirstOrDefault(_ => _.UserName == login && _.UserPassword == userPassword);
+                return um;
+            }
         }
 
         /// <summary>
@@ -100,7 +115,10 @@ namespace Data
         /// <returns>пользователь с данным id</returns>
         public UserModel GetUserById(int id)
         {
-            return (UserModel)db.Users.First(_ => _.Id == id);
+            using (var db = new DataContext())
+            {
+                return (UserModel)db.Users.First(_ => _.Id == id);
+            }
         }
 
         /// <summary>
@@ -113,43 +131,38 @@ namespace Data
         /// <param name="birth">дата рождения пользователя</param>
         public void RegisterUser(string userName, string password, string email, byte[] photo, DateTime birth)
         {
-            if (!db.Users.Any(_ => _.UserName.Equals(userName) && _.UserEmail.Equals(email)))
+            using (var db = new DataContext())
             {
-                //генерация токена
-                byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
-                byte[] key = Guid.NewGuid().ToByteArray();
-                string token = Convert.ToBase64String(time.Concat(key).ToArray());
-
-                List<Models.Admin.Roles> role = new List<Models.Admin.Roles>
+                if (!db.Users.Any(_ => _.UserName.Equals(userName) && _.UserEmail.Equals(email)))
                 {
-                    db.RolesEnums.FirstOrDefault(a => a.Name == RolesEnum.Authorized)
-                };
+                    //генерация токена
+                    byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
+                    byte[] key = Guid.NewGuid().ToByteArray();
+                    string token = Convert.ToBase64String(time.Concat(key).ToArray());
 
-                string salt = GetStringFromHash(GetSalt());
-                password = GeneratePassword(password, salt);
+                    List<Models.Admin.Roles> role = new List<Models.Admin.Roles>
+                    {
+                        db.RolesEnums.FirstOrDefault(a => a.Name == RolesEnum.Authorized)
+                    };
 
-                User user = new User
-                {
-                    UserName = userName,
-                    UserPassword = password,
-                    UserEmail = email,
-                    UserConfirmedEmail = false,
-                    UserToken = token,
-                    UserRoles = role,
-                    UserSalt = salt,
-                    //UserBirth = UserBirth,
-                    UserPhoto = photo
-                };
-                db.Users.Add(user);
-                try
-                {
+                    string salt = GetStringFromHash(GetSalt());
+                    password = GeneratePassword(password, salt);
+
+                    User user = new User
+                    {
+                        UserName = userName,
+                        UserPassword = password,
+                        UserEmail = email,
+                        UserConfirmedEmail = false,
+                        UserToken = token,
+                        UserRoles = role,
+                        UserSalt = salt,
+                        //UserBirth = UserBirth,
+                        UserPhoto = photo
+                    };
+                    db.Users.Add(user);
                     db.SaveChanges();
                 }
-                catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
-                {
-                    string s = ex.ToString();
-                }
-                
             }
         }
         /// <summary>
@@ -161,19 +174,16 @@ namespace Data
         /// <param name="token">токен</param>
         public void ChangePassword(string userName, string oldPassword, string newPassword, string token)
         {
-            /*
-             User user = db.Users.FirstOrDefault(_ => _.UserName == login);
-            password = GeneratePassword(password, user.UserSalt);
-            return (UserModel)db.Users.First(_ => _.UserName == login && _.UserPassword == password);     
-            */                    
-            if(UserIsExist(userName))
+            using (var db = new DataContext())
             {
-                User user = db.Users.First(_ => _.UserToken == token);
-                user.UserPassword = GeneratePassword(newPassword, user.UserSalt);
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                if (UserIsExist(userName))
+                {
+                    User user = db.Users.First(_ => _.UserToken == token);
+                    user.UserPassword = GeneratePassword(newPassword, user.UserSalt);
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
-           
         }
 
         /// <summary>
@@ -183,17 +193,20 @@ namespace Data
         /// <param name="newPassword">новый пароль пользователя</param>
         public void ResetPassword(string token, string newPassword)
         {
-            User user = db.Users.First(_ => _.UserToken == token);
-            user.UserPassword = GeneratePassword(newPassword, user.UserSalt);
-            db.Entry(user).State = EntityState.Modified;
-            db.SaveChanges();
-        }        
+            using (var db = new DataContext())
+            {
+                User user = db.Users.First(_ => _.UserToken == token);
+                user.UserPassword = GeneratePassword(newPassword, user.UserSalt);
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
 
         /// <summary>
         /// криптографический генератор случайных чисел
         /// </summary>
         private static int saltLengthLimit = 32;
-        public byte[] GetSalt()
+        private byte[] GetSalt()
         {
             return GetSalt(saltLengthLimit);
         }
@@ -206,14 +219,14 @@ namespace Data
             }
 
             return salt;
-        }        
+        }
         /// <summary>
         /// генерация пароля для пользователя
         /// </summary>
         /// <param name="pass">Original password</param>
         /// <param name="salt">User ID + " " + User.ID</param>       
         /// <returns></returns>
-        public string GeneratePassword(string pass, string salt)
+        private string GeneratePassword(string pass, string salt)
         {
             SHA256 sha256 = SHA256Managed.Create();
             byte[] bytes = Encoding.UTF8.GetBytes(pass + salt);
@@ -225,7 +238,7 @@ namespace Data
         /// </summary>
         /// <param name="hash">хеш</param>
         /// <returns>строка хеша</returns>
-        public string GetStringFromHash(byte[] hash)
+        private string GetStringFromHash(byte[] hash)
         {
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)
@@ -234,14 +247,5 @@ namespace Data
             }
             return result.ToString();
         }
-        /* protected override void Dispose(bool disposing)
-        {
-          if (disposing)
-          {
-              db.Dispose();
-          }
-          base.Dispose(disposing);
-        } */
     }
-
 }

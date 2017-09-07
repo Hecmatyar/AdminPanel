@@ -12,6 +12,7 @@ using IService.Models;
 using IService.Admin;
 using IService.Moderator;
 using test.Letters;
+using IService.Public;
 
 namespace test.Controllers
 {
@@ -21,19 +22,16 @@ namespace test.Controllers
     public abstract class ControllerBase : Controller
     {       
         protected IAuthenticationService _AuthenticationRequest;
-        protected IAdminService _AdminService;
-        protected IAuthorizeManager manager;
-        protected IModeratorService _ModeratorService;
-        //protected SendingLetters letter = new SendingLetters();
+        protected IDisplayContentService _DisplayContent;
+        protected AuthorizeManager manager;
         /// <summary>
         /// отпределение зависимостей
         /// </summary>
         public ControllerBase()
-        {            
-            _AuthenticationRequest = DependencyResolver.Current.GetService<IAuthenticationService>();
-            _AdminService = DependencyResolver.Current.GetService<IAdminService>();
-            _ModeratorService = DependencyResolver.Current.GetService<IModeratorService>();
-            manager = DependencyResolver.Current.GetService<IAuthorizeManager>();
+        {
+            _DisplayContent = DependencyResolver.Current.GetService<IDisplayContentService>();
+            _AuthenticationRequest = DependencyResolver.Current.GetService<IAuthenticationService>();             
+            manager = new AuthorizeManager();
         }
         /// <summary>
         /// текущий пользователь системы
@@ -42,7 +40,7 @@ namespace test.Controllers
         {
             get
             {                
-                return DependencyResolver.Current.GetService<IAuthorizeManager>().CurrentUser;
+                return manager.CurrentUser;
             }
         }
 

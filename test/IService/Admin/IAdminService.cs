@@ -15,6 +15,12 @@ namespace IService.Admin
     public interface IAdminService
     {
         /// <summary>
+        /// получение данных пользователя после его аутентификации в системе
+        /// </summary>
+        /// <param name="id">id пользователя в бд</param>
+        /// <returns></returns>
+        UserModel GetUserById(int id);
+        /// <summary>
         /// список пользователей
         /// </summary>
         /// <param name="search">строка поиска</param>

@@ -12,13 +12,15 @@ namespace test.AuthCustom
     /// можно ли пользователю находится на этой странице
     /// </summary>
     public class AuthenticateAttribute : AuthorizeAttribute
-    {        
+    {
+       
         public bool AllowAnonymus { get; set; }
 
         public RolesEnum AccessTole { get; set; }
 
         public AuthenticateAttribute()
         {
+            //manager = new AuthorizeManager();
         }
         /// <summary>
         /// доступ неавторизаванных пользователей
@@ -37,10 +39,12 @@ namespace test.AuthCustom
 
         protected override bool AuthorizeCore(System.Web.HttpContextBase httpContext)
         {
+            AuthorizeManager manager = new AuthorizeManager();
+
             if (AllowAnonymus)
                 return true;
-            
-            UserModel user = DependencyResolver.Current.GetService<IAuthorizeManager>().CurrentUser;
+
+            UserModel user = manager.CurrentUser;
             if (user == null)
                 return false;
 

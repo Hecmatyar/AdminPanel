@@ -11,6 +11,8 @@ using Data.Service.Moderator;
 using IService;
 using IService.Admin;
 using IService.Moderator;
+using IService.Public;
+using Data.Service.Public;
 
 namespace test.App_Start
 {
@@ -27,8 +29,8 @@ namespace test.App_Start
             // регистрируем споставление типов            
             builder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
             builder.RegisterType<AdminService>().As<IAdminService>();
-            builder.RegisterType<AuthorizeManager>().As<IAuthorizeManager>();
             builder.RegisterType<ModeratorService>().As<IModeratorService>();
+            builder.RegisterType<DisplayContentService>().As<IDisplayContentService>();
 
             // создаем новый контейнер с теми зависимостями, которые определены выше
             var container = builder.Build();

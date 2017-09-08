@@ -2,6 +2,7 @@
 using Data.Models.Admin;
 using IService.Admin;
 using IService.Models;
+using IService.Models.Admin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,7 +17,7 @@ namespace Data
     /// выполнение функция администрирования пользователей ресурса
     /// </summary>
     public class AdminService : IAdminService
-    {        
+    {
         /// <summary>
         /// постраничный список всех зарегестрированных пользователей
         /// </summary>
@@ -55,11 +56,11 @@ namespace Data
         /// удаление пользователя из бд
         /// </summary>
         /// <param name="token">токен</param>
-        public void DeleteUser(string token)
+        public void DeleteUser(int id)
         {
             using (var db = new DataContext())
             {
-                User user = db.Users.First(_ => _.UserToken == token);
+                User user = db.Users.First(_ => _.Id == id);
                 db.Entry(user).State = EntityState.Deleted;
                 db.SaveChanges();
             }
@@ -169,6 +170,70 @@ namespace Data
             using (var db = new DataContext())
             {
                 return (UserModel)db.Users.First(_ => _.Id == id);
+            }
+        }
+
+        /// <summary>
+        /// получение данных пользователя для смены пароля
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модель с данными для смены пароля</returns>
+        public UserPasswordModel GetUserPasswordById(int id)
+        {
+            using (var db = new DataContext())
+            {
+                var user = db.Users.First(_ => _.Id == id);
+                var userpass = new UserPasswordModel()
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    UserPassword = user.UserPassword,
+                    NewUserPassword = ""
+                };
+                return userpass;
+            }
+        }
+
+        /// <summary>
+        /// получение данных пользователя для смены ролей
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модель с данными для смены ролей</returns>
+        public UserRolesModel GetUserRolesById(int id)
+        {
+            using (var db = new DataContext())
+            {
+                var ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
+                var user = db.Users.First(_ => _.Id == id);
+                var userpass = new UserRolesModel()
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    UserRoles = user.UserRoles.Select(a => (RolesModel)a).ToList(),
+                    UnUserRoles = ur.Where(a => !user.UserRoles.Any(r => r.Name == a)).ToList()
+                };
+                return userpass;
+            }
+        }
+
+        /// <summary>
+        /// получение личных данных пользователя
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модель с данными для их редактирования</returns>
+        public UserInfoModel GetUserInfoById(int id)
+        {
+            using (var db = new DataContext())
+            {               
+                var user = db.Users.First(_ => _.Id == id);
+                var userpass = new UserInfoModel()
+                {
+                    UserId = user.Id,
+                    UserName = user.UserName,
+                    UserPhoto = user.UserPhoto,
+                    NewUserPhoto = null
+                };
+                return userpass;
             }
         }
 

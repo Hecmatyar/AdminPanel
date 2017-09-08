@@ -1,4 +1,5 @@
 ﻿using IService.Models;
+using IService.Models.Moderator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,26 +53,33 @@ namespace test.Areas.Moderator.Controllers
         /// <returns>страница с постом</returns>
         public ActionResult EditPost(int id)
         {
-            var tagList = _ModeratorService.GetTagList(null, int.MaxValue, 1);
-            var post = _ModeratorService.GetPostById(id);
-            var categoryList = _ModeratorService.GetCategoryList(null, int.MaxValue, 1);
+            //var tagList = _ModeratorService.GetTagList(null, int.MaxValue, 1);
+            //var post = _ModeratorService.GetPostById(id);
+            //var categoryList = _ModeratorService.GetCategoryList(null, int.MaxValue, 1);
 
-            tagList = tagList.Where(a => !post.Tags.Any(r => r.Name == a.Name)).ToList();
-            CreateEditPost posts = new CreateEditPost
-            {
-                CurrentPosts = post,
-                TagsList = tagList,
-                CategoriesList = categoryList
-            };
-            return View(posts);
+            //tagList = tagList.Where(a => !post.Tags.Any(r => r.Name == a.Name)).ToList();
+            //EditCreatePost posts = new EditCreatePost
+            //{
+            //    CurrentPosts = post,
+            //    TagsList = tagList,
+            //    CategoriesList = categoryList
+            //};
+            var post = _ModeratorService.GetEditPostById(id);
+            return View(post);
         }
+        /// <summary>
+        /// редактирование выбранного поста
+        /// </summary>
+        /// <param name="post">модель с новыми данными</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult EditPost(CreateEditPost post)
+        [ValidateInput(false)]
+        public ActionResult EditPost(EditCreatePostModel post)
         {
-            _ModeratorService.EditPost(post.CurrentPosts.Id,
-                post.CurrentPosts.Title,
-                post.CurrentPosts.ShortDescription,
-                post.CurrentPosts.Description,
+            _ModeratorService.EditPost(post.Id,
+                post.Title,
+                post.ShortDescription,
+                post.Description,
                 post.SelectedCategory,
                 post.SelectedTag,
                 manager.CurrentUser.Id);
@@ -83,28 +91,40 @@ namespace test.Areas.Moderator.Controllers
         /// <returns>страница создания поста</returns>
         public ActionResult CreatePost()
         {
-            var tagList = _ModeratorService.GetTagList(null, int.MaxValue, 1);           
-            var categoryList = _ModeratorService.GetCategoryList(null, int.MaxValue, 1);
+            var post = _ModeratorService.GetEditPostById(0);
+            //var tagList = _ModeratorService.GetTagList(null, int.MaxValue, 1);           
+            //var categoryList = _ModeratorService.GetCategoryList(null, int.MaxValue, 1);
             
-            CreateEditPost posts = new CreateEditPost
-            {               
-                TagsList = tagList,
-                CategoriesList = categoryList
-            };
-            return View(posts);
+            //var posts = new EditCreatePost
+            //{               
+            //    TagsList = tagList,
+            //    CategoriesList = categoryList
+            //};
+            return View(post);
         }
+        /// <summary>
+        /// создание нового поста
+        /// </summary>
+        /// <param name="post">модель с новыми данными</param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult CreatePost(CreateEditPost post)
+        [ValidateInput(false)]
+        public ActionResult CreatePost(EditCreatePostModel post)
         {
             _ModeratorService.CreatePost(
-                post.CurrentPosts.Title,
-                post.CurrentPosts.ShortDescription,
-                post.CurrentPosts.Description,
+                post.Title,
+                post.ShortDescription,
+                post.Description,
                 post.SelectedCategory,
                 post.SelectedTag,
                 manager.CurrentUser.Id);
             return RedirectToAction("/Posts");
         }
+        /// <summary>
+        /// удаление поста
+        /// </summary>
+        /// <param name="id">id удаляемого поста</param>
+        /// <returns></returns>
         public ActionResult DeletePost(int id)
         {
             _ModeratorService.DeletePost(id);

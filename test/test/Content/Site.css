@@ -96,8 +96,10 @@ textarea {
             background-color: #fff;
             color: #444;
         }
-
-.tag a {
+.tag {
+    display:inline-block;
+    padding:3px 0;
+}.tag a {
     text-decoration: none;
     background-color: #d2d2d2;
     color: #444;

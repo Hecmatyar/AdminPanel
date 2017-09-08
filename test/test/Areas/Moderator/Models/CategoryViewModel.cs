@@ -6,6 +6,9 @@ using System.Web;
 
 namespace test.Areas.Moderator.Models
 {
+    /// <summary>
+    /// модель категорий
+    /// </summary>
     public class CategoryViewModel
     {       
         /// <summary>

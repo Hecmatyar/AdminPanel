@@ -56,7 +56,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\IAdminService.cs" />
+    <Compile Include="Models\Admin\UserInfoModel.cs" />
+    <Compile Include="Models\Admin\UserPasswordModel.cs" />
+    <Compile Include="Models\Admin\UserRolesModel.cs" />
     <Compile Include="Models\Moderator\CategoryModel.cs" />
+    <Compile Include="Models\Moderator\EditCreatePostModel.cs" />
     <Compile Include="Models\Moderator\PostModel.cs" />
     <Compile Include="Models\Admin\RolesModel.cs" />
     <Compile Include="Models\Moderator\TagModel.cs" />

@@ -51,7 +51,7 @@
             <span class="date">Опубликовано: @postlist.Published.ToString("dd MMMM yyyy HH:mm")</span>
             <span><a class="action" href="@Url.Action("EditPost/" + @postlist.Id, "Posts")"><i class="fa fa-edit"></i> Редактировать</a></span>
             <span>
-                <a class="action" href="@Url.Action("DeletePost/" + @postlist.Id, "Posts")">
+                <a class="action" href="@Url.Action("DeletePost/" + @postlist.Id, "Posts")" onclick=" return confirm('Удалить?');">
                     <i class="fa fa-trash"></i> Удалить
                 </a>
             </span>
@@ -75,7 +75,7 @@
                        categoryName = Model.CategoryName,
                        searchField = Model.SearchField
                    },
-                       new { @class = "page current", id = "current" })
+                       new { @class = "post-page current", id = "current" })
                     }
                     else
                     {
@@ -86,7 +86,7 @@
                        categoryName = Model.CategoryName,
                        searchField = Model.SearchField
                    },
-                       new { @class = "page" })
+                       new { @class = "post-page" })
                     }
                 </li>
             }

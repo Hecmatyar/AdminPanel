@@ -1,4 +1,4 @@
-﻿@model test.Areas.Moderator.Models.CreateEditPost
+﻿@model IService.Models.Moderator.EditCreatePostModel
 @using IService.Models
 @{
     ViewBag.Title = "EditPost";
@@ -15,7 +15,7 @@
             @Html.AntiForgeryToken()
             <div class="form-body">
                 @Html.ValidationSummary(true)
-                @Html.HiddenFor(model => @Model.CurrentPosts.Id)
+                @Html.HiddenFor(model => @Model.Id)
                 <div class="alert alert-success display-hide">
                     <button class="close" data-close="alert"></button>
                     Your form validation is successful!
@@ -25,7 +25,7 @@
                         Заголовок
                     </label>
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.CurrentPosts.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
                 </div>
                 <div class="form-group">
@@ -33,7 +33,7 @@
                         Краткое описание
                     </label>
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.CurrentPosts.ShortDescription, new { @rows = 10, @class = "form-control post-area" })
+                        @Html.TextAreaFor(model => model.ShortDescription, new { @rows = 10, @class = "form-control post-area", @id = "sdesc" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,7 +41,7 @@
                         Полное описание
                     </label>
                     <div class="col-md-10">
-                        @Html.TextAreaFor(model => model.CurrentPosts.Description, new { @rows = 10, @class = "form-control post-area" })
+                        @Html.TextAreaFor(model => model.Description, new { @rows = 20, @class = "form-control post-area", @id = "desc" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,7 +49,7 @@
                         Категория
                     </label>
                     <div class="col-md-10">
-                        <select class="form-control input-small select2me" name="selectedCategory">
+                        <select class="form-control input-small select2me" name="selectedCategory"  style="width:200px;">
                             @foreach (CategoryModel c in Model.CategoriesList)
                             {                               
                                  <option value="@c.Id" id="select_@c.Id">@c.Name</option>                               
@@ -62,7 +62,7 @@
                         Тэги
                     </label>
                     <div class="col-md-10 checkboxes">                       
-                        @foreach (TagModel c in Model.TagsList)
+                        @foreach (TagModel c in Model.UnTags)
                         {
                             <input type="checkbox" name="selectedTag" value="@c.Id" id="check_@c.Id" />
                             <label for="check_@c.Id" class="check btn default">@c.Name</label>
@@ -83,3 +83,4 @@
         }
     </div>
 </div>
+

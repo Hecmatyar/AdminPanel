@@ -1,4 +1,4 @@
-﻿@model test.Areas.Admin.Models.EditUserViewModel
+﻿@model IService.Models.Admin.UserRolesModel
 @{
     ViewBag.Title = "Edit";
     Layout = null;
@@ -69,7 +69,7 @@
                                     <input type="checkbox" checked="checked" name="selectedRole" value="@c.Id" id="@c.Id" />
                                     <label for="@c.Id" class="check btn green">@c.Name</label>
                                 }
-                                @foreach (IService.Models.RolesEnum c in ViewBag.UnRoles)
+                                @foreach (IService.Models.RolesEnum c in Model.UnUserRoles)
                                 {
                                     int enumid = (int)@c + 1;
                                     <input type="checkbox" name="selectedRole" value="@enumid" id="@enumid" />

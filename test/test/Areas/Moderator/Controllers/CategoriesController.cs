@@ -12,7 +12,11 @@ namespace test.Areas.Moderator.Controllers
     [AuthenticateAttribute(RolesEnum.Moderator)]
     public class CategoriesController : ControllerBase
     {
-        // GET: Moderator/Categories
+        /// <summary>
+        /// постраничное отображенеи категорий на старнице
+        /// </summary>
+        /// <param name="categories">модель с данными поиска и списка категорий на старнцие</param>
+        /// <returns></returns>
         public ActionResult Categories(CategoryViewModel categories)
         {
             int pageSize = 5;
@@ -34,15 +38,37 @@ namespace test.Areas.Moderator.Controllers
                 pageNumber);
             return View(categories);
         }
-        [HttpGet]
-        public ActionResult EditCategory(int id)
+        /// <summary>
+        /// редактирование категории
+        /// </summary>
+        /// <param name="category">модель категории</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult EditCategory(EditCreateCategory category)
         {
-            return View();
+            _ModeratorService.EditCategory(category.Id, category.Name);
+            return RedirectToAction("/Categories");
         }
-        [HttpGet]
-        public ActionResult CreateCategory()
+        /// <summary>
+        /// создание новой категории
+        /// </summary>
+        /// <param name="category">модель категории</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult CreateCategory(EditCreateCategory category)
         {
-            return View();
+            _ModeratorService.CreateCategory(category.Name);
+            return RedirectToAction("/Categories");
+        }
+        /// <summary>
+        /// удаление выбранной категории
+        /// </summary>
+        /// <param name="Id">id категории которую надо удалить</param>
+        /// <returns></returns>
+        public ActionResult DeleteCategory(int Id)
+        {
+            _ModeratorService.DeleteCategory(Id);
+            return RedirectToAction("/Categories");
         }
     }
 }

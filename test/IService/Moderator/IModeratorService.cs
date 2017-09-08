@@ -1,4 +1,5 @@
 ﻿using IService.Models;
+using IService.Models.Moderator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,14 +82,14 @@ namespace IService.Moderator
         /// </summary>
         /// <param name="idTag">id тэга</param>
         /// <param name="tag">модель с новыми данными</param>
-        void EditTag(int idTag, TagModel tag);
+        void EditTag(int idTag, string name);
 
         /// <summary>
         /// редактирование категории
         /// </summary>
         /// <param name="idCategory">id категории</param>
         /// <param name="category">модель с новыми данными</param>
-        void EditCategory(int idCategory, CategoryModel category);
+        void EditCategory(int idCategory, string name);
 
         /// <summary>
         /// получение поста по его id
@@ -96,6 +97,13 @@ namespace IService.Moderator
         /// <param name="idPost">id поста</param>
         /// <returns>пост с данными id</returns>
         PostModel GetPostById(int idPost);
+
+        /// <summary>
+        /// получение поста по его id
+        /// </summary>
+        /// <param name="idPost">id поста</param>
+        /// <returns>пост с данными id</returns>
+        EditCreatePostModel GetEditPostById(int idPost);
 
         /// <summary>
         /// получение тэга по его id
@@ -139,12 +147,12 @@ namespace IService.Moderator
         /// добавление тэга
         /// </summary>
         /// <param name="tag">модель с данными</param>
-        void CreateTag(TagModel tag);
+        void CreateTag(string name);
 
         /// <summary>
         /// редактирование категории
         /// </summary>
         /// <param name="category">модель с данными</param>
-        void CreateCategory(CategoryModel category);       
+        void CreateCategory(string name);       
     }
 }

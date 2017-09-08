@@ -1,5 +1,4 @@
-﻿$(function () {
-    console.log("lolo");
+﻿$(function () {    
     $('.page-sidebar-menu li ul a').each(function () {
         var pathname = window.location.pathname.split('/'); //получаем необходимое свойство текущей ссылки
         var thislink = $(this).attr('href').split('/'); //получаем значение атрибута href для ссылок меню
@@ -12,7 +11,7 @@
             $(this).parent().addClass('active open');
             $(this).parent().parent().parent().addClass('active open');
         } else {            
-            $(this).parent().removeClass('active open');            
+            $(this).parent().removeClass('active');            
         }
     });
 
@@ -93,6 +92,7 @@
 
     //переход по страницам и обновление таблицы
     $(".page-content").on("click", ".page", function () {
+        console.log("click");
         let href = this.href;
         let currpage = $(this).attr("page");
         sessvars.page = currpage;
@@ -142,5 +142,18 @@
         sessvars.search = searchString;
         UpdateTable(href, 1, sessvars.search);
         return false;
+    });
+
+
+    //добавление редактирвоание категорий
+    $(".tag-edit").on('click', function (e) {       
+        $(this).parent().parent().children(".form-tag").show();
+        $(this).parent().parent().children(".title-tag").hide();
+        $(this).parent().hide();
+    });
+    $(".tag-cancel").on('click', function (e) {       
+        $(this).parent().parent().parent().parent().children(".form-tag").hide();
+        $(this).parent().parent().parent().parent().children(".title-tag").show();
+        $(this).parent().parent().parent().parent().children(".action-tag").show();
     });
 });

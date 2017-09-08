@@ -8,6 +8,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using test.App_Start;
 using test.Models;
+using static test.Areas.Admin.Controllers.ControllerBase;
 
 namespace test
 {
@@ -21,6 +22,10 @@ namespace test
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //в байты картинки
+            ModelBinders.Binders.Remove(typeof(byte[]));
+            ModelBinders.Binders.Add(typeof(byte[]), new CustomByteArrayModelBinder());
         }
     }
 }

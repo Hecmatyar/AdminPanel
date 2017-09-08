@@ -9,6 +9,7 @@ using test.Controllers;
 using test.Areas.Admin.Models;
 using System.IO;
 using IService.Models;
+using IService.Models.Admin;
 
 namespace test.Areas.Admin.Controllers
 {
@@ -37,7 +38,7 @@ namespace test.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult UserTable(int? page, string searchString)
         {
-            int pageSize = 2;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);           
             int countPage = _AdminService.GetPageCount(searchString, pageSize);
             if (pageNumber > countPage)
@@ -80,9 +81,9 @@ namespace test.Areas.Admin.Controllers
         /// </summary>
         /// <param name="Token">токен пользователя</param>
         /// <returns>confirm на удаление пользователя</returns>
-        public ActionResult Delete(string Token)
+        public ActionResult Delete(int Id)
         {
-            _AdminService.DeleteUser(Token);
+            _AdminService.DeleteUser(Id);
             return RedirectToAction("/Index");
         }
         /// <summary>
@@ -103,15 +104,8 @@ namespace test.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditUserPartial(int id)
         {
-            UserModel user = _AdminService.GetUserById(id);
-            EditUserViewModel edit = new EditUserViewModel
-            {
-                UserId = id,
-                UserName = user.UserName,
-                UserEmail = user.UserEmail,
-                UserPhoto = user.UserPhoto
-            };
-            return View("_EditUser", edit);
+            UserInfoModel user = _AdminService.GetUserInfoById(id);           
+            return View("_EditUser", user);
         }
         /// <summary>
         /// изменение личной информации пользователя
@@ -119,16 +113,9 @@ namespace test.Areas.Admin.Controllers
         /// <param name="edit">модель редактирования личных данных</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult EditUserInfo(EditUserViewModel edit)
-        {
-            byte[] userphoto = null;
-            if (edit.File[0] != null)
-            {
-                MemoryStream target = new MemoryStream();
-                edit.File.First().InputStream.CopyTo(target);
-                userphoto = target.ToArray();
-            }           
-            _AdminService.ChangeUserInfo(edit.UserId, edit.UserEmail, DateTime.Now, userphoto);
+        public ActionResult EditUserInfo(UserInfoModel edit)
+        {                     
+            _AdminService.ChangeUserInfo(edit.UserId, edit.UserEmail, DateTime.Now, edit.NewUserPhoto);
             return RedirectToAction("/Index");
             //return RedirectToAction("/Index", new RouteValueDictionary(
             //    new { controller = "Users", action = "Index", page = page }));
@@ -141,14 +128,8 @@ namespace test.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult ResetPasswordPartial(int id)
         {
-            UserModel user = _AdminService.GetUserById(id);
-            EditUserViewModel edit = new EditUserViewModel
-            {
-                UserId = id,
-                UserName = user.UserName,
-                NewUserPassword = ""
-            };
-            return View("_EditPassword", edit);
+            UserPasswordModel user= _AdminService.GetUserPasswordById(id);          
+            return View("_EditPassword", user);
         }
         /// <summary>
         /// сброс пароля пользователя на новый
@@ -156,7 +137,7 @@ namespace test.Areas.Admin.Controllers
         /// <param name="edit">модель редактирования пароля данных</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult ResetPassword(EditUserViewModel edit)
+        public ActionResult ResetPassword(UserPasswordModel edit)
         {
             _AdminService.ChangeUserPassword(edit.UserId, edit.NewUserPassword);
             return RedirectToAction("/Index");
@@ -170,16 +151,8 @@ namespace test.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditRolePartial(int id)
         {
-            UserModel user = _AdminService.GetUserById(id);
-            EditUserViewModel edit = new EditUserViewModel
-            {
-                UserId = id,
-                UserName = user.UserName,
-                UserRoles = user.UserRoles,
-            };
-            var ur = Enum.GetValues(typeof(RolesEnum)).Cast<RolesEnum>().ToList();
-            ViewBag.UnRoles = ur.Where(a => !user.UserRoles.Any(r => r.Name == a));
-            return View("_EditRole", edit);
+            UserRolesModel user = _AdminService.GetUserRolesById(id);           
+            return View("_EditRole", user);
         }
         /// <summary>
         /// редактирование ролей пользователя
@@ -188,7 +161,7 @@ namespace test.Areas.Admin.Controllers
         /// <param name="selectedRole">выбранные роли</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult EditUserRoles(EditUserViewModel edit)
+        public ActionResult EditUserRoles(UserRolesModel edit)
         {
             var roles = new RolesEnum[edit.SelectedRole.Length];
             for (int i = 0; i < edit.SelectedRole.Length; i++)

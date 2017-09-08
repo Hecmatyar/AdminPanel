@@ -1,4 +1,4 @@
-﻿@model test.Areas.Admin.Models.EditUserViewModel
+﻿@model IService.Models.Admin.UserInfoModel
 @{
     ViewBag.Title = "Edit";
     Layout = null;
@@ -69,7 +69,7 @@
                                     <label for="file-upload" class="custom-file-upload">
                                         <img id="preview" src="@imgSrc" style="width: 150px; height:150px; border: 1px solid #999; cursor:pointer;" />
                                     </label>
-                                    <input id="file-upload" type="file" name="File" accept=".png,.jpg,.jpeg,.gif,.tif" style="display:none;" />
+                                    <input id="file-upload" type="file" name="newUserPhoto" accept=".png,.jpg,.jpeg,.gif,.tif" style="display:none;" />
                                 </div>
                             </div>
                         </fieldset>

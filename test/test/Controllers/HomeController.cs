@@ -20,7 +20,7 @@ namespace test.Controllers
         /// <returns>посты, удовлетворяющие параметрам поиска</returns>
         public ActionResult Index(Posts posts)
         {
-            int pageSize = 5;
+            int pageSize = 2;
             int pageNumber = (posts.PageNumber ?? 1);
             if (posts.TagName != null || posts.CategoryName != null)
                 pageNumber = 1;

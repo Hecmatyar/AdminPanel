@@ -1,61 +1,112 @@
 ﻿@model test.Areas.Moderator.Models.CategoryViewModel
 @using IService.Models
 <div class="row">
-    @foreach (var categories in Model.Categories)
-    {
-        <div class="col-md-3 tag">
-            <p>@categories.Name</p>
-            <div class="form-tag" >
-                @using (Html.BeginForm("EditCategory", "Categories", FormMethod.Post,
-                        new { @class = "form-horizontal form-row-sepe", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-body">
-                        @Html.ValidationSummary(true)
-                        @Html.HiddenFor(model => categories.Id)                       
-                        <div class="form-group">
-                            <label class="control-label col-md-2">
-                                Имя
-                            </label>
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => categories.Name, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-            <hr />
-            <div class="action-tag">
-                <button type="submit" class="btn blue"><i class="fa fa-edit"></i> Редактировать</button>
-                <a class="btn red" onclick="history.go(-1); return false;">Удалить</a><br />
-            </div>
-        </div>
-    }
-    <div class="col-md-3 tag">
-        <div class="form-tag" style="display:none;">
-            @using (Html.BeginForm("EditCategory", "Categories", FormMethod.Post,
-                        new { @class = "form-horizontal form-row-sepe", role = "form" }))
+    <div class="col-md-12">
+        <div class="post-first">
+            @using (Html.BeginForm("Categories", "Categories", FormMethod.Get, new { @class = "form-actions no-color" }))
             {
-                @Html.AntiForgeryToken()
-                <div class="form-body">
-                    @Html.ValidationSummary(true)
-                    @*@Html.HiddenFor(model => model.)*@
-                    <div class="form-group">
-                        <label class="control-label col-md-2">
-                            Имя
-                        </label>
-                        <div class="col-md-10">
-                            @*@Html.EditorFor(model => model.Categories, new { htmlAttributes = new { @class = "form-control" } })*@
-                        </div>
+                <div class="first">
+                    <span class="ann">Используемые категории</span>
+                    <div>
+                        <input type="text" class="search-field" name="SearchField" value="@Model.SearchField" />
+                        <button type="submit" class="search" value="Search"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
             }
         </div>
-        <hr />
-        <div class="action-tag">
-            <button type="submit" class="btn blue"><i class="fa fa-edit"></i> Редактировать</button>
-            <a class="btn red" onclick="history.go(-1); return false;">Удалить</a><br />
-        </div>
     </div>
 
+    @foreach (var categories in Model.Categories)
+    {
+        <div class="col-md-4 col-sm-6 col-xs-12" style="padding: 10px 15px;">
+            <div class="tag">
+                <div class="title-tag">
+                    <p style="margin:0;">Категория</p>
+                    <p class="name-tag">@categories.Name</p>
+                </div>
+                <div class="form-tag" style="display:none;">
+                    @using (Html.BeginForm("EditCategory", "Categories", FormMethod.Post, new { @class = "form-horizontal form-row-sepe", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-body">
+                            @Html.ValidationSummary(true)
+                            <input id="categories.Id" name="Id" type="hidden" value="@categories.Id" />
+                            <div style="height:60px;">
+                                <p style="margin:0;">Категория</p>
+                                <input class="form-control text-box single-line" id="Name_@categories.Id" name="Name" type="text" value="@categories.Name" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="submit-tag">
+                            <a class="btn tag-cancel"><i class="fa fa-arrow-left"></i></a>
+                            <button type="submit" class="btn"><i class="fa fa-check"></i></button>
+                        </div>
+                    }
+                </div>               
+                <div class="action-tag">
+                    <hr />
+                    <a class="btn tag-edit"><i class="fa fa-edit"></i></a>
+                    <a class="btn tag-delete" href="/Moderator/Categories/DeleteCategory/@categories.Id"  onclick=" return confirm('Удалить');"><i class="fa fa-trash"></i></a>
+                </div>
+
+            </div>
+        </div>
+    }
+    <div class="col-md-4 col-sm-6 col-xs-12" style="padding: 10px 15px;">
+        <div class="tag">            
+            <div class="form-tag">
+                @using (Html.BeginForm("CreateCategory", "Categories", FormMethod.Post, new { @class = "form-horizontal form-row-sepe", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-body">
+                        @Html.ValidationSummary(true)
+                        <input id="categories.Id" name="Id" type="hidden" value="0" />
+                        <div style="height:60px;">
+                            <p style="margin:0;">Новая категория</p>
+                            <input class="form-control text-box single-line" id="Name" name="Name" type="text" value="" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="submit-tag" style="text-align:center;">
+                        <button type="submit" class="btn"><i class="fa fa-check"></i></button>
+                    </div>
+                }
+            </div>            
+        </div>
+    </div>
+    
+    <section>
+        <div class="col-md-12">
+            <br /><br />
+            <nav role="navigation">
+                <ul class="cd-pagination no-space">
+                    <li class="button"><a href="#0"></a></li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="button">
+                            @if (i == Model.PageNumber)
+                            {
+                                @Html.ActionLink(i.ToString(), "Categories", new
+                               {
+                                   pageNumber = i,
+                                   searchField = Model.SearchField
+                               },
+                               new { @class = "category-page current", id = "current" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink(i.ToString(), "Categories", new
+                                {
+                                    pageNumber = i,
+                                    searchField = Model.SearchField
+                                },
+                                new { @class = "category-page" })
+                            }
+                        </li>
+                    }
+                    <li class="button"><a href="#0"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
 </div>

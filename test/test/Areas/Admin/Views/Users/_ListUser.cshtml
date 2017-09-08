@@ -22,7 +22,7 @@
                     @Html.ActionLink("Изменить роли", "EditRolePartial", null, new { @class = "role-popup", iduser = item.Id })
                 </td>
                 <td>
-                    @Html.ActionLink("Удалить", "Delete", new { Token = item.UserToken }, new
+                    @Html.ActionLink("Удалить", "Delete", new { Id = item.Id }, new
                {
                    onclick = "return confirm('Пользователь " + item.UserName + " будет удален')"
                })

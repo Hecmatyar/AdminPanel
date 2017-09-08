@@ -1,5 +1,6 @@
 ﻿using Data.Models.Admin;
 using IService.Models;
+using IService.Models.Moderator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,6 +71,23 @@ namespace Data.Models.Moderator
                 Description = v.Description,
                 Published = v.Published,
                 Author = (UserModel)v.Author,
+                Category = (CategoryModel)v.Category,
+                Tags = tags
+            };
+        }
+        /// <summary>
+        /// приведение к классу UserModel
+        /// </summary>
+        /// <param name="v">User, который надо привести к UserModel</param>
+        public static explicit operator EditCreatePostModel(Post v)
+        {
+            var tags = v.Tags.Select(a => (TagModel)a).ToList();
+            return new EditCreatePostModel
+            {
+                Id = v.Id,
+                Title = v.Title,
+                ShortDescription = v.ShortDescription,
+                Description = v.Description,               
                 Category = (CategoryModel)v.Category,
                 Tags = tags
             };

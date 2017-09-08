@@ -44,6 +44,6 @@ namespace IService.Models
         /// <summary>
         /// список тэгов поста
         /// </summary>
-        public List<TagModel> Tags { get; set; }
+        public List<TagModel> Tags { get; set; }        
     }
 }

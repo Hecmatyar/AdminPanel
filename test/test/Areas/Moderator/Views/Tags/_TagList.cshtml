@@ -1,1 +1,113 @@
-﻿
+﻿@model test.Areas.Moderator.Models.TagViewModel
+@using IService.Models
+<div class="row">
+    <div class="col-md-12">
+        <div class="post-first">
+            @using (Html.BeginForm("Tags", "Tags", FormMethod.Get, new { @class = "form-actions no-color" }))
+            {
+                <div class="first">
+                    <span class="ann">Используемые тэги</span>
+                    <div>
+                        <input type="text" class="search-field" name="SearchField" value="@Model.SearchField" />
+                        <button type="submit" class="search" value="Search"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    @foreach (var tags in Model.Tags)
+    {
+        <div class="col-md-3 col-sm-4 col-xs-6" style="padding: 10px 15px;">
+            <div class="tag">
+                <div class="title-tag">
+                    <p style="margin:0;">Тэг</p>
+                    <p class="name-tag">@tags.Name</p>
+                </div>
+                <div class="form-tag" style="display:none;">
+                    @using (Html.BeginForm("EditTag", "Tags", FormMethod.Post, new { @class = "form-horizontal form-row-sepe", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-body">
+                            @Html.ValidationSummary(true)
+                            <input id="categories.Id" name="Id" type="hidden" value="@tags.Id" />
+                            <div style="height:60px;">
+                                <p style="margin:0;">Категория</p>
+                                <input class="form-control text-box single-line" id="Name_@tags.Id" name="Name" type="text" value="@tags.Name" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="submit-tag">
+                            <a class="btn tag-cancel"><i class="fa fa-arrow-left"></i></a>
+                            <button type="submit" class="btn"><i class="fa fa-check"></i></button>
+                        </div>
+                    }
+                </div>
+                <div class="action-tag">
+                    <hr />
+                    <a class="btn tag-edit"><i class="fa fa-edit"></i></a>
+                    <a class="btn tag-delete" href="/Moderator/Tags/DeleteTag/@tags.Id" onclick=" return confirm('Удалить');"><i class="fa fa-trash"></i></a>
+                </div>
+
+            </div>
+        </div>
+    }
+    <div class="col-md-3 col-sm-4 col-xs-6" style="padding: 10px 15px;">
+        <div class="tag">
+            <div class="form-tag">
+                @using (Html.BeginForm("CreateTag", "Tags", FormMethod.Post, new { @class = "form-horizontal form-row-sepe", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-body">
+                        @Html.ValidationSummary(true)
+                        <input id="tag.Id" name="Id" type="hidden" value="0" />
+                        <div style="height:60px;">
+                            <p style="margin:0;">Новый тэг</p>
+                            <input class="form-control text-box single-line" id="Name" name="Name" type="text" value="" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="submit-tag" style="text-align:center;">
+                        <button type="submit" class="btn"><i class="fa fa-check"></i></button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="col-md-12">
+            <br /><br />
+            <nav role="navigation">
+                <ul class="cd-pagination no-space">
+                    <li class="button"><a href="#0"></a></li>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="button">
+                            @if (i == Model.PageNumber)
+                            {
+                                @Html.ActionLink(i.ToString(), "Tags", new
+                           {
+                               pageNumber = i,
+                               searchField = Model.SearchField
+                           },
+                               new { @class = "tag-page current", id = "current" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink(i.ToString(), "Tags", new
+                           {
+                               pageNumber = i,
+                               searchField = Model.SearchField
+                           },
+                                new { @class = "tag-page" })
+                            }
+                        </li>
+                    }
+                    <li class="button"><a href="#0"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+</div>
+
+

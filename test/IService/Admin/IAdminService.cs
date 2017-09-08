@@ -1,4 +1,5 @@
 ﻿using IService.Models;
+using IService.Models.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,33 @@ namespace IService.Admin
     public interface IAdminService
     {
         /// <summary>
+        /// получение данных пользователя для смены пароля
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модель с данными для смены пароля</returns>
+        UserPasswordModel GetUserPasswordById(int id);
+
+        /// <summary>
+        /// получение данных пользователя для смены ролей
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модель с данными для смены ролей</returns>
+        UserRolesModel GetUserRolesById(int id);
+
+        /// <summary>
+        /// получение личных данных пользователя
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>модель с данными для их редактирования</returns>
+        UserInfoModel GetUserInfoById(int id);
+
+        /// <summary>
         /// получение данных пользователя после его аутентификации в системе
         /// </summary>
         /// <param name="id">id пользователя в бд</param>
         /// <returns></returns>
         UserModel GetUserById(int id);
+
         /// <summary>
         /// список пользователей
         /// </summary>
@@ -28,6 +51,7 @@ namespace IService.Admin
         /// <param name="pageIndex">номер страницы</param>
         /// <returns></returns>
         List<UserModel> GetUserList(string search, int pageSize, int pageIndex);
+
         /// <summary>
         /// количество страниц в таблице
         /// </summary>
@@ -63,7 +87,7 @@ namespace IService.Admin
         /// удаление пользователя из бд
         /// </summary>
         /// <param name="token">токен</param>
-        void DeleteUser(string token);
+        void DeleteUser(int id);
 
         /// <summary>
         /// добавление нового пользователя

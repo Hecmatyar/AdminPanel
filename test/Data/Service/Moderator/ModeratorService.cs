@@ -8,6 +8,7 @@ using IService.Moderator;
 using System.Data.Entity;
 using Data.Models.Moderator;
 using Data.Models.Admin;
+using IService.Models.Moderator;
 
 namespace Data.Service.Moderator
 {
@@ -60,20 +61,27 @@ namespace Data.Service.Moderator
         /// редактирование категории
         /// </summary>
         /// <param name="idCategory">id категории</param>
-        /// <param name="category">модель с новыми данными</param>
-        public void EditCategory(int idCategory, CategoryModel category)
+        /// <param name="name">новое имя категории</param>
+        public void EditCategory(int idCategory, string name)
         {
             using (var db = new DataContext())
             {
-
+                var category = db.Categories.FirstOrDefault(a => a.Id == idCategory);
+                category.Name = name;
+                db.Entry(category).State = EntityState.Modified;
+                db.SaveChanges();
             }
-            throw new NotImplementedException();
         }
         /// <summary>
         /// редактирование поста
         /// </summary>
         /// <param name="idPost">id поста</param>
-        /// <param name="post">модель с новыми данными</param>
+        /// <param name="title">заголовок поста</param>
+        /// <param name="shortdescription">краткое опсиание поста</param>
+        /// <param name="description">полное описание поста</param>
+        /// <param name="category">категория поста</param>
+        /// <param name="tags">тэги поста</param>
+        /// <param name="authorId">автор поста</param>
         public void EditPost(int idPost, string title, string shortdescription, string description, int category, int[] tags, int authorId)
         {
             using (var db = new DataContext())
@@ -98,29 +106,43 @@ namespace Data.Service.Moderator
         /// редактирование тэга
         /// </summary>
         /// <param name="idTag">id тэга</param>
-        /// <param name="tag">модель с новыми данными</param>
-        public void EditTag(int idTag, TagModel tag)
+        /// <param name="name">имя тэга</param>
+        public void EditTag(int idTag, string name)
         {
             using (var db = new DataContext())
             {
+                var tag = db.Tags.FirstOrDefault(a => a.Id == idTag);
+                tag.Name = name;
+                db.Entry(tag).State = EntityState.Modified;
+                db.SaveChanges();
             }
-            throw new NotImplementedException();
         }
         /// <summary>
         /// добавление категории
         /// </summary>
-        /// <param name="category">модель с новыми данными</param>
-        public void CreateCategory(CategoryModel category)
+        /// <param name="name">имя новой категории</param>
+        public void CreateCategory(string name)
         {
             using (var db = new DataContext())
             {
+                var category = new Category()
+                {
+                    Name = name,
+                };
+                db.Categories.Add(category);
+                db.SaveChanges();
             }
-            throw new NotImplementedException();
         }
+
         /// <summary>
         /// добавление поста
         /// </summary>
-        /// <param name="post">модель с данными</param>
+        /// <param name="title">заголовок поста</param>
+        /// <param name="shortdescription">краткое опсиание поста</param>
+        /// <param name="description">полное описание поста</param>
+        /// <param name="category">категория поста</param>
+        /// <param name="tags">тэги поста</param>
+        /// <param name="authorId">автор поста</param>
         public void CreatePost(string title, string shortdescription, string description, int category, int[] tags, int authorId)
         {
             using (var db = new DataContext())
@@ -138,18 +160,23 @@ namespace Data.Service.Moderator
                 };
                 db.Posts.Add(post);
                 db.SaveChanges();
-            }            
+            }
         }
         /// <summary>
         /// добавление тэга
         /// </summary>
-        /// <param name="tag">модель с данными</param>
-        public void CreateTag(TagModel tag)
+        /// <param name="name">имя нового тэга</param>
+        public void CreateTag(string name)
         {
             using (var db = new DataContext())
             {
+                var tag = new Tag()
+                {
+                    Name = name,
+                };
+                db.Tags.Add(tag);
+                db.SaveChanges();
             }
-            throw new NotImplementedException();
         }
         /// <summary>
         /// получение тэга по его id
@@ -174,6 +201,28 @@ namespace Data.Service.Moderator
             {
                 return (PostModel)db.Posts.First(_ => _.Id == idPost);
             }
+        }
+        /// <summary>
+        /// получение поста по его id
+        /// </summary>
+        /// <param name="idPost">id поста</param>
+        /// <returns>пост с данными id</returns>
+        public EditCreatePostModel GetEditPostById(int idPost)
+        {
+            using (var db = new DataContext())
+            {
+                var post = idPost != 0 ? (EditCreatePostModel)db.Posts.FirstOrDefault(a => a.Id == idPost) : new EditCreatePostModel();
+                var tagslist = db.Tags.ToList();
+                var categorieslist = db.Categories.ToList();
+                if (idPost != 0)
+                {
+                    tagslist = tagslist.Where(a => !post.Tags.Any(r => r.Name == a.Name)).ToList();
+                }
+                post.UnTags = tagslist.Select(_ => (TagModel)_).ToList();
+                post.CategoriesList = categorieslist.Select(_ => (CategoryModel)_).ToList();
+                return post;
+            }
+
         }
         /// <summary>
         /// получение категории по ее id

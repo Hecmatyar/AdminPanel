@@ -24,7 +24,7 @@ namespace test.Areas.Moderator.Controllers
             int pageNumber = (posts.PageNumber ?? 1);
             if (posts.TagName != null || posts.CategoryName != null)
                 pageNumber = 1;
-
+            
             int countPage = _ModeratorService.GetPageCountPost(
                 posts.SearchField,
                 new TagModel { Name = posts.TagName ?? null },
@@ -36,7 +36,6 @@ namespace test.Areas.Moderator.Controllers
 
             posts.PageCount = countPage;
             posts.PageNumber = pageNumber;
-
             posts.PostsList = _ModeratorService.GetPostList(posts.SearchField,
                 pageSize,
                 pageNumber,

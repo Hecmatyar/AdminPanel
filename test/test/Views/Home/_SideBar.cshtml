@@ -4,14 +4,14 @@
 }
 <div class="control-post">
     <div>
-        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-actions no-color" }))
+        @using (Html.BeginForm("index", "Home",  new { page = 1, tag = "", category = "", q = Model.q }, FormMethod.Get, new { @class = "form-actions no-color" }))
         {
             <div class="form-actions no-color">
                 <p>
-                    Поиск по названию поста или автору <br />
-                    <input type="text" class="searchfield" name="SearchField" value="@Model.SearchField" />
-                    <input type="submit" value="Search" class="btn btn-default" /> |
-                    @Html.ActionLink(" Все посты", "Index")
+                    Поиск по названию поста<br />
+                    <input type="text" class="search" name="search" value="@Model.q" />
+                    <input type="submit" value="Поиск" class="btn btn-default" /> |
+                    @Html.ActionLink(" Все посты", "Index", new { page = 1 })
                 </p>
             </div>
         }

@@ -21,41 +21,43 @@ namespace test.Controllers
         public ActionResult Index(Posts posts)
         {
             int pageSize = 2;
-            int pageNumber = (posts.PageNumber ?? 1);
-            if (posts.TagName != null || posts.CategoryName != null)
-                pageNumber = 1;
-
+            int pageNumber = (posts.Page ?? 1);
+            if (!string.IsNullOrEmpty(posts.q))
+            {
+                posts.Tag = null;
+                posts.Category = null;
+            }
             int countPage = _DisplayContent.GetPageCountPost(
-                posts.SearchField,
-                new TagModel { Name = posts.TagName ?? null },
-                new CategoryModel { Name = posts.CategoryName ?? null },
+                posts.q,
+                new TagModel { Name = posts.Tag ?? null },
+                new CategoryModel { Name = posts.Category ?? null },
                 pageSize);
 
             if (pageNumber > countPage)
                 pageNumber = countPage;
 
             posts.PageCount = countPage;
-            posts.PageNumber = pageNumber;
+            posts.Page = pageNumber;
 
-            posts.PostsList = _DisplayContent.GetPostList(posts.SearchField,
+            posts.PostsList = _DisplayContent.GetPostList(posts.q,
                 pageSize,
                 pageNumber,
-                new TagModel { Name = posts.TagName ?? null },
-                new CategoryModel { Name = posts.CategoryName ?? null });
+                new TagModel { Name = posts.Tag ?? null },
+                new CategoryModel { Name = posts.Category ?? null });
 
             return View(posts);
-        }       
+        }
         /// <summary>
         /// страница с выбранным постом
         /// </summary>
-        /// <param name="id">id выбранного поста</param>
+        /// <param name="urlTitle">urlTitle выбранного поста</param>
         /// <returns>страница с постом</returns>
         [HttpGet]
-        public ActionResult Post(int id)
+        public ActionResult Post(string urlTitle)
         {
             Posts posts = new Posts
             {
-                CurrentPosts = _DisplayContent.GetPostById(id)
+                CurrentPosts = _DisplayContent.GetPostByUrl(urlTitle)
             };
             return View(posts);
         }

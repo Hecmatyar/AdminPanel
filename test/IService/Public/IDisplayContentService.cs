@@ -16,6 +16,12 @@ namespace IService.Public
         /// <returns>пост с данными id</returns>
         PostModel GetPostById(int idPost);
         /// <summary>
+        /// получение поста по его urltitle
+        /// </summary>
+        /// <param name="idPost">urltitle поста</param>
+        /// <returns>пост с данными id</returns>
+        PostModel GetPostByUrl(string UrlTitle);
+        /// <summary>
         /// получение списка постов
         /// </summary>
         /// <param name="search">строка поиска</param>

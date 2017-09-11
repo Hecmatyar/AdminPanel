@@ -16,14 +16,14 @@
                 <span>Категория: </span>
                 @Html.ActionLink(@Model.CurrentPosts.Category.Name, "Index", new
                {
-                   currentCategory = @Model.CurrentPosts.Category.Name,
-                   currentTag = ""
+                   category = @Model.CurrentPosts.Category.Name,
+                   tag = ""
                })
                 <span> Тэги</span>
                 @foreach (TagModel c in Model.CurrentPosts.Tags)
                 {
                     <span class="tag-post">
-                        @Html.ActionLink(@c.Name, "Index", new { currentCategory = "", currentTag = @c.Name })
+                        @Html.ActionLink(@c.Name, "Index", new { category = "", tag = @c.Name })
                     </span>
                 }
                 <span style="float:right;">@Model.CurrentPosts.Published.ToString("dd MMMM yyyy HH:mm")</span>

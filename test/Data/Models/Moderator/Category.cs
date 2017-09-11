@@ -21,7 +21,11 @@ namespace Data.Models.Moderator
         /// название категории
         /// </summary>
         [DisplayName("Категория")]
-        public string Name { get; set; }       
+        public string Name { get; set; }
+        /// <summary>
+        /// имя для адресной строки
+        /// </summary>
+        public string UrlName { get; set; }
         /// <summary>
         /// список постов с данной ктаегорией
         /// </summary>

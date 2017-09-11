@@ -17,6 +17,10 @@ namespace IService.Models
         /// имя тэга
         /// </summary>
         [DisplayName("Тэг")]
-        public string Name { get; set; }        
+        public string Name { get; set; }
+        /// <summary>
+        /// заголовок для адресной строки
+        /// </summary>
+        public string UrlName { get; set; }
     }
 }

@@ -17,6 +17,10 @@ namespace IService.Models
         /// название категории
         /// </summary>
         [DisplayName("Категория")]
-        public string Name { get; set; }        
+        public string Name { get; set; }
+        /// <summary>
+        /// заголовок для адресной строки
+        /// </summary>
+        public string UrlName { get; set; }
     }
 }

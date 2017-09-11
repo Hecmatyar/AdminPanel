@@ -19,6 +19,10 @@ namespace IService.Models.Moderator
         [DisplayName("Заголовок")]
         public string Title { get; set; }
         /// <summary>
+        /// заголовок для адресной строки
+        /// </summary>
+        public string UrlTitle { get; set; }
+        /// <summary>
         /// краткое описание поста
         /// </summary>
         public string ShortDescription { get; set; }
@@ -52,5 +56,11 @@ namespace IService.Models.Moderator
         /// список категорий
         /// </summary>
         public List<CategoryModel> CategoriesList { get; set; }
+
+
+        /// <summary>
+        /// выбранные тэги
+        /// </summary>
+        public string STag { get; set; }
     }
 }

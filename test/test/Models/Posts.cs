@@ -14,19 +14,19 @@ namespace test.Models
         /// <summary>
         /// выбранный тэг
         /// </summary>
-        public string TagName { get; set; }
+        public string Tag { get; set; }
         /// <summary>
         /// выбранная категория
         /// </summary>
-        public string CategoryName { get; set; }
+        public string Category { get; set; }
         /// <summary>
         /// строка поиска
         /// </summary>
-        public string SearchField { get; set; }
+        public string q { get; set; }
         /// <summary>
         /// страница 
         /// </summary>
-        public int? PageNumber { get; set; }
+        public int? Page { get; set; }
         /// <summary>
         /// количество страниц
         /// </summary>

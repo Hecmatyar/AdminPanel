@@ -19,6 +19,10 @@ namespace IService.Models
         [DisplayName("Заголовок")]
         public string Title { get; set; }
         /// <summary>
+        /// заголовок для адресной строки
+        /// </summary>
+        public string UrlTitle { get; set; }
+        /// <summary>
         /// краткое описание поста
         /// </summary>
         public string ShortDescription { get; set; }

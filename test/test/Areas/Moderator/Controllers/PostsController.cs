@@ -51,18 +51,7 @@ namespace test.Areas.Moderator.Controllers
         /// <param name="id">id выбранного поста</param>
         /// <returns>страница с постом</returns>
         public ActionResult EditPost(int id)
-        {
-            //var tagList = _ModeratorService.GetTagList(null, int.MaxValue, 1);
-            //var post = _ModeratorService.GetPostById(id);
-            //var categoryList = _ModeratorService.GetCategoryList(null, int.MaxValue, 1);
-
-            //tagList = tagList.Where(a => !post.Tags.Any(r => r.Name == a.Name)).ToList();
-            //EditCreatePost posts = new EditCreatePost
-            //{
-            //    CurrentPosts = post,
-            //    TagsList = tagList,
-            //    CategoriesList = categoryList
-            //};
+        {            
             var post = _ModeratorService.GetEditPostById(id);
             return View(post);
         }
@@ -77,6 +66,7 @@ namespace test.Areas.Moderator.Controllers
         {
             _ModeratorService.EditPost(post.Id,
                 post.Title,
+                post.UrlTitle,
                 post.ShortDescription,
                 post.Description,
                 post.SelectedCategory,
@@ -90,15 +80,7 @@ namespace test.Areas.Moderator.Controllers
         /// <returns>страница создания поста</returns>
         public ActionResult CreatePost()
         {
-            var post = _ModeratorService.GetEditPostById(0);
-            //var tagList = _ModeratorService.GetTagList(null, int.MaxValue, 1);           
-            //var categoryList = _ModeratorService.GetCategoryList(null, int.MaxValue, 1);
-            
-            //var posts = new EditCreatePost
-            //{               
-            //    TagsList = tagList,
-            //    CategoriesList = categoryList
-            //};
+            var post = _ModeratorService.GetEditPostById(0);           
             return View(post);
         }
         /// <summary>
@@ -110,12 +92,15 @@ namespace test.Areas.Moderator.Controllers
         [ValidateInput(false)]
         public ActionResult CreatePost(EditCreatePostModel post)
         {
+            string[] tags = post.STag;
             _ModeratorService.CreatePost(
                 post.Title,
+                post.UrlTitle,
                 post.ShortDescription,
                 post.Description,
                 post.SelectedCategory,
                 post.SelectedTag,
+                post.STag,
                 manager.CurrentUser.Id);
             return RedirectToAction("/Posts");
         }

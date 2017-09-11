@@ -53,6 +53,10 @@
     <Compile Include="Migrations\201709041513058_DataContext.Designer.cs">
       <DependentUpon>201709041513058_DataContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709111031461_url.cs" />
+    <Compile Include="Migrations\201709111031461_url.Designer.cs">
+      <DependentUpon>201709111031461_url.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Moderator\Category.cs" />
     <Compile Include="Models\Moderator\Post.cs" />
@@ -79,6 +83,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709041513058_DataContext.resx">
       <DependentUpon>201709041513058_DataContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709111031461_url.resx">
+      <DependentUpon>201709111031461_url.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

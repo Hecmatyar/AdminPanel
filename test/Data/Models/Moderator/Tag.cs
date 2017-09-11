@@ -23,6 +23,10 @@ namespace Data.Models.Moderator
         [DisplayName("Тэг")]
         public string Name { get; set; }
         /// <summary>
+        /// имя для адресной строки
+        /// </summary>
+        public string UrlName { get; set; }
+        /// <summary>
         /// список постов с данной ктаегорией
         /// </summary>
         public virtual List<Post> Posts { get; set; }

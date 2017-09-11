@@ -82,7 +82,7 @@ namespace Data.Service.Moderator
         /// <param name="category">категория поста</param>
         /// <param name="tags">тэги поста</param>
         /// <param name="authorId">автор поста</param>
-        public void EditPost(int idPost, string title, string shortdescription, string description, int category, int[] tags, int authorId)
+        public void EditPost(int idPost, string title, string titleUrl, string shortdescription, string description, int category, int[] tags, int authorId)
         {
             using (var db = new DataContext())
             {
@@ -97,10 +97,12 @@ namespace Data.Service.Moderator
                 post.Tags = Tags;
                 post.Published = DateTime.UtcNow;
                 post.UserId = authorId;
+                post.UrlTitle = titleUrl;
 
                 db.Entry(post).State = EntityState.Modified;
                 db.SaveChanges();
             }
+            DeleteExcessTag();
         }
         /// <summary>
         /// редактирование тэга
@@ -143,14 +145,31 @@ namespace Data.Service.Moderator
         /// <param name="category">категория поста</param>
         /// <param name="tags">тэги поста</param>
         /// <param name="authorId">автор поста</param>
-        public void CreatePost(string title, string shortdescription, string description, int category, int[] tags, int authorId)
+        public void CreatePost(string title, string titleUrl, string shortdescription, string description, int category, int[] tags, string[] stags, int authorId)
         {
             using (var db = new DataContext())
             {
-                var Tags = db.Tags.Where(a => tags.Contains(a.Id)).ToList();
+                //var Tags = db.Tags.Where(a => tags.Contains(a.Id)).ToList();
+
+                List<Tag> Tags = new List<Tag>();
+                int[] newtag = new int[stags.Length];
+                foreach (var item in stags)
+                {
+                    if (db.Tags.Any(a => a.Name == item))
+                    {
+                        Tags.Add(db.Tags.First(_ => _.Name == item));
+                    }
+                    else
+                    {
+                        db.Tags.Add(new Tag { Name = item });
+                        db.SaveChanges();
+                        Tags.Add(db.Tags.First(_ => _.Name == item));
+                    }
+                }
                 Post post = new Post()
                 {
                     Title = title,
+                    UrlTitle = titleUrl,
                     ShortDescription = shortdescription,
                     Description = description,
                     CategoryId = category,
@@ -159,8 +178,9 @@ namespace Data.Service.Moderator
                     UserId = authorId
                 };
                 db.Posts.Add(post);
-                db.SaveChanges();
+                db.SaveChanges();               
             }
+            DeleteExcessTag();
         }
         /// <summary>
         /// добавление тэга
@@ -342,6 +362,24 @@ namespace Data.Service.Moderator
             {
                 return (int)Math.Ceiling(db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
                 .ToList().Count() / (double)pageSize);
+            }
+        }
+        /// <summary>
+        /// удаление неиспользуемых тэгов из бд
+        /// </summary>
+        void DeleteExcessTag()
+        {
+            using (var db = new DataContext())
+            {
+                var tags = db.Tags.ToList();
+                foreach (var item in tags)
+                {
+                    if (item.Posts.Count() == 0)
+                    {
+                        db.Entry(item).State = EntityState.Deleted;
+                        db.SaveChanges();
+                    }
+                }
             }
         }
     }

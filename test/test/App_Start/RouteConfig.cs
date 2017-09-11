@@ -14,6 +14,47 @@ namespace test
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Default_Post",
+                url: "Post/{urlTitle}",
+                defaults: new { controller = "Home", action = "Post", urlTitle = UrlParameter.Optional }
+            );
+            routes.MapRoute(
+               name: "Default_category",
+               url: "category/{category}/page{page}",
+               defaults: new
+               {
+                   controller = "Home",
+                   action = "Index"
+               }
+            );
+            routes.MapRoute(
+              name: "Default_tag",
+              url: "tag/{tag}/page{page}",
+              defaults: new
+              {
+                  controller = "Home",
+                  action = "Index"
+              }
+            );
+            routes.MapRoute(
+              name: "Default_search",
+              url: "search/page{page}/{q}",
+              defaults: new
+              {
+                  controller = "Home",
+                  action = "Index"
+              }
+            );
+            routes.MapRoute(
+              name: "Default_page",
+              url: "page{page}",
+              defaults: new
+              {
+                  controller = "Home",
+                  action = "Index"
+              }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

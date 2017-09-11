@@ -13,6 +13,18 @@ namespace Data.Service.Public
         /// <summary>
         /// получение поста по его id
         /// </summary>
+        /// <param name="UrlTitle">UrlTitle поста</param>
+        /// <returns>пост с данными id</returns>
+        public PostModel GetPostByUrl(string UrlTitle)
+        {
+            using (var db = new DataContext())
+            {
+                return (PostModel)db.Posts.First(_ => _.UrlTitle == UrlTitle);
+            }
+        }
+        /// <summary>
+        /// получение поста по его id
+        /// </summary>
         /// <param name="idPost">id поста</param>
         /// <returns>пост с данными id</returns>
         public PostModel GetPostById(int idPost)

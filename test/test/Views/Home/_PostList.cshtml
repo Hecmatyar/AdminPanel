@@ -8,23 +8,25 @@
 {
     <div class="post" id="@postlist.Id" style="padding:20px 0;">
         <div class="title-post" style="background-color:#eee; padding:5px 0 15px  30px;">
-            <h3><a style="text-decoration:none; color: #444;" href="/Home/Post/@postlist.Id">@postlist.Title</a></h3>
+            <h3><a style="text-decoration:none; color: #444;" href="Post/@postlist.UrlTitle">@postlist.Title</a></h3>
         </div>
         <div class="info-post" style="padding:10px 0;">
             <p>
                 <span>Категория: </span>
                 @Html.ActionLink(@postlist.Category.Name, "Index", new
-               {              
-                   categoryName = @postlist.Category.Name,
-                   searchField = Model.SearchField                
-               }, null)
+           {
+               page = 1,
+               category = @postlist.Category.Name,
+               search = Model.q
+           }, null)
                 <span> Тэги</span>
                 @foreach (TagModel c in postlist.Tags)
                 {                   
                     <span class="tag-post">
                         @Html.ActionLink(@c.Name, "Index", new {
-                       tagName = @c.Name,
-                       searchField = Model.SearchField
+                       page = 1,
+                       tag = @c.Name,
+                       search = Model.q
                    }, null)
                 </span>
                 }
@@ -48,22 +50,22 @@
             @for (int i = 1; i <= Model.PageCount; i++)
             {
                 <li class="button">
-                    @if (i == Model.PageNumber)
+                    @if (i == Model.Page)
                     {
                         @Html.ActionLink(i.ToString(), "Index", new {
-                       pageNumber = i,
-                       tagName = Model.TagName,
-                       categoryName = Model.CategoryName,
-                       searchField = Model.SearchField },
+                       page = i,
+                       tag = Model.Tag,
+                       category = Model.Category,
+                       search = Model.q },
                        new { @class = "page current", id = "current" })
                     }
                     else
                     {
                         @Html.ActionLink(i.ToString(), "Index", new {
-                       pageNumber = i,
-                       tagName = Model.TagName,
-                       categoryName = Model.CategoryName,
-                       searchField = Model.SearchField }, 
+                       page = i,
+                       tag = Model.Tag,
+                       category = Model.Category,
+                       search = Model.q },
                        new { @class = "page" })
                     }
                 </li>

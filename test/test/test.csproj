@@ -4882,6 +4882,7 @@
     <Content Include="Areas\Admin\Views\Users\_EditUser.cshtml" />
     <Content Include="Areas\Admin\Views\Users\_EditPassword.cshtml" />
     <Content Include="Areas\Moderator\Views\web.config" />
+    <Content Include="Scripts\Comment.js" />
     <Content Include="Views\Home\_PostList.cshtml" />
     <Content Include="Areas\Moderator\Views\Posts\EditPost.cshtml" />
     <Content Include="Areas\Moderator\Views\Posts\Posts.cshtml" />
@@ -4954,6 +4955,7 @@
     <Content Include="Views\Home\_CategoryList.cshtml" />
     <Content Include="Views\Home\_TagList.cshtml" />
     <Content Include="Views\Home\Post.cshtml" />
+    <Content Include="Views\Home\_CommentList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -7,7 +7,8 @@
 <a class="bottomNav" onclick="history.go(-1); return false;" href="#">Назад</a><br />
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8">       
+        <input type="hidden" id="Id" data-id="@Model.CurrentPosts.Id"/>
         <div class="title-post" style="padding:20px 0 0 0;">
             <h2>@Model.CurrentPosts.Title</h2>
         </div>
@@ -15,10 +16,10 @@
             <p>
                 <span>Категория: </span>
                 @Html.ActionLink(@Model.CurrentPosts.Category.Name, "Index", new
-               {
-                   category = @Model.CurrentPosts.Category.Name,
-                   tag = ""
-               })
+           {
+               category = @Model.CurrentPosts.Category.Name,
+               tag = ""
+           })
                 <span> Тэги</span>
                 @foreach (TagModel c in Model.CurrentPosts.Tags)
                 {
@@ -35,10 +36,42 @@
         <div class="learn-post">
             <span class="author-post" style="float:left;">Author: @Model.CurrentPosts.Author.UserName</span>
         </div>
+
+
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+        {
+        @Html.AntiForgeryToken()
+        }
+        @* комментарии *@
+        <div class="comment">
+            <div id="comments">
+                
+            </div>
+            <h4>Комментарии:</h4>
+            @if (!IsAuthenticated)
+            {
+            <div class="bd-callout bd-danger">
+                <p>
+                    Только <strong>зарегестрированные</strong> пользователи могут оставлять комментарии, необходимо
+                    <strong>@Html.ActionLink("войти", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</strong>
+                </p>
+            </div>
+            }
+            else
+            {
+            <div class="bd-callout bd-comment">
+                <p id="commentedBy"><strong>@User.UserName</strong></p>
+                <p>
+                    <textarea class="comment-body" id="comment-body" rows="6"></textarea>
+                </p>
+                <p class="text-right" style="padding:10px 0 0 0;"><button class="btn btn-primary">Отправить</button></p>                
+            </div>
+            }           
+        </div>
     </div>
     <div class="col-md-4">
         @{Html.RenderPartial("_SideBar");}
     </div>
 </div>
-<div id="disqus_thread"></div>
+
 

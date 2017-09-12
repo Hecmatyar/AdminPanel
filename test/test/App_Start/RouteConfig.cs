@@ -17,7 +17,7 @@ namespace test
                 name: "Default_Post",
                 url: "post/{urlTitle}",
                 defaults: new { controller = "Home", action = "Post" }
-            );            
+            );           
             routes.MapRoute(
                name: "Default_category",
                url: "category/{category}/page{page}",

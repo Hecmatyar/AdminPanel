@@ -57,6 +57,14 @@
     <Compile Include="Migrations\201709111031461_url.Designer.cs">
       <DependentUpon>201709111031461_url.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709122013093_comment.cs" />
+    <Compile Include="Migrations\201709122013093_comment.Designer.cs">
+      <DependentUpon>201709122013093_comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709122100429_comment1.cs" />
+    <Compile Include="Migrations\201709122100429_comment1.Designer.cs">
+      <DependentUpon>201709122100429_comment1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Moderator\Category.cs" />
     <Compile Include="Models\Moderator\Post.cs" />
@@ -64,6 +72,7 @@
     <Compile Include="Models\Moderator\Tag.cs" />
     <Compile Include="Models\Admin\User.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="Models\Pubplic\Comment.cs" />
     <Compile Include="Service\Admin\AdminService.cs" />
     <Compile Include="Service\Moderator\ModeratorService.cs" />
     <Compile Include="Service\Public\AuthenticationService.cs" />
@@ -86,6 +95,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709111031461_url.resx">
       <DependentUpon>201709111031461_url.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709122013093_comment.resx">
+      <DependentUpon>201709122013093_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709122100429_comment1.resx">
+      <DependentUpon>201709122100429_comment1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IService.Models.Public;
 
 namespace Data.Service.Public
 {
@@ -49,10 +50,10 @@ namespace Data.Service.Public
                 var posts = db.Posts.ToList();
                 if (!string.IsNullOrEmpty(search))
                     posts = posts.Where(_ => _.Title.Contains(search)).ToList();
-                if (tag.Name != null)
-                    posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
-                if (category.Name != null)
-                    posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
+                if (tag.UrlName != null)
+                    posts = posts.Where(_ => _.Tags.Any(a => a.UrlName == tag.UrlName)).ToList();
+                if (category.UrlName != null)
+                    posts = posts.Where(_ => _.Category.UrlName.Equals(category.UrlName)).ToList();
 
                 return (int)Math.Ceiling(posts.Count() / (double)pageSize);
             }
@@ -74,10 +75,10 @@ namespace Data.Service.Public
                 var posts = db.Posts.ToList();
                 if (!string.IsNullOrEmpty(search))
                     posts = posts.Where(_ => _.Title.Contains(search)).ToList();
-                if (tag.Name != null)
-                    posts = posts.Where(_ => _.Tags.Any(a => a.Name == tag.Name)).ToList();
-                if (category.Name != null)
-                    posts = posts.Where(_ => _.Category.Name.Equals(category.Name)).ToList();
+                if (tag.UrlName != null)
+                    posts = posts.Where(_ => _.Tags.Any(a => a.UrlName == tag.UrlName)).ToList();
+                if (category.UrlName != null)
+                    posts = posts.Where(_ => _.Category.UrlName.Equals(category.UrlName)).ToList();
                 return posts.OrderByDescending(_ => _.Published).ToList().Select(_ => (PostModel)_)
                      .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             }
@@ -140,6 +141,15 @@ namespace Data.Service.Public
             {
                 return (int)Math.Ceiling(db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
                 .ToList().Count() / (double)pageSize);
+            }
+        }
+
+        public List<CommentModel> GetCommentFromPost(int idPost)
+        {
+            using (var db = new DataContext())
+            {
+                var d = db.Comment.Where(a => a.PostId == idPost).ToList().Select(_ => (CommentModel)_).ToList();
+                return db.Comment.Where(a => a.PostId == idPost).ToList().Select(_=>(CommentModel)_).ToList();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IService.Models.Public;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -48,6 +49,10 @@ namespace IService.Models
         /// <summary>
         /// список тэгов поста
         /// </summary>
-        public List<TagModel> Tags { get; set; }        
+        public List<TagModel> Tags { get; set; }
+        /// <summary>
+        /// комментарии к посту
+        /// </summary>
+        //public List<CommentModel> Comments { get; set; }
     }
 }

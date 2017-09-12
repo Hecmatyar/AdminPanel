@@ -1,4 +1,5 @@
-﻿using IService.Models;
+﻿using Data.Models.Pubplic;
+using IService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Data.Models.Admin
-{    
+{
     /// <summary>
     /// пользователь с данными, которые хранятся в бд
     /// </summary>
@@ -49,10 +50,16 @@ namespace Data.Models.Admin
         /// список ролей пользователя
         /// </summary>
         public virtual List<Roles> UserRoles { get; set; }
+        /// <summary>
+        /// список комментариев пользователя
+        /// </summary>
+        //public virtual List<Comment> Comments { get; set; }
         public User()
         {
             UserRoles = new List<Roles>();
+            //Comments = new List<Comment>();
         }
+
         /// <summary>
         /// приведение к классу UserModel
         /// </summary>
@@ -71,6 +78,6 @@ namespace Data.Models.Admin
                 UserRoles = listB,
                 UserPhoto = v.UserPhoto
             };
-        }        
+        }
     }
 }

@@ -65,6 +65,7 @@
     <Compile Include="Models\Admin\RolesModel.cs" />
     <Compile Include="Models\Moderator\TagModel.cs" />
     <Compile Include="Models\Admin\RolesEnum.cs" />
+    <Compile Include="Models\Public\CommentModel.cs" />
     <Compile Include="Moderator\IModeratorService.cs" />
     <Compile Include="Public\IAuthenticationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

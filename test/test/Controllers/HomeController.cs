@@ -29,8 +29,8 @@ namespace test.Controllers
             }
             int countPage = _DisplayContent.GetPageCountPost(
                 posts.q,
-                new TagModel { Name = posts.Tag ?? null },
-                new CategoryModel { Name = posts.Category ?? null },
+                new TagModel { UrlName = posts.Tag ?? null },
+                new CategoryModel { UrlName = posts.Category ?? null },
                 pageSize);
 
             if (pageNumber > countPage)
@@ -42,8 +42,8 @@ namespace test.Controllers
             posts.PostsList = _DisplayContent.GetPostList(posts.q,
                 pageSize,
                 pageNumber,
-                new TagModel { Name = posts.Tag ?? null },
-                new CategoryModel { Name = posts.Category ?? null });
+                new TagModel { UrlName = posts.Tag ?? null },
+                new CategoryModel { UrlName = posts.Category ?? null });
 
             return View(posts);
         }
@@ -55,12 +55,26 @@ namespace test.Controllers
         [HttpGet]
         public ActionResult Post(string urlTitle)
         {
+            var d = _DisplayContent.GetCommentFromPost(15);
             Posts posts = new Posts
             {
                 CurrentPosts = _DisplayContent.GetPostByUrl(urlTitle)
             };
             return View(posts);
         }
+        /// <summary>
+        /// промежуточный метод, потом уберу
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GetCommentFromPost(int? idPost)
+        {
+            var comments = _DisplayContent.GetCommentFromPost(15);            
+            return View("_CommentList", comments);
+        }
+
         /// <summary>
         /// частичное представление со списком категорий
         /// </summary>

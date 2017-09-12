@@ -1,4 +1,5 @@
 ﻿using IService.Models;
+using IService.Models.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,5 +77,7 @@ namespace IService.Public
         /// <param name="pageSize">количество элемнтов на стрнице</param>
         /// <returns>количество страниц</returns>
         int GetPageCountCategory(string search, int pageSize);
+
+        List<CommentModel> GetCommentFromPost(int idPost);
     }
 }

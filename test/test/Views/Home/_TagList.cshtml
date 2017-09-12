@@ -9,7 +9,7 @@
         @Html.ActionLink(@tag.Name, "Index", new
    {
        page = 1,
-       tag = @tag.Name,
+       tag = @tag.UrlName,
        category = string.Empty
    }, new { hidefocus = "hidefocus" })
     </span>

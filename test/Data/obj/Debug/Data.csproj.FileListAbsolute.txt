@@ -76,3 +76,6 @@ C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.DataContext
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.csproj.GenerateResource.Cache
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.DataContext.resources
 C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.url.resources
+C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.url.resources
+C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.comment.resources
+C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.comment1.resources

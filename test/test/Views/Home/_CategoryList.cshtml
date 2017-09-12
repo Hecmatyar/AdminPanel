@@ -10,7 +10,7 @@
         @Html.ActionLink(@category.Name, "Index", new
    {
        page = 1,
-       category = @category.Name,
+       category = @category.UrlName,
        tag = string.Empty
    }, new { hidefocus = "hidefocus" })
     </p>

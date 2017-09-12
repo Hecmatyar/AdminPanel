@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IService.Models.Public;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -57,6 +58,10 @@ namespace IService.Models
         /// </summary>
         public List<RolesModel> UserRoles { get; set; }
         /// <summary>
+        /// комментарии пользователя
+        /// </summary>
+        //public List<CommentModel> Comments { get; set; }
+        /// <summary>
         /// проверяет доступ пользователя
         /// </summary>
         /// <param name="accessTole">требуемая роль</param>
@@ -64,6 +69,6 @@ namespace IService.Models
         public bool IsInRole(RolesEnum accessTole)
         {
             return UserRoles.Any(a => a.Name == accessTole ) ? true : false;            
-        }        
+        }
     }
 }

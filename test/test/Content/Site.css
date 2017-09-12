@@ -7,6 +7,7 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
 .page-content {
     background-color: #f3f6f8 !important;
 }
@@ -19,8 +20,7 @@
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
-textarea {
+select {
     max-width: 340px;
 }
 
@@ -96,21 +96,24 @@ textarea {
             background-color: #fff;
             color: #444;
         }
+
 .tag {
-    display:inline-block;
-    padding:3px 0;
-}.tag a {
-    text-decoration: none;
-    background-color: #d2d2d2;
-    color: #444;
-    padding: 3px 6px;
-    border-radius: 2px;
+    display: inline-block;
+    padding: 3px 0;
 }
 
-    .tag a:hover {
-        background-color: #b4b4b4;
+    .tag a {
+        text-decoration: none;
+        background-color: #d2d2d2;
         color: #444;
+        padding: 3px 6px;
+        border-radius: 2px;
     }
+
+        .tag a:hover {
+            background-color: #b4b4b4;
+            color: #444;
+        }
 
 .image-post {
     width: 100%;
@@ -121,6 +124,7 @@ textarea {
     text-decoration: none;
     color: #444;
 }
+
     .title-text:hover {
         text-decoration: none;
         color: #444;
@@ -132,7 +136,7 @@ Basic style
 -------------------------------- */
 nav[role="navigation"] {
     text-align: right;
-    line-height:1;
+    line-height: 1;
 }
 
 .cd-pagination {
@@ -312,4 +316,44 @@ ul, li {
 
 ol, ul {
     list-style: none;
+}
+
+
+/*comments*/
+.bd-danger {
+    border-left-color: #d9534f !important;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+}
+.bd-comment {
+    border-left-color: #5bc0de !important;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+}
+    .bd-callout-danger p {
+        color: #d9534f;
+    }
+
+.bd-callout p {
+    margin-top: 0;
+    margin-bottom: .25rem;
+}
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+.comment{
+    padding:40px 0;
+}
+.comment-body {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    resize: none;
 }

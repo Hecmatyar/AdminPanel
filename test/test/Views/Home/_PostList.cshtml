@@ -19,7 +19,7 @@
                 @Html.ActionLink(@postlist.Category.Name, "Index", new
            {
                page = 1,
-               category = @postlist.Category.Name               
+               category = @postlist.Category.UrlName               
            }, null)
                 <span> Тэги</span>
                 @foreach (TagModel c in postlist.Tags)
@@ -27,7 +27,7 @@
                     <span class="tag-post">
                         @Html.ActionLink(@c.Name, "Index", new {
                        page = 1,
-                       tag = @c.Name                      
+                       tag = @c.UrlName                      
                    }, null)
                 </span>
                 }

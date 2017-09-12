@@ -1,6 +1,8 @@
 ﻿using Data.Models.Admin;
+using Data.Models.Pubplic;
 using IService.Models;
 using IService.Models.Moderator;
+using IService.Models.Public;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,7 +37,7 @@ namespace Data.Models.Moderator
         /// <summary>
         /// полный текст поста
         /// </summary>
-        public string Description { get; set; }       
+        public string Description { get; set; }
         /// <summary>
         /// дата публикации поста
         /// </summary>
@@ -56,10 +58,16 @@ namespace Data.Models.Moderator
         /// список тэгов поста
         /// </summary>
         public virtual List<Tag> Tags { get; set; }
+        /// <summary>
+        /// комментарии к посту
+        /// </summary>
+        //public virtual List<Comment> Comments { get; set; }
         public Post()
         {
             Tags = new List<Tag>();
+            //Comments = new List<Comment>();
         }
+
         /// <summary>
         /// приведение к классу UserModel
         /// </summary>
@@ -67,6 +75,7 @@ namespace Data.Models.Moderator
         public static explicit operator PostModel(Post v)
         {
             var tags = v.Tags.Select(a => (TagModel)a).ToList();
+            //var comments = v.Comments.Select(a => (CommentModel)a).ToList();
             return new PostModel
             {
                 Id = v.Id,
@@ -78,6 +87,7 @@ namespace Data.Models.Moderator
                 Author = (UserModel)v.Author,
                 Category = (CategoryModel)v.Category,
                 Tags = tags
+                //Comments = comments
             };
         }
         /// <summary>
@@ -93,7 +103,7 @@ namespace Data.Models.Moderator
                 Title = v.Title,
                 UrlTitle = v.UrlTitle,
                 ShortDescription = v.ShortDescription,
-                Description = v.Description,               
+                Description = v.Description,
                 Category = (CategoryModel)v.Category,
                 Tags = tags
             };

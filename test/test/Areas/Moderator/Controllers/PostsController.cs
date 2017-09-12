@@ -24,7 +24,7 @@ namespace test.Areas.Moderator.Controllers
             int pageNumber = (posts.PageNumber ?? 1);
             if (posts.TagName != null || posts.CategoryName != null)
                 pageNumber = 1;
-            
+
             int countPage = _ModeratorService.GetPageCountPost(
                 posts.SearchField,
                 new TagModel { Name = posts.TagName ?? null },
@@ -51,7 +51,7 @@ namespace test.Areas.Moderator.Controllers
         /// <param name="id">id выбранного поста</param>
         /// <returns>страница с постом</returns>
         public ActionResult EditPost(int id)
-        {            
+        {
             var post = _ModeratorService.GetEditPostById(id);
             return View(post);
         }
@@ -70,7 +70,7 @@ namespace test.Areas.Moderator.Controllers
                 post.ShortDescription,
                 post.Description,
                 post.SelectedCategory,
-                post.SelectedTag,
+                post.STag,
                 manager.CurrentUser.Id);
             return RedirectToAction("/Posts");
         }
@@ -80,7 +80,7 @@ namespace test.Areas.Moderator.Controllers
         /// <returns>страница создания поста</returns>
         public ActionResult CreatePost()
         {
-            var post = _ModeratorService.GetEditPostById(0);           
+            var post = _ModeratorService.GetEditPostById(0);
             return View(post);
         }
         /// <summary>
@@ -92,14 +92,12 @@ namespace test.Areas.Moderator.Controllers
         [ValidateInput(false)]
         public ActionResult CreatePost(EditCreatePostModel post)
         {
-            string[] tags = post.STag;
             _ModeratorService.CreatePost(
                 post.Title,
                 post.UrlTitle,
                 post.ShortDescription,
                 post.Description,
                 post.SelectedCategory,
-                post.SelectedTag,
                 post.STag,
                 manager.CurrentUser.Id);
             return RedirectToAction("/Posts");
@@ -113,6 +111,27 @@ namespace test.Areas.Moderator.Controllers
         {
             _ModeratorService.DeletePost(id);
             return RedirectToAction("/Posts");
+        }
+        /// <summary>
+        /// список тэгов для заполнения
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult GetTagEditor(bool edit, int idPost)
+        {
+            var tags = _ModeratorService.GetTagList(null, int.MaxValue, 1).Select(a => a.Name).ToArray();
+            if (!edit)
+            {
+                return Json(tags);
+            }
+            else
+            {
+                var posTags = _ModeratorService.GetPostById(idPost).Tags.Select(a => a.Name).ToArray();
+                List<string[]> data = new List<string[]>();
+                data.Add(posTags);
+                data.Add(tags);
+                return Json(data);
+            }
         }
     }
 }

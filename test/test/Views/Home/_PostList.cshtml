@@ -8,7 +8,10 @@
 {
     <div class="post" id="@postlist.Id" style="padding:20px 0;">
         <div class="title-post" style="background-color:#eee; padding:5px 0 15px  30px;">
-            <h3><a style="text-decoration:none; color: #444;" href="Post/@postlist.UrlTitle">@postlist.Title</a></h3>
+            <h3>
+                @*<a style="text-decoration:none; color: #444;" href="Post/@postlist.UrlTitle">@postlist.Title</a>*@
+                @Html.ActionLink(@postlist.Title, "post", new { urlTitle = @postlist.UrlTitle }, new { @class = "title-text"})
+            </h3>
         </div>
         <div class="info-post" style="padding:10px 0;">
             <p>
@@ -16,8 +19,7 @@
                 @Html.ActionLink(@postlist.Category.Name, "Index", new
            {
                page = 1,
-               category = @postlist.Category.Name,
-               search = Model.q
+               category = @postlist.Category.Name               
            }, null)
                 <span> Тэги</span>
                 @foreach (TagModel c in postlist.Tags)
@@ -25,8 +27,7 @@
                     <span class="tag-post">
                         @Html.ActionLink(@c.Name, "Index", new {
                        page = 1,
-                       tag = @c.Name,
-                       search = Model.q
+                       tag = @c.Name                      
                    }, null)
                 </span>
                 }
@@ -56,7 +57,7 @@
                        page = i,
                        tag = Model.Tag,
                        category = Model.Category,
-                       search = Model.q },
+                       q = Model.q },
                        new { @class = "page current", id = "current" })
                     }
                     else
@@ -65,7 +66,7 @@
                        page = i,
                        tag = Model.Tag,
                        category = Model.Category,
-                       search = Model.q },
+                       q = Model.q },
                        new { @class = "page" })
                     }
                 </li>

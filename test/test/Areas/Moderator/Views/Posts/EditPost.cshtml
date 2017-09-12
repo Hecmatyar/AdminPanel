@@ -76,6 +76,14 @@
                     <label class="control-label col-md-2">
                         Тэги
                     </label>
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.STag, new { @class = "form-control post-area", @id = "tag-area-edit" })
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    <label class="control-label col-md-2">
+                        Тэги
+                    </label>
                     <div class="col-md-10 checkboxes">
                         @foreach (TagModel c in Model.Tags)
                         {
@@ -88,8 +96,7 @@
                             <label for="check_@c.Id" class="check btn default">@c.Name</label>
                         }
                     </div>
-
-                </div>
+                </div>*@
             </div>
             <br />
             <div class="form-actions">

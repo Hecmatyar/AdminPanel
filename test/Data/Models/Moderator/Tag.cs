@@ -43,7 +43,8 @@ namespace Data.Models.Moderator
             return new TagModel
             {
                 Id = v.Id,
-                Name = v.Name               
+                Name = v.Name,
+                UrlName = v.UrlName
             };
         }
     }

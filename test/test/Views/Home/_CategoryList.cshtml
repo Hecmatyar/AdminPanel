@@ -6,13 +6,12 @@
 @foreach (IService.Models.CategoryModel category in Model)
 {
     <p class="category">
+
         @Html.ActionLink(@category.Name, "Index", new
    {
        page = 1,
        category = @category.Name,
-       tag = ""
-       //,
-       //search = ViewBag.search
-   })
+       tag = string.Empty
+   }, new { hidefocus = "hidefocus" })
     </p>
 }

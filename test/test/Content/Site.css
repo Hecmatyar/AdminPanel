@@ -117,7 +117,14 @@ textarea {
     box-shadow: 0px 2px 6px #aaa;
 }
 
-
+.title-text {
+    text-decoration: none;
+    color: #444;
+}
+    .title-text:hover {
+        text-decoration: none;
+        color: #444;
+    }
 /* -------------------------------- 
 
 Basic style

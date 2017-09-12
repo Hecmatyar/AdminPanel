@@ -82,11 +82,26 @@ namespace Data.Service.Moderator
         /// <param name="category">категория поста</param>
         /// <param name="tags">тэги поста</param>
         /// <param name="authorId">автор поста</param>
-        public void EditPost(int idPost, string title, string titleUrl, string shortdescription, string description, int category, int[] tags, int authorId)
+        public void EditPost(int idPost, string title, string titleUrl, string shortdescription, string description, int category, string tags, int authorId)
         {
             using (var db = new DataContext())
             {
-                var Tags = db.Tags.Where(a => tags.Contains(a.Id)).ToList();
+                List<Tag> Tags = new List<Tag>();
+                string[] stags = tags.Split(',');
+                foreach (var item in stags)
+                {
+                    if (db.Tags.Any(a => a.Name == item))
+                    {
+                        Tags.Add(db.Tags.First(_ => _.Name == item));
+                    }
+                    else
+                    {
+                        db.Tags.Add(new Tag { Name = item });
+                        db.SaveChanges();
+                        Tags.Add(db.Tags.First(_ => _.Name == item));
+                    }
+                }
+                //var Tags = db.Tags.Where(a => tags.Contains(a.Id)).ToList();
                 var post = db.Posts.FirstOrDefault(a => a.Id == idPost);
 
                 post.Title = title;
@@ -145,14 +160,14 @@ namespace Data.Service.Moderator
         /// <param name="category">категория поста</param>
         /// <param name="tags">тэги поста</param>
         /// <param name="authorId">автор поста</param>
-        public void CreatePost(string title, string titleUrl, string shortdescription, string description, int category, int[] tags, string[] stags, int authorId)
+        public void CreatePost(string title, string titleUrl, string shortdescription, string description, int category, string tags, int authorId)
         {
             using (var db = new DataContext())
             {
                 //var Tags = db.Tags.Where(a => tags.Contains(a.Id)).ToList();
 
                 List<Tag> Tags = new List<Tag>();
-                int[] newtag = new int[stags.Length];
+                string[] stags = tags.Split(',');
                 foreach (var item in stags)
                 {
                     if (db.Tags.Any(a => a.Name == item))

@@ -354,11 +354,11 @@
         maxTags: 0,
         maxLength: 50,
         delimiter: ',;',
-        placeholder: '',
+        placeholder: 'Тэги для поста',
         forceLowercase: true,
         removeDuplicates: true,
         clickDelete: false,
-        animateDelete: 175,
+        animateDelete: 0,
         sortable: true, // jQuery UI sortable
         autocomplete: null, // options dict for jQuery UI autocomplete
 

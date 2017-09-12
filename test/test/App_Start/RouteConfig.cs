@@ -15,9 +15,9 @@ namespace test
 
             routes.MapRoute(
                 name: "Default_Post",
-                url: "Post/{urlTitle}",
-                defaults: new { controller = "Home", action = "Post", urlTitle = UrlParameter.Optional }
-            );
+                url: "post/{urlTitle}",
+                defaults: new { controller = "Home", action = "Post" }
+            );            
             routes.MapRoute(
                name: "Default_category",
                url: "category/{category}/page{page}",
@@ -37,28 +37,28 @@ namespace test
               }
             );
             routes.MapRoute(
-              name: "Default_search",
-              url: "search/page{page}/{q}",
-              defaults: new
-              {
-                  controller = "Home",
-                  action = "Index"
-              }
-            );
+             name: "Default_page",
+             url: "page{page}",
+             defaults: new
+             {
+                 controller = "Home",
+                 action = "Index"
+             }
+           );
             routes.MapRoute(
-              name: "Default_page",
-              url: "page{page}",
+              name: "Default_search",
+              url: "search/page{page}",
               defaults: new
               {
                   controller = "Home",
                   action = "Index"
               }
-            );
+            );           
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            );                        
         }
     }
 }

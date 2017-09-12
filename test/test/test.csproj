@@ -4621,6 +4621,7 @@
     <Content Include="Areas\Moderator\Content\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Areas\Moderator\Content\ckeditor\styles.js" />
     <Content Include="Areas\Moderator\Content\mStyle.css" />
+    <Content Include="Areas\Moderator\Content\TagEditor.js" />
     <Content Include="Areas\Moderator\Content\tagEditor\demo.html" />
     <Content Include="Areas\Moderator\Content\tagEditor\jquery.caret.min.js" />
     <Content Include="Areas\Moderator\Content\tagEditor\jquery.tag-editor.css" />

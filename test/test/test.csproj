@@ -168,7 +168,6 @@
     <Compile Include="Areas\Moderator\Controllers\PostsController.cs" />
     <Compile Include="Areas\Moderator\Controllers\TagsController.cs" />
     <Compile Include="Areas\Moderator\Models\CategoryViewModel.cs" />
-    <Compile Include="Areas\Moderator\Models\EditCreateCategory.cs" />
     <Compile Include="Areas\Moderator\Models\EditCreateTag.cs" />
     <Compile Include="Areas\Moderator\Models\PostViewModel.cs" />
     <Compile Include="Areas\Moderator\Models\TagViewModel.cs" />
@@ -176,7 +175,6 @@
     <Compile Include="AuthCustom\AuthenticateAttribute.cs" />
     <Compile Include="AuthCustom\AuthorizeManager.cs" />
     <Compile Include="AuthCustom\BaseViewPage.cs" />
-    <Compile Include="AuthCustom\IAuthorizeManager.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -4621,6 +4619,7 @@
     <Content Include="Areas\Moderator\Content\ckeditor\skins\moono-lisa\images\spinner.gif" />
     <Content Include="Areas\Moderator\Content\ckeditor\styles.js" />
     <Content Include="Areas\Moderator\Content\mStyle.css" />
+    <Content Include="Areas\Moderator\Content\Popup.js" />
     <Content Include="Areas\Moderator\Content\TagEditor.js" />
     <Content Include="Areas\Moderator\Content\tagEditor\demo.html" />
     <Content Include="Areas\Moderator\Content\tagEditor\jquery.caret.min.js" />
@@ -4911,6 +4910,8 @@
     <Content Include="Areas\Moderator\Content\tagEditor\bower.json" />
     <Content Include="Areas\Moderator\Content\tagEditor\readme.md" />
     <Content Include="Areas\Moderator\Content\tagEditor\tag-editor.jquery.json" />
+    <Content Include="Areas\Moderator\Views\Categories\_CreateCategory.cshtml" />
+    <Content Include="Areas\Moderator\Views\Categories\_EditCategory.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

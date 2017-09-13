@@ -14,7 +14,7 @@ namespace test.AuthCustom
     /// <summary>
     /// управление аутентификацией пользователя
     /// </summary>
-    public class AuthorizeManager : IAuthorizeManager
+    public class AuthorizeManager
     {
         protected IAuthenticationService _AuthenticationRequest;
         public AuthorizeManager()

@@ -1,4 +1,5 @@
 ﻿using IService.Models;
+using IService.Models.Moderator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,12 @@ namespace test.Areas.Moderator.Controllers
         /// <returns></returns>
         public ActionResult Categories(CategoryViewModel categories)
         {
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (categories.PageNumber ?? 1);
             if (categories.SearchField != null)
                 pageNumber = 1;
             int countPage = _ModeratorService.GetPageCountCategory(
-                categories.SearchField,                
+                categories.SearchField,
                 pageSize);
 
             if (pageNumber > countPage)
@@ -38,16 +39,67 @@ namespace test.Areas.Moderator.Controllers
                 pageNumber);
             return View(categories);
         }
+
+        /// <summary>
+        /// редактирование категории
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>представление с данными категории для редактирвоания</returns>
+        [HttpPost]
+        public ActionResult EditCategoryPartial(int id)
+        {
+            EditCreateCategoryModel category = _ModeratorService.GetEditCategory(id);
+            return View("_EditCategory", category);
+        }
+
         /// <summary>
         /// редактирование категории
         /// </summary>
         /// <param name="category">модель категории</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult EditCategory(EditCreateCategory category)
+        public ActionResult EditCategory(EditCreateCategoryModel category)
         {
-            _ModeratorService.EditCategory(category.Id, category.Name);
+            if (category.ParentId == 0) category.ParentId = null;
+            _ModeratorService.EditCategory(category.Id, category.Name, category.UrlName, category.ParentId);
             return RedirectToAction("/Categories");
+        }
+
+        /// <summary>
+        /// создание категории
+        /// </summary>       
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult CreateCategoryPartial()
+        {
+            EditCreateCategoryModel category = _ModeratorService.GetCreateCategory();
+            var list = category.ListCategories;
+            l = list;
+            var start = list.Where(a => a.ParentId == null).ToList();
+            foreach (var item in start)
+            {
+                l1.Add(item);
+                Parent(1, item);
+            }
+            category.ListCategories = l1;
+            return View("_CreateCategory", category);
+        }
+        public List<CategoryModel> l = new List<CategoryModel>();
+        public List<CategoryModel> l1 = new List<CategoryModel>();
+        public void Parent(int level, CategoryModel parent)
+        {
+            var t = l.Where(a => a.ParentId == parent.Id);
+            if (t.Count() == 0)
+            {
+                var pp = parent;
+                pp.Name = level.ToString() + parent.Name;
+                l1.Add(pp);
+            }
+            else
+                foreach (var item in t)
+                {
+                    Parent(level + 1, item);
+                }           
         }
         /// <summary>
         /// создание новой категории
@@ -55,17 +107,19 @@ namespace test.Areas.Moderator.Controllers
         /// <param name="category">модель категории</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult CreateCategory(EditCreateCategory category)
+        public ActionResult CreateCategory(EditCreateCategoryModel category)
         {
-            _ModeratorService.CreateCategory(category.Name);
+            if (category.ParentId == 0) category.ParentId = null;
+            _ModeratorService.CreateCategory(category.Name, category.UrlName, category.ParentId);
             return RedirectToAction("/Categories");
         }
+
         /// <summary>
         /// удаление выбранной категории
         /// </summary>
         /// <param name="Id">id категории которую надо удалить</param>
         /// <returns></returns>
-        public ActionResult DeleteCategory(int Id)
+        public ActionResult Delete(int Id)
         {
             _ModeratorService.DeleteCategory(Id);
             return RedirectToAction("/Categories");

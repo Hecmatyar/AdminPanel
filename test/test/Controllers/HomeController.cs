@@ -1,5 +1,6 @@
 ﻿using IService;
 using IService.Models;
+using IService.Models.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,18 +64,29 @@ namespace test.Controllers
             return View(posts);
         }
         /// <summary>
-        /// промежуточный метод, потом уберу
+        /// получение нового комментария к посту
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="comment">модель комментария</param>
+        /// <returns>успешность довабления комментария к посту</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public bool SendComment(CommentModel comment)
+        {
+            _DisplayContent.AddCommentToPost(manager.CurrentUser.Id, comment.ParentId, comment.Body, comment.PostId);
+            return true;
+        }
+        /// <summary>
+        /// вывод комментариев к посту
+        /// </summary>
+        /// <param name="Id">id поста</param>
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult GetCommentFromPost(int? idPost)
+        public ActionResult GetCommentFromPost(int idPost)
         {
-            var comments = _DisplayContent.GetCommentFromPost(15);            
+            var comments = _DisplayContent.GetCommentFromPost(idPost);
             return View("_CommentList", comments);
         }
-
         /// <summary>
         /// частичное представление со списком категорий
         /// </summary>

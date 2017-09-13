@@ -29,6 +29,7 @@ namespace test.Areas.Admin.Controllers
         {
             return View();
         }
+
         /// <summary>
         /// загрузка таблицы пользователей
         /// </summary>
@@ -48,6 +49,7 @@ namespace test.Areas.Admin.Controllers
             List<UserModel> userlist = _AdminService.GetUserList(searchString, pageSize, pageNumber);
             return View("_ListUser", userlist);
         }
+
         /// <summary>
         /// создание нового пользователя в панели администратора
         /// </summary>
@@ -58,6 +60,7 @@ namespace test.Areas.Admin.Controllers
             ViewBag.UnRoles = ur;
             return View();
         }
+
         /// <summary>
         /// создание нового опльзователя
         /// </summary>
@@ -86,6 +89,7 @@ namespace test.Areas.Admin.Controllers
             _AdminService.DeleteUser(Id);
             return RedirectToAction("/Index");
         }
+
         /// <summary>
         /// выход
         /// </summary>
@@ -107,6 +111,7 @@ namespace test.Areas.Admin.Controllers
             UserInfoModel user = _AdminService.GetUserInfoById(id);           
             return View("_EditUser", user);
         }
+
         /// <summary>
         /// изменение личной информации пользователя
         /// </summary>
@@ -120,6 +125,7 @@ namespace test.Areas.Admin.Controllers
             //return RedirectToAction("/Index", new RouteValueDictionary(
             //    new { controller = "Users", action = "Index", page = page }));
         }
+
         /// <summary>
         /// частичное представление для сброса пароля пользователя
         /// </summary>
@@ -131,6 +137,7 @@ namespace test.Areas.Admin.Controllers
             UserPasswordModel user= _AdminService.GetUserPasswordById(id);          
             return View("_EditPassword", user);
         }
+
         /// <summary>
         /// сброс пароля пользователя на новый
         /// </summary>
@@ -154,6 +161,7 @@ namespace test.Areas.Admin.Controllers
             UserRolesModel user = _AdminService.GetUserRolesById(id);           
             return View("_EditRole", user);
         }
+
         /// <summary>
         /// редактирование ролей пользователя
         /// </summary>

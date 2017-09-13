@@ -79,3 +79,6 @@ C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.url.resources
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.url.resources
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.comment.resources
 C:\working\tir-script\AdminPanel\test\Data\obj\Debug\Data.Migrations.comment1.resources
+C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.comment.resources
+C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.comment1.resources
+C:\w_h\projects\AdminPanel\test\Data\obj\Debug\Data.Migrations.subCategory.resources

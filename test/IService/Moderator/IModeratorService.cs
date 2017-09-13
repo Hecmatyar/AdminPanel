@@ -88,8 +88,10 @@ namespace IService.Moderator
         /// редактирование категории
         /// </summary>
         /// <param name="idCategory">id категории</param>
-        /// <param name="category">модель с новыми данными</param>
-        void EditCategory(int idCategory, string name);
+        /// <param name="name">имя категории</param>
+        /// <param name="nameUrl">url имя категории</param>
+        /// <param name="parentId">id родительской категории</param>
+        void EditCategory(int idCategory, string name, string nameUrl, int? parentId);
 
         /// <summary>
         /// получение поста по его id
@@ -118,6 +120,19 @@ namespace IService.Moderator
         /// <param name="idCategory">id категории</param>
         /// <returns>категория с данным id</returns>
         CategoryModel GetCategoryById(int idCategory);
+
+        /// <summary>
+        /// получение категории по ее id
+        /// </summary>
+        /// <param name="idCategory">id категории</param>
+        /// <returns>категория с данным id</returns>
+        EditCreateCategoryModel GetEditCategory(int idCategory);
+
+        /// <summary>
+        /// получение новой категории
+        /// </summary>       
+        /// <returns></returns>
+        EditCreateCategoryModel GetCreateCategory();
 
         /// <summary>
         /// удаление поста
@@ -152,7 +167,9 @@ namespace IService.Moderator
         /// <summary>
         /// редактирование категории
         /// </summary>
-        /// <param name="category">модель с данными</param>
-        void CreateCategory(string name);
+        /// <param name="name">имя новой категории</param>
+        /// <param name="nameUrl">url имя новой категории</param>
+        /// <param name="parentId">id родительской категории</param>
+        void CreateCategory(string name, string nameUrl, int? parentId);
     }
 }

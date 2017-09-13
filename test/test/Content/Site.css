@@ -326,15 +326,17 @@ ol, ul {
     line-height: 1.5;
     color: #212529;
 }
+
 .bd-comment {
     border-left-color: #5bc0de !important;
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
 }
-    .bd-callout-danger p {
-        color: #d9534f;
-    }
+
+.bd-callout-danger p {
+    color: #d9534f;
+}
 
 .bd-callout p {
     margin-top: 0;
@@ -349,11 +351,51 @@ ol, ul {
     border-left-width: .25rem;
     border-radius: .25rem;
 }
-.comment{
-    padding:40px 0;
+
+.comment {
+    padding: 40px 0;
 }
+
 .comment-body {
     width: 100%;
     border: 1px solid #e5e5e5;
     resize: none;
+}
+
+.image-comment {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.title-left, title-rigth {
+    padding: 10px;
+    font-size:12px;
+}
+
+.title-comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.title-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.title-left img{
+    margin-right:10px;
+}
+.title-right{
+    cursor:pointer;
+    opacity:0;
+}
+.bd-comment:hover .title-right {
+    opacity:1;
+}
+.body-comment{
+    padding:10px;
 }

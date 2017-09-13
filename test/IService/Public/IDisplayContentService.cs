@@ -78,6 +78,27 @@ namespace IService.Public
         /// <returns>количество страниц</returns>
         int GetPageCountCategory(string search, int pageSize);
 
+        /// <summary>
+        /// получение комментария по его id
+        /// </summary>
+        /// <param name="idComment">id требуемого комментария</param>
+        /// <returns></returns>
+        CommentModel GetCommentById(int idComment);
+
+        /// <summary>
+        /// получение списка комментариев к посту
+        /// </summary>
+        /// <param name="idPost">id просматриваемого поста</param>
+        /// <returns>список комментариев</returns>
         List<CommentModel> GetCommentFromPost(int idPost);
+        
+        /// <summary>
+        /// добавление нового комментария к посту
+        /// </summary>
+        /// <param name="authorId">id автора поста</param>
+        /// <param name="parentId">id родительского поста</param>
+        /// <param name="body">текст поста</param>
+        /// <param name="postId">пост, под которым был оставлен комментрарий</param>
+        void AddCommentToPost(int authorId, int? parentId, string body, int postId);
     }
 }

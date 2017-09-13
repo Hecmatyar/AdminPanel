@@ -17,6 +17,10 @@ namespace IService.Models.Public
         /// </summary>
         public int? ParentId { get; set; }
         /// <summary>
+        /// имя автора родительского поста
+        /// </summary>
+        public string ParentAuthorName { get; set; }
+        /// <summary>
         /// текст комментария
         /// </summary>
         public string Body { get; set; }
@@ -32,5 +36,6 @@ namespace IService.Models.Public
         /// пост, к которому оставили комментарий
         /// </summary>
         public PostModel Post { get; set; }
+        public int PostId { get; set; }
     }
 }

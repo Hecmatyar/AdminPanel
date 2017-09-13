@@ -9,6 +9,7 @@ using System.Data.Entity;
 using Data.Models.Moderator;
 using Data.Models.Admin;
 using IService.Models.Moderator;
+using Data.Service.Public;
 
 namespace Data.Service.Moderator
 {
@@ -30,6 +31,125 @@ namespace Data.Service.Moderator
                 db.SaveChanges();
             }
         }
+
+        /// <summary>
+        /// редактирование категории
+        /// </summary>
+        /// <param name="idCategory">id категории</param>
+        /// <param name="name">имя категории</param>
+        /// <param name="nameUrl">url имя категории</param>
+        /// <param name="parentId">id родительской категории</param>
+        public void EditCategory(int idCategory, string name, string nameUrl, int? parentId)
+        {
+            using (var db = new DataContext())
+            {
+                var category = db.Categories.FirstOrDefault(a => a.Id == idCategory);
+                category.Name = name;
+                category.UrlName = nameUrl;
+                category.ParentId = parentId;
+                db.Entry(category).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// добавление категории
+        /// </summary>
+        /// <param name="name">имя новой категории</param>
+        /// <param name="nameUrl">url имя новой категории</param>
+        /// <param name="parentId">id родительской категории</param>
+        public void CreateCategory(string name, string nameUrl, int? parentId)
+        {
+            var translit = new Translit();
+            using (var db = new DataContext())
+            {
+                var category = new Category()
+                {
+                    Name = name,
+                    UrlName = translit.cyr2lat(name),
+                    ParentId = parentId
+                };
+                db.Categories.Add(category);
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// получение категории для редактирования
+        /// </summary>
+        /// <param name="idCategory">id выбранной категории</param>
+        /// <returns></returns>
+        public EditCreateCategoryModel GetEditCategory(int idCategory)
+        {
+            using (var db = new DataContext())
+            {
+                var currentCategory = db.Categories.First(_ => _.Id == idCategory);
+                var category = (EditCreateCategoryModel)currentCategory;
+                category.ListCategories = db.Categories.Where(a => a.Id != currentCategory.Id).ToList().Select(_ => (CategoryModel)_).ToList();
+                var del = (CategoryModel)currentCategory;
+                return category;
+            }
+        }
+
+        /// <summary>
+        /// получение новой категории
+        /// </summary>
+        /// <returns></returns>
+        public EditCreateCategoryModel GetCreateCategory()
+        {
+            using (var db = new DataContext())
+            {
+                var category = new EditCreateCategoryModel();
+                category.ListCategories = db.Categories.ToList().Select(_ => (CategoryModel)_).ToList();
+                return category;
+            }
+        }
+
+        /// <summary>
+        /// получение категории по ее id
+        /// </summary>
+        /// <param name="idCategory">id категории</param>
+        /// <returns>категория с данным id</returns>
+        public CategoryModel GetCategoryById(int idCategory)
+        {
+            using (var db = new DataContext())
+            {
+                return (CategoryModel)db.Categories.First(_ => _.Id == idCategory);
+            }
+        }
+
+        /// <summary>
+        /// получение списка категорий удовлетворяющих поиску и параметрам страницы
+        /// </summary>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество постов на странице</param>
+        /// <param name="pageIndex">номер страниццы</param>
+        /// <returns>список категорий</returns>
+        public List<CategoryModel> GetCategoryList(string search, int pageSize, int pageIndex)
+        {
+            using (var db = new DataContext())
+            {
+                return db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+                .ToList().Select(_ => (CategoryModel)_).ToList()
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            }
+        }
+
+        /// <summary>
+        /// количество страниц с категориями
+        /// </summary>
+        /// <param name="search">строка поиска</param>
+        /// <param name="pageSize">количество элемнтов на стрнице</param>
+        /// <returns>количество страниц</returns>
+        public int GetPageCountCategory(string search, int pageSize)
+        {
+            using (var db = new DataContext())
+            {
+                return (int)Math.Ceiling(db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
+                .ToList().Count() / (double)pageSize);
+            }
+        }
+
         /// <summary>
         /// удаление поста
         /// </summary>
@@ -43,35 +163,7 @@ namespace Data.Service.Moderator
                 db.SaveChanges();
             }
         }
-        /// <summary>
-        /// удаление тэга
-        /// </summary>
-        /// <param name="id">id тэга</param>
-        public void DeleteTag(int id)
-        {
-            using (var db = new DataContext())
-            {
-                var tag = db.Tags.First(_ => _.Id == id);
-                db.Entry(tag).State = EntityState.Deleted;
-                db.SaveChanges();
-            }
-        }
 
-        /// <summary>
-        /// редактирование категории
-        /// </summary>
-        /// <param name="idCategory">id категории</param>
-        /// <param name="name">новое имя категории</param>
-        public void EditCategory(int idCategory, string name)
-        {
-            using (var db = new DataContext())
-            {
-                var category = db.Categories.FirstOrDefault(a => a.Id == idCategory);
-                category.Name = name;
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-        }
         /// <summary>
         /// редактирование поста
         /// </summary>
@@ -86,6 +178,7 @@ namespace Data.Service.Moderator
         {
             using (var db = new DataContext())
             {
+                var translit = new Translit();
                 List<Tag> Tags = new List<Tag>();
                 string[] stags = tags.Split(',');
                 foreach (var item in stags)
@@ -96,7 +189,7 @@ namespace Data.Service.Moderator
                     }
                     else
                     {
-                        db.Tags.Add(new Tag { Name = item });
+                        db.Tags.Add(new Tag { Name = item, UrlName = translit.cyr2lat(item) });
                         db.SaveChanges();
                         Tags.Add(db.Tags.First(_ => _.Name == item));
                     }
@@ -119,37 +212,6 @@ namespace Data.Service.Moderator
             }
             DeleteExcessTag();
         }
-        /// <summary>
-        /// редактирование тэга
-        /// </summary>
-        /// <param name="idTag">id тэга</param>
-        /// <param name="name">имя тэга</param>
-        public void EditTag(int idTag, string name)
-        {
-            using (var db = new DataContext())
-            {
-                var tag = db.Tags.FirstOrDefault(a => a.Id == idTag);
-                tag.Name = name;
-                db.Entry(tag).State = EntityState.Modified;
-                db.SaveChanges();
-            }
-        }
-        /// <summary>
-        /// добавление категории
-        /// </summary>
-        /// <param name="name">имя новой категории</param>
-        public void CreateCategory(string name)
-        {
-            using (var db = new DataContext())
-            {
-                var category = new Category()
-                {
-                    Name = name,
-                };
-                db.Categories.Add(category);
-                db.SaveChanges();
-            }
-        }
 
         /// <summary>
         /// добавление поста
@@ -165,7 +227,7 @@ namespace Data.Service.Moderator
             using (var db = new DataContext())
             {
                 //var Tags = db.Tags.Where(a => tags.Contains(a.Id)).ToList();
-
+                var translit = new Translit();
                 List<Tag> Tags = new List<Tag>();
                 string[] stags = tags.Split(',');
                 foreach (var item in stags)
@@ -176,7 +238,7 @@ namespace Data.Service.Moderator
                     }
                     else
                     {
-                        db.Tags.Add(new Tag { Name = item });
+                        db.Tags.Add(new Tag { Name = item, UrlName = translit.cyr2lat(item)});
                         db.SaveChanges();
                         Tags.Add(db.Tags.First(_ => _.Name == item));
                     }
@@ -193,38 +255,11 @@ namespace Data.Service.Moderator
                     UserId = authorId
                 };
                 db.Posts.Add(post);
-                db.SaveChanges();               
+                db.SaveChanges();
             }
             DeleteExcessTag();
         }
-        /// <summary>
-        /// добавление тэга
-        /// </summary>
-        /// <param name="name">имя нового тэга</param>
-        public void CreateTag(string name)
-        {
-            using (var db = new DataContext())
-            {
-                var tag = new Tag()
-                {
-                    Name = name,
-                };
-                db.Tags.Add(tag);
-                db.SaveChanges();
-            }
-        }
-        /// <summary>
-        /// получение тэга по его id
-        /// </summary>
-        /// <param name="idTag">id тэга</param>
-        /// <returns>тэг с данным id</returns>
-        public TagModel GetTagById(int idTag)
-        {
-            using (var db = new DataContext())
-            {
-                return (TagModel)db.Tags.First(_ => _.Id == idTag);
-            }
-        }
+
         /// <summary>
         /// получение поста по его id
         /// </summary>
@@ -237,6 +272,7 @@ namespace Data.Service.Moderator
                 return (PostModel)db.Posts.First(_ => _.Id == idPost);
             }
         }
+
         /// <summary>
         /// получение поста по его id
         /// </summary>
@@ -259,18 +295,7 @@ namespace Data.Service.Moderator
             }
 
         }
-        /// <summary>
-        /// получение категории по ее id
-        /// </summary>
-        /// <param name="idCategory">id категории</param>
-        /// <returns>категория с данным id</returns>
-        public CategoryModel GetCategoryById(int idCategory)
-        {
-            using (var db = new DataContext())
-            {
-                return (CategoryModel)db.Categories.First(_ => _.Id == idCategory);
-            }
-        }
+
         /// <summary>
         /// количество страниц, которые будут выведены
         /// </summary>
@@ -294,6 +319,7 @@ namespace Data.Service.Moderator
                 return (int)Math.Ceiling(posts.Count() / (double)pageSize);
             }
         }
+
         /// <summary>
         /// получение списка постов
         /// </summary>
@@ -319,6 +345,70 @@ namespace Data.Service.Moderator
                      .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             }
         }
+
+        /// <summary>
+        /// удаление тэга
+        /// </summary>
+        /// <param name="id">id тэга</param>
+        public void DeleteTag(int id)
+        {
+            using (var db = new DataContext())
+            {
+                var tag = db.Tags.First(_ => _.Id == id);
+                db.Entry(tag).State = EntityState.Deleted;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// редактирование тэга
+        /// </summary>
+        /// <param name="idTag">id тэга</param>
+        /// <param name="name">имя тэга</param>
+        public void EditTag(int idTag, string name)
+        {
+            using (var db = new DataContext())
+            {
+                var translit = new Translit();
+                var tag = db.Tags.FirstOrDefault(a => a.Id == idTag);
+                tag.Name = name;
+                tag.UrlName = translit.cyr2lat(name);
+                db.Entry(tag).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// добавление тэга
+        /// </summary>
+        /// <param name="name">имя нового тэга</param>
+        public void CreateTag(string name)
+        {
+            var translit = new Translit();
+            using (var db = new DataContext())
+            {
+                var tag = new Tag()
+                {
+                    Name = name,
+                    UrlName = translit.cyr2lat(name)
+                };
+                db.Tags.Add(tag);
+                db.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// получение тэга по его id
+        /// </summary>
+        /// <param name="idTag">id тэга</param>
+        /// <returns>тэг с данным id</returns>
+        public TagModel GetTagById(int idTag)
+        {
+            using (var db = new DataContext())
+            {
+                return (TagModel)db.Tags.First(_ => _.Id == idTag);
+            }
+        }
+
         /// <summary>
         /// получение списка тэгов удовлетворяющих поиску и параметрам страницы
         /// </summary>
@@ -335,6 +425,7 @@ namespace Data.Service.Moderator
                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             }
         }
+
         /// <summary>
         /// количетсво страниц с тэгами
         /// </summary>
@@ -349,36 +440,7 @@ namespace Data.Service.Moderator
                 .ToList().Count() / (double)pageSize);
             }
         }
-        /// <summary>
-        /// получение списка категорий удовлетворяющих поиску и параметрам страницы
-        /// </summary>
-        /// <param name="search">строка поиска</param>
-        /// <param name="pageSize">количество постов на странице</param>
-        /// <param name="pageIndex">номер страниццы</param>
-        /// <returns>список категорий</returns>
-        public List<CategoryModel> GetCategoryList(string search, int pageSize, int pageIndex)
-        {
-            using (var db = new DataContext())
-            {
-                return db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
-                .ToList().Select(_ => (CategoryModel)_).ToList()
-                .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            }
-        }
-        /// <summary>
-        /// количество страниц с категориями
-        /// </summary>
-        /// <param name="search">строка поиска</param>
-        /// <param name="pageSize">количество элемнтов на стрнице</param>
-        /// <returns>количество страниц</returns>
-        public int GetPageCountCategory(string search, int pageSize)
-        {
-            using (var db = new DataContext())
-            {
-                return (int)Math.Ceiling(db.Categories.Where(_ => string.IsNullOrEmpty(search) ? true : _.Name.Contains(search))
-                .ToList().Count() / (double)pageSize);
-            }
-        }
+
         /// <summary>
         /// удаление неиспользуемых тэгов из бд
         /// </summary>

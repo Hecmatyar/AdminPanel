@@ -231,6 +231,7 @@ namespace Data
                     UserId = user.Id,
                     UserName = user.UserName,
                     UserPhoto = user.UserPhoto,
+                    UserEmail = user.UserEmail,
                     NewUserPhoto = null
                 };
                 return userpass;

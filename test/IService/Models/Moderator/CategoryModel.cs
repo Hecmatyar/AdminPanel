@@ -13,14 +13,21 @@ namespace IService.Models
         /// id категории
         /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// родительская категория
+        /// </summary>
+        public int? ParentId { get; set; }
+        public string ParentName { get; set; }
         /// <summary>
         /// название категории
         /// </summary>
         [DisplayName("Категория")]
         public string Name { get; set; }
+
         /// <summary>
         /// заголовок для адресной строки
         /// </summary>
-        public string UrlName { get; set; }
+        public string UrlName { get; set; }        
     }
 }

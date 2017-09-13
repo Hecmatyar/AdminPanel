@@ -57,7 +57,7 @@
                         Категория
                     </label>
                     <div class="col-md-10">
-                        <select class="form-control input-small select2me" name="selectedCategory" style="width:200px;">
+                        <select class="form-control select2me" name="selectedCategory" style="width:200px;">
                             @foreach (CategoryModel c in Model.CategoriesList)
                             {
                                 if (c.Name == Model.Category.Name)

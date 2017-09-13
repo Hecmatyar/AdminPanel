@@ -42,12 +42,12 @@
         {
         @Html.AntiForgeryToken()
         }
-        @* комментарии *@
+       
         <div class="comment">
-            <div id="comments">
-                
-            </div>
             <h4>Комментарии:</h4>
+            <div id="comments">
+                @* комментарии *@
+            </div>            
             @if (!IsAuthenticated)
             {
             <div class="bd-callout bd-danger">
@@ -60,11 +60,18 @@
             else
             {
             <div class="bd-callout bd-comment">
-                <p id="commentedBy"><strong>@User.UserName</strong></p>
-                <p>
-                    <textarea class="comment-body" id="comment-body" rows="6"></textarea>
-                </p>
-                <p class="text-right" style="padding:10px 0 0 0;"><button class="btn btn-primary">Отправить</button></p>                
+                @using (Html.BeginForm("SendComment", "Home", FormMethod.Post, new { id = "sendCommentForm"}))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="authorId" name="AuthorId" data-id="@User.Id" />
+                    <input type="hidden" id="PostId" name="PostId" data-id="@Model.CurrentPosts.Id" />
+                    <input type="hidden" id="ParentId" name="ParentId" data-id="" />
+                    <p id="commentedBy"><strong>@User.UserName</strong></p>
+                    <p>
+                        <textarea name="Body" class="comment-body" id="comment-body" rows="6"></textarea>
+                    </p>
+                    <p class="text-right" style="padding:10px 0 0 0;"><span class="btn btn-primary send-comment">Отправить</span></p>
+                }                               
             </div>
             }           
         </div>

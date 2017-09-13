@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IService.Models.Public;
+using Data.Models.Pubplic;
 
 namespace Data.Service.Public
 {
@@ -23,6 +24,7 @@ namespace Data.Service.Public
                 return (PostModel)db.Posts.First(_ => _.UrlTitle == UrlTitle);
             }
         }
+
         /// <summary>
         /// получение поста по его id
         /// </summary>
@@ -34,7 +36,8 @@ namespace Data.Service.Public
             {
                 return (PostModel)db.Posts.First(_ => _.Id == idPost);
             }
-        }        
+        }
+
         /// <summary>
         /// количество страниц, которые будут выведены
         /// </summary>
@@ -58,6 +61,7 @@ namespace Data.Service.Public
                 return (int)Math.Ceiling(posts.Count() / (double)pageSize);
             }
         }
+
         /// <summary>
         /// получение списка постов
         /// </summary>
@@ -83,6 +87,7 @@ namespace Data.Service.Public
                      .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             }
         }
+
         /// <summary>
         /// получение списка тэгов удовлетворяющих поиску и параметрам страницы
         /// </summary>
@@ -99,6 +104,7 @@ namespace Data.Service.Public
                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             }
         }
+
         /// <summary>
         /// количетсво страниц с тэгами
         /// </summary>
@@ -113,6 +119,7 @@ namespace Data.Service.Public
                 .ToList().Count() / (double)pageSize);
             }
         }
+
         /// <summary>
         /// получение списка категорий удовлетворяющих поиску и параметрам страницы
         /// </summary>
@@ -129,6 +136,7 @@ namespace Data.Service.Public
                 .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             }
         }
+
         /// <summary>
         /// количество страниц с категориями
         /// </summary>
@@ -144,12 +152,87 @@ namespace Data.Service.Public
             }
         }
 
+        /// <summary>
+        /// получение списка комментариев к посту
+        /// </summary>
+        /// <param name="idPost">id просматриваемоо поста</param>
+        /// <returns>список комментариев</returns>
         public List<CommentModel> GetCommentFromPost(int idPost)
         {
             using (var db = new DataContext())
             {
-                var d = db.Comment.Where(a => a.PostId == idPost).ToList().Select(_ => (CommentModel)_).ToList();
-                return db.Comment.Where(a => a.PostId == idPost).ToList().Select(_=>(CommentModel)_).ToList();
+                var comments = db.Comment.Where(a => a.PostId == idPost).ToList().Select(_ => (CommentModel)_).ToList();
+                foreach (var item in comments)
+                {
+                    if (item.ParentId != null)
+                    {
+                        int id = (item.ParentId ?? 1);
+                        item.ParentAuthorName = GetCommentById(id).Author.UserName + ",";
+                    }
+                    else item.ParentAuthorName = "";
+                }
+                return comments;
+            }
+        }
+
+        /// <summary>
+        /// добавление комментария к посту
+        /// </summary>
+        /// <param name="authorId">автор поста</param>
+        /// <param name="parentId">ответ к другому комментарию</param>
+        /// <param name="body">текст комментария</param>
+        /// <param name="postId">пост, под которым оставляют комментарии</param>
+        public void AddCommentToPost(int authorId, int? ParentId, string body, int postId)
+        {
+            using (var db = new DataContext())
+            {
+                var comment = new Comment();
+                comment.ParentId = null;
+                comment.Body = body;
+                if (body[0] == '@')
+                {
+                    var parent = body.Split(',')[0];
+                    if (parent.Contains('#'))
+                    {
+                        try
+                        {
+                            var parentId = parent.Split('#')[1];
+                            if (parentId.Length>0)
+                            {
+                                var intId = Convert.ToInt32(parentId);
+                                if (db.Comment.Any(_ => _.Id == intId))
+                                {
+                                    comment.ParentId = intId;
+                                    comment.Body = body.Replace(parent + ", ", "");
+                                }
+                            }                            
+                        }
+                        catch (Exception)
+                        {
+                            comment.ParentId = null;
+                            comment.Body = body;
+                        }
+                    }
+                }               
+                comment.AuthorId = authorId;
+                comment.PostId = postId;                
+                comment.Published = DateTime.UtcNow;
+                db.Comment.Add(comment);
+                db.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// получение комментария по его id
+        /// </summary>
+        /// <param name="idComment">id требуемого комментария</param>
+        /// <returns>искомый комментарий</returns>
+        public CommentModel GetCommentById(int id)
+        {
+            using (var db = new DataContext())
+            {
+                var d = (CommentModel)db.Comment.First(a => a.Id == id);
+                return (CommentModel)db.Comment.First(a => a.Id == id);
             }
         }
     }

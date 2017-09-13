@@ -5,7 +5,28 @@
 
 @foreach (var item in @Model)
 {
-    <div class="bd-callout bd-comment">
-        <p>@item.Body</p>
+    <div class="bd-callout bd-comment">        
+        <input type="hidden" id="comment_@item.Id" class="parent-comment" data-id="@item.Id" />
+        <input type="hidden" id="comment_@item.Author.UserName" class="parent-author" data-name="@item.Author.UserName" />
+        @{
+            var base64 = item.Author.UserPhoto != null ? Convert.ToBase64String(item.Author.UserPhoto) : null;
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        }
+        <div class="title-comment">
+            <div class="title-left">
+                <img id="preview" class="image-comment" src="@imgSrc" />
+                <div>
+                    <p>By: <strong>@item.Author.UserName</strong></p>
+                    <p>@item.Published.ToString("dd MMMM yyyy HH:mm")</p>
+                </div>
+            </div>
+            <div class="title-right">
+                <span>Ответить</span>
+            </div>
+        </div>
+        <div class="body-comment">
+            <strong> @item.ParentAuthorName</strong>
+            @item.Body
+        </div>
     </div>
 }

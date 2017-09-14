@@ -73,34 +73,33 @@ namespace test.Areas.Moderator.Controllers
         public ActionResult CreateCategoryPartial()
         {
             EditCreateCategoryModel category = _ModeratorService.GetCreateCategory();
-            var list = category.ListCategories;
-            l = list;
-            var start = list.Where(a => a.ParentId == null).ToList();
-            foreach (var item in start)
-            {
-                l1.Add(item);
-                Parent(1, item);
-            }
-            category.ListCategories = l1;
+            //var list = category.ListCategories;           
+            //var start = list.Where(a => a.ParentId == null).ToList();
+            //foreach (var item in start)
+            //{             
+            //    l1.Add(item);
+            //    Parent(1, item, list);
+            //}
+            //category.ListCategories = l1;
             return View("_CreateCategory", category);
         }
-        public List<CategoryModel> l = new List<CategoryModel>();
-        public List<CategoryModel> l1 = new List<CategoryModel>();
-        public void Parent(int level, CategoryModel parent)
-        {
-            var t = l.Where(a => a.ParentId == parent.Id);
-            if (t.Count() == 0)
-            {
-                var pp = parent;
-                pp.Name = level.ToString() + parent.Name;
-                l1.Add(pp);
-            }
-            else
-                foreach (var item in t)
-                {
-                    Parent(level + 1, item);
-                }           
-        }
+        //public List<CategoryModel> l1 = new List<CategoryModel>();
+        //public void Parent(int level, CategoryModel parent, List<CategoryModel> l)
+        //{
+        //    var t = l.Where(a => a.ParentId == parent.Id);
+        //    if (t.Count() != 0)
+        //    {
+        //        foreach (var item in t)
+        //        {
+        //            var pp = item;                    
+        //            pp.Name = level.ToString() + item.Name;
+        //            l1.Add(pp);
+
+        //            Parent(level + 1, item, l);
+        //        }
+        //    }            
+        //}
+
         /// <summary>
         /// создание новой категории
         /// </summary>

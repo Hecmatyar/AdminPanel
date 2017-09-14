@@ -4,7 +4,7 @@
     Layout = null;
 }
 <h3 class="page-title">
-    @*Пользователь - @Model.UserName <small>сброс пароля</small>*@    
+    @*Пользователь - @Model.UserName <small>сброс пароля</small>*@
 </h3>
 <!-- END PAGE HEADER-->
 <div class="row">
@@ -13,12 +13,12 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="fa fa-gift"></i>Создание категории
-                </div>                
+                </div>
             </div>
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
                 @using (Html.BeginForm("CreateCategory", "Categories", FormMethod.Post,
-                    new { @class = "form-horizontal form-row-sepe", role = "form" }))
+new { @class = "form-horizontal form-row-sepe", role = "form" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="form-body">
@@ -39,7 +39,7 @@
                                     @Html.ValidationMessageFor(model => model.Name)
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-4">
                                 Родительская категория
@@ -47,10 +47,75 @@
                             <div class="col-md-8">
                                 <select class="form-control select2me" name="parentId" style="width:200px;">
                                     <option value="0" id="select_0">Отсутствует</option>
-                                    @foreach (CategoryModel c in Model.ListCategories)
-                                    {
-                                        <option value="@c.Id" id="select_@c.Id">@c.Name</option>
+                                    @{
+                                        const string INDENT = "&nbsp;&nbsp;&nbsp;";
+                                        List<CategoryModel> l1 = new List<CategoryModel>();
+                                        void Parent(int level, CategoryModel parent, List<CategoryModel> l)
+                                        {
+                                            var t = l.Where(a => a.ParentId == parent.Id);
+
+                                            foreach (var item in t)
+                                            {
+                                                var pp = item;
+                                                var space = "";
+                                                for (int i = 0; i < level; i++)
+                                                {
+                                                    space += INDENT;
+                                                }
+                                                pp.Name = space + item.Name;
+                                                l1.Add(pp);
+
+                                                Parent(level + 1, item, l);
+                                            }
+                                        }
+
+                                        var list = Model.ListCategories;
+                                        var start = list.Where(a => a.ParentId == null).ToList();
+                                        foreach (var item in start)
+                                        {
+                                            l1.Add(item);
+                                            Parent(1, item, list);
+                                        }
+
                                     }
+                                    @foreach (CategoryModel c in l1)
+                                    {
+                                        <option value="@c.Id" id="select_@c.Id">@Html.Raw(@c.Name)</option>
+                                    }
+
+                                    @*private const string INDENT = "&nbsp;&nbsp;";
+                                        Select(template => new Option(template.Id.ToString(), string.Concat(INDENT, template.Name)))));
+
+
+                                        var list = category.ListCategories;
+                                        var start = list.Where(a => a.ParentId == null).ToList();
+                                        foreach (var item in start)
+                                        {
+                                            l1.Add(item);
+                                            Parent(1, item, list);
+                                        }
+                                        category.ListCategories = l1;
+
+
+                                        public List<CategoryModel> l1 = new List<CategoryModel>();
+                                        public void Parent(int level, CategoryModel parent, List<CategoryModel> l)
+                                        {
+                                        var t = l.Where(a => a.ParentId == parent.Id);
+                                        if (t.Count() != 0)
+                                        {
+                                        foreach (var item in t)
+                                        {
+                                        var pp = item;
+                                        pp.Name = level.ToString() + item.Name;
+                                        l1.Add(pp);
+
+                                        Parent(level + 1, item, l);
+                                        }
+                                        }
+                                        }*@
+
+
+
                                 </select>
                             </div>
                         </div>
@@ -63,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                }
+                                        }
                 <!-- END FORM-->
             </div>
         </div>

@@ -1,32 +1,76 @@
 ﻿@model List<IService.Models.Public.CommentModel>
+
+@using IService.Models.Public
 @{
     Layout = null;
+    var start = Model.Where(a => a.ParentId == null).ToList();
+    foreach (var item in start)
+    {
+        <div class="bd-callout bd-comment">
+            <div class="base-comment">
+                <input type="hidden" id="comment_@item.Id" class="parent-comment" data-id="@item.Id" />
+                <input type="hidden" id="comment_@item.Author.UserName" class="parent-author" data-name="@item.Author.UserName" />
+                @{
+                    var base64 = item.Author.UserPhoto != null ? Convert.ToBase64String(item.Author.UserPhoto) : null;
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <div class="title-comment">
+                    <div class="title-left">
+                        <img id="preview" class="image-comment" src="@imgSrc" />
+                        <div>
+                            <p>By: <strong>@item.Author.UserName</strong></p>
+                            <p>@item.Published.ToString("dd MMMM yyyy HH:mm")</p>
+                        </div>
+                    </div>
+                    <div class="title-right">
+                        <span>Ответить</span>
+                    </div>
+                </div>
+                <div class="body-comment">
+                    <strong> @item.ParentAuthorName</strong>
+                    @item.Body
+                </div>
+            </div>           
+        </div>
+        <div class="answers">
+            @Parent(item, Model)
+        </div>
+    }
 }
 
-@foreach (var item in @Model)
-{
-    <div class="bd-callout bd-comment">        
-        <input type="hidden" id="comment_@item.Id" class="parent-comment" data-id="@item.Id" />
-        <input type="hidden" id="comment_@item.Author.UserName" class="parent-author" data-name="@item.Author.UserName" />
-        @{
-            var base64 = item.Author.UserPhoto != null ? Convert.ToBase64String(item.Author.UserPhoto) : null;
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-        }
-        <div class="title-comment">
-            <div class="title-left">
-                <img id="preview" class="image-comment" src="@imgSrc" />
-                <div>
-                    <p>By: <strong>@item.Author.UserName</strong></p>
-                    <p>@item.Published.ToString("dd MMMM yyyy HH:mm")</p>
+@helper Parent(CommentModel parent, List<CommentModel> List)
+{    
+    var children = List.Where(a => a.ParentId == parent.Id);
+    foreach (var item in children)
+    {
+        <div class="bd-callout bd-callout">
+            <div class="base-comment">
+                <input type="hidden" id="comment_@item.Id" class="parent-comment" data-id="@item.Id" />
+                <input type="hidden" id="comment_@item.Author.UserName" class="parent-author" data-name="@item.Author.UserName" />
+                @{
+                    var base64 = item.Author.UserPhoto != null ? Convert.ToBase64String(item.Author.UserPhoto) : null;
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <div class="title-comment">
+                    <div class="title-left">
+                        <img id="preview" class="image-comment" src="@imgSrc" />
+                        <div>
+                            <p>By: <strong>@item.Author.UserName</strong></p>
+                            <p>@item.Published.ToString("dd MMMM yyyy HH:mm")</p>
+                        </div>
+                    </div>
+                    <div class="title-right">
+                        <span>Ответить</span>
+                    </div>
                 </div>
-            </div>
-            <div class="title-right">
-                <span>Ответить</span>
-            </div>
+                <div class="body-comment">
+                    <strong> @item.ParentAuthorName</strong>
+                    @item.Body
+                </div>
+            </div>            
         </div>
-        <div class="body-comment">
-            <strong> @item.ParentAuthorName</strong>
-            @item.Body
+        <div class="answers">           
+             @Parent(item, List)         
         </div>
-    </div>
+    }
 }

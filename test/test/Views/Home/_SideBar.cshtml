@@ -11,7 +11,7 @@
                     Поиск по названию поста<br />
                     <input type="text" class="search" name="q" value="@Model.q" />
                     <input type="submit" value="Поиск" class="btn btn-default" /> |
-                    @Html.ActionLink(" Все посты", "Index", new { page = 1 }, new { hidefocus = "hidefocus" })
+                    @Html.ActionLink(" Все посты", "/", new { page = 1 }, new { hidefocus = "hidefocus" })
                 </p>
             </div>
         }
